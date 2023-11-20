@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,500;0,700;1,400;1,500;1,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+h2 {
+  font-family: "Ubuntu", sans-serif;
+}
+
+.container {
+  max-width: 90% !important;
+  margin: auto;
+}
+
+@media only screen and (min-width: 1250px) {
+  .container {
+    max-width: 1180px !important;
+  }
+}
+
+.active {
+  color: #0e4677 !important;
+}
+
+.gradient-primary-btn {
+  background-image: linear-gradient(
+    90deg,
+    #0e4677 0%,
+    #4b8cc3 50%,
+    #0e4677 100%
+  );
+  background-position: left center;
+  color: #fff;
+  padding: 6px 15px;
+  border-radius: 4px;
+  background-size: 200% auto;
+  font-size: 15.5px;
+  transition: 0.3s;
+}
+.gradient-primary-btn:hover {
+  background-position: right center;
+}

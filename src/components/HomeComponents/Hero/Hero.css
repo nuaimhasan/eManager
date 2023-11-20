@@ -1,0 +1,21 @@
+.hero_wrap {
+  background-image: linear-gradient(0deg, #ffffffc2, #ffffffe6),
+    url("/public/images/hero/hero2.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.hero_right {
+  background-image: url("/images/hero/hero-circle.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 90%;
+  margin-left: auto;
+  border-radius: 50%;
+}
+
+.hero_right img {
+  width: 90%;
+  height: 90%;
+}
