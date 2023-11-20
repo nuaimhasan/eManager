@@ -1,13 +1,13 @@
 .menu_wrap ul {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .menu_wrap ul li a {
   display: block;
   padding: 20px 6px;
-  color: #222;
+  color: #444;
   position: relative;
 }
 

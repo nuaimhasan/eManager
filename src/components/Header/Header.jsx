@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Header.css";
 import { Link, NavLink } from "react-router-dom";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { FaWhatsapp } from "react-icons/fa";
 import { RiMenu3Fill } from "react-icons/ri";
 
 export default function Header() {
@@ -33,10 +33,10 @@ export default function Header() {
                   <Link to="#services">Services</Link>
                 </li>
                 <li>
-                  <Link to="#team">Our Team</Link>
+                  <Link to="#client">Clients</Link>
                 </li>
                 <li>
-                  <Link to="#client">Client</Link>
+                  <Link to="#team">Our Team</Link>
                 </li>
                 <li>
                   <Link to="#about-us">About Us</Link>
@@ -45,9 +45,13 @@ export default function Header() {
                   <Link to="#contact-us">Contact Us</Link>
                 </li>
 
-                <li className="gradient-primary-btn flex items-center gap-2">
-                  Pricing <IoMdArrowDropdown />
-                </li>
+                <Link
+                  to="https://api.whatsapp.com/send?phone=01913076103"
+                  target="_blank"
+                  className="gradient-primary-btn flex items-center gap-1 text-sm"
+                >
+                  <FaWhatsapp /> Whatsapp
+                </Link>
               </ul>
 
               <button onClick={() => setMobileMenu(true)} className="lg:hidden">

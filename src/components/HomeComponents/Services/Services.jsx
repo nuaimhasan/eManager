@@ -4,10 +4,12 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default function Services() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-10 lg:py-20 bg-base-100">
       <div className="container">
         <div className="text-center">
-          <h2 className="text-4xl font-medium text-neutral">Our Services</h2>
+          <h2 className="text-2xl md:text-4xl font-medium text-neutral">
+            Our Services
+          </h2>
           <p className="text-neutral-content">
             IT Solutions & Business Services for your Success
           </p>

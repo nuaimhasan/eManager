@@ -6,10 +6,17 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(0deg, #ffffff8e, #ffffff61),
+    url("/images/body_bg.jpg");
 }
 
 h2 {
   font-family: "Ubuntu", sans-serif;
+}
+
+.shadow {
+  box-shadow: 0 8px 26px -4px rgba(88, 88, 88, 0.097),
+    0 8px 9px -10px rgba(88, 88, 88, 0.097) !important;
 }
 
 .container {
@@ -42,6 +49,39 @@ h2 {
   font-size: 15.5px;
   transition: 0.3s;
 }
+
 .gradient-primary-btn:hover {
   background-position: right center;
+}
+
+.section_text {
+  font-weight: 600;
+  display: inline;
+  position: relative;
+  color: #0e4677;
+  margin-left: 20px;
+}
+
+.section_text::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  border-radius: 8px;
+  background-color: #0e4677;
+  left: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.section_text::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  border-radius: 8px;
+  background-color: #0e4677;
+  right: -18px;
+  top: 50%;
+  transform: translateY(-50%);
 }
