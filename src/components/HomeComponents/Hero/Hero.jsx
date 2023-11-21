@@ -1,5 +1,7 @@
 import "./Hero.css";
 import { Link } from "react-router-dom";
+import Lottie from "lottie-react";
+import hero from "../../../../public/images//hero/hero.json";
 
 export default function Hero() {
   return (
@@ -27,7 +29,8 @@ export default function Hero() {
 
           <div>
             <div className="hero_right">
-              <img src="/images/hero/hero_man.webp" alt="" />
+              {/* <img src="/images/hero/hero_man.webp" alt="" /> */}
+              <Lottie animationData={hero} loop={true} />
             </div>
           </div>
         </div>

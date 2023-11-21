@@ -12,7 +12,10 @@ export default function Header() {
       <header className="py-1 lg:py-0 sticky top-0 bg-[#ffffffcc] backdrop-blur-[10px] border-b z-50">
         <div className="container">
           <div className="flex justify-between items-center">
-            <Link to="/">
+            <Link
+              to="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
               <img
                 src="/images/logo/logo.png"
                 alt="emanager logo"
@@ -27,7 +30,14 @@ export default function Header() {
               ></button>
               <ul className={`${mobileMenu && "show"}`}>
                 <li>
-                  <NavLink to="/">Home</NavLink>
+                  <NavLink
+                    to="/"
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
+                  >
+                    Home
+                  </NavLink>
                 </li>
                 <li>
                   <a href="#services">Services</a>
