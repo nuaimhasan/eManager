@@ -5,7 +5,7 @@ import { BiSolidLike } from "react-icons/bi";
 
 export default function About() {
   return (
-    <section className="py-10 lg:py-20">
+    <section className="py-10 lg:py-20" id="about-us">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>

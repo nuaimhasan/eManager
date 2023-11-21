@@ -5,7 +5,7 @@ import { HiBuildingOffice2 } from "react-icons/hi2";
 
 export default function ContactUs() {
   return (
-    <section className="py-10 lg:py-20">
+    <section className="py-10 lg:py-20" id="contact-us">
       <div className="container">
         <div className="grid md:grid-cols-2 gap-8 md:gap-14">
           <div>
@@ -52,6 +52,9 @@ export default function ContactUs() {
           </div>
 
           <div>
+            <h2 className="text-secondary font-semibold text-xl mb-3">
+              Get In Touch
+            </h2>
             <form className="flex flex-col gap-3">
               <div>
                 <input

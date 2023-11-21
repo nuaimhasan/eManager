@@ -1,0 +1,15 @@
+.blog_card {
+  border-radius: 4px;
+  box-shadow: 0 8px 26px -4px rgba(88, 88, 88, 0.097),
+    0 8px 9px -10px rgba(88, 88, 88, 0.097);
+  margin-top: 5px;
+  transition: all 0.3s ease;
+}
+
+.blog_card:hover {
+  margin-top: 0px;
+}
+
+.blog_card:hover h2 {
+  color: #0e4677;
+}

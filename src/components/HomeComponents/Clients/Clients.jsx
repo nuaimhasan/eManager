@@ -1,6 +1,10 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
+
 export default function Clients() {
   return (
-    <section className="py-10 lg:py-16 bg-base-100" id="client">
+    <section className="py-10 lg:py-16 bg-base-100" id="clients">
       <div className="container">
         <div className="text-center">
           <h2 className="text-2xl md:text-3xl font-medium text-neutral">
@@ -9,43 +13,104 @@ export default function Clients() {
         </div>
 
         <div className="mt-8">
-          <div className="flex gap-4">
-            <div className="shadow w-40 h-20 rounded flex justify-center items-center">
-              <img
-                src="/images/clients/aesthetic.png"
-                alt=""
-                className="w-[60%]"
-              />
-            </div>
-
-            <div className="shadow w-40 h-20 rounded flex justify-center items-center">
-              <img src="/images/clients/skrp.png" alt="" className="w-[60%]" />
-            </div>
-
-            <div className="shadow w-40 h-20 rounded flex justify-center items-center">
-              <img src="/images/logo/logo.png" alt="" className="w-[60%]" />
-            </div>
-
-            <div className="shadow w-40 h-20 rounded flex justify-center items-center">
-              <img
-                src="/images/clients/aesthetic.png"
-                alt=""
-                className="w-[60%]"
-              />
-            </div>
-
-            <div className="shadow w-40 h-20 rounded flex justify-center items-center">
-              <img src="/images/clients/skrp.png" alt="" className="w-[60%]" />
-            </div>
-
-            <div className="shadow w-40 h-20 rounded flex justify-center items-center">
-              <img src="/images/logo/logo.png" alt="" className="w-[60%]" />
-            </div>
-
-            <div className="shadow w-40 h-20 rounded flex justify-center items-center">
-              <img src="/images/clients/skrp.png" alt="" className="w-[60%]" />
-            </div>
-          </div>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={10}
+            grabCursor={true}
+            loop={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              0: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              500: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 6,
+                spaceBetween: 20,
+              },
+            }}
+            modules={[Autoplay]}
+          >
+            <SwiperSlide>
+              <div className="shadow w-full h-20 rounded flex justify-center items-center">
+                <img
+                  src="/images/clients/aesthetic.png"
+                  alt=""
+                  className="w-[70%] h-1/2"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="shadow w-full h-20 rounded flex justify-center items-center">
+                <img
+                  src="/images/clients/skrp.png"
+                  alt=""
+                  className="w-[70%] h-1/2"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="shadow w-full h-20 rounded flex justify-center items-center">
+                <img
+                  src="/images/clients/aesthetic.png"
+                  alt=""
+                  className="w-[70%] h-1/2"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="shadow w-full h-20 rounded flex justify-center items-center">
+                <img
+                  src="/images/clients/skrp.png"
+                  alt=""
+                  className="w-[70%] h-1/2"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="shadow w-full h-20 rounded flex justify-center items-center">
+                <img
+                  src="/images/clients/aesthetic.png"
+                  alt=""
+                  className="w-[70%] h-1/2"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="shadow w-full h-20 rounded flex justify-center items-center">
+                <img
+                  src="/images/clients/skrp.png"
+                  alt=""
+                  className="w-[70%] h-1/2"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="shadow w-full h-20 rounded flex justify-center items-center">
+                <img
+                  src="/images/clients/aesthetic.png"
+                  alt=""
+                  className="w-[70%] h-1/2"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="shadow w-full h-20 rounded flex justify-center items-center">
+                <img
+                  src="/images/clients/skrp.png"
+                  alt=""
+                  className="w-[70%] h-1/2"
+                />
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
     </section>

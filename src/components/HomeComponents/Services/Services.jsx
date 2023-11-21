@@ -4,7 +4,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default function Services() {
   return (
-    <section className="py-10 lg:py-20 bg-base-100">
+    <section className="py-10 lg:py-20 bg-base-100" id="services">
       <div className="container">
         <div className="text-center">
           <h2 className="text-2xl md:text-4xl font-medium text-neutral">
@@ -17,7 +17,7 @@ export default function Services() {
 
         <div className="mt-10">
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <Link to="" className="service_card">
+            <Link to="/service/web-development" className="service_card">
               <img src="/images/services/web.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 Web Development
@@ -32,7 +32,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/app-development" className="service_card">
               <img src="/images/services/app.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 App Development
@@ -47,7 +47,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/ui-ux-design" className="service_card">
               <img src="/images/services/ui-ux.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 UI/UX Design
@@ -61,7 +61,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/embedded-system" className="service_card">
               <img src="/images/services/embedded.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 Embedded System
@@ -76,7 +76,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/digital-marketing" className="service_card">
               <img src="/images/services/digital-marketing.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 Digital Marketing
@@ -90,7 +90,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/seo" className="service_card">
               <img src="/images/services/seo.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 SEO
@@ -105,7 +105,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/graphics-design" className="service_card">
               <img src="/images/services/graphics.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 Graphics Design
@@ -119,7 +119,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/videography" className="service_card">
               <img src="/images/services/video.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 Videography Solution
@@ -134,7 +134,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/content-research" className="service_card">
               <img src="/images/services/content-esearch.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 Content & Research
@@ -149,7 +149,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/eCom-automation" className="service_card">
               <img src="/images/services/eCom.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 eCom Automation
@@ -164,7 +164,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/training-programn" className="service_card">
               <img src="/images/services/training.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 Training Program
@@ -179,7 +179,7 @@ export default function Services() {
               </button>
             </Link>
 
-            <Link to="" className="service_card">
+            <Link to="/service/domain-hosting" className="service_card">
               <img src="/images/services/domain-hosting.png" alt="" />
               <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
                 Domain & Hosting

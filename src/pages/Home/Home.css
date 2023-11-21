@@ -1,0 +1,28 @@
+.counter_card {
+  width: 100%;
+  height: 120px;
+  border-radius: 4px;
+  background: rgb(255, 255, 255, 0.4);
+  backdrop-filter: blur(25px);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.counter_card .icon {
+  width: 40px;
+  height: 45px;
+  background: #0e4677;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter_card h1 {
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 5px;
+}

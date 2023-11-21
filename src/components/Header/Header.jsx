@@ -14,9 +14,9 @@ export default function Header() {
           <div className="flex justify-between items-center">
             <Link to="/">
               <img
-                src="/public/images/logo/logo.png"
+                src="/images/logo/logo.png"
                 alt="emanager logo"
-                className="w-32 sm:w-40 lg:w-44"
+                className="w-40 lg:w-44"
               />
             </Link>
 
@@ -30,21 +30,20 @@ export default function Header() {
                   <NavLink to="/">Home</NavLink>
                 </li>
                 <li>
-                  <Link to="#services">Services</Link>
+                  <a href="#services">Services</a>
                 </li>
                 <li>
-                  <Link to="#client">Clients</Link>
+                  <a href="#about-us">About Us</a>
                 </li>
                 <li>
-                  <Link to="#team">Our Team</Link>
+                  <a href="#contact-us">Contact Us</a>
                 </li>
                 <li>
-                  <Link to="#about-us">About Us</Link>
+                  <a href="/news-blogs">News & Blogs</a>
                 </li>
                 <li>
-                  <Link to="#contact-us">Contact Us</Link>
+                  <a href="#clients">Clients</a>
                 </li>
-
                 <Link
                   to="https://api.whatsapp.com/send?phone=01913076103"
                   target="_blank"

@@ -12,7 +12,11 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="w-max">
               <Link to="/">
-                <img src="/images/logo/logo.png" className="w-48" alt="Logo" />
+                <img
+                  src="/images/logo/logo-light.png"
+                  className="w-48"
+                  alt="Logo"
+                />
               </Link>
             </div>
             <div className="mt-2 text-sm">
