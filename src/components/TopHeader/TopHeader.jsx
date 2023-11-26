@@ -6,7 +6,7 @@ import { AiOutlineTwitter } from "react-icons/ai";
 
 export default function TopHeader() {
   return (
-    <div className="hidden sm:block bg-primary text-secondary py-1">
+    <div className="hidden sm:block top_header py-1">
       <div className="container">
         <div className="flex justify-between items-center text-sm">
           <div className="flex items-center gap-2.5">
@@ -39,7 +39,8 @@ export default function TopHeader() {
               target="_blank"
               className="flex items-center gap-1"
             >
-              <BsTelephoneInbound /> 01904-099871
+              <BsTelephoneInbound />
+              01906-198021
             </Link>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Blogs() {
   return (
-    <section className="py-10 lg:py-20 bg-base-100">
+    <section className="py-10 lg:py-20 bg-base-100" id="blogs">
       <div className="container">
         <div className="text-center ">
           <h3 className="text-lg text-neutral-content">LATEST FROM BLOG</h3>

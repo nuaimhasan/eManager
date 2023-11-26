@@ -29,7 +29,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-3 text-base font-semibold uppercase">Services</h2>
+            <h2 className="mb-3 text-base font-semibold uppercase">
+              Popular Services
+            </h2>
             <ul className="text-sm flex flex-col gap-1">
               <li>
                 <Link to="/" className="hover:underline">
@@ -43,17 +45,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/" className="hover:underline">
-                  Embedded System
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
                   Content & Research
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
-                  eCom Automation
                 </Link>
               </li>
               <li>
@@ -78,17 +70,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/" className="hover:underline">
-                  Training Program
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
                   Domain & Hosting
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
-                  Web Development
                 </Link>
               </li>
             </ul>
@@ -151,7 +133,7 @@ export default function Footer() {
 
         <div className="sm:flex sm:items-center sm:justify-between opacity-80">
           <span className="text-sm">
-            © 2012 - 2023 <span className="text-primary">eManager</span>. All
+            © 2017 - 2023 <span className="text-primary">eManager</span>. All
             Rights Reserved.
           </span>
           <ul className="flex items-center gap-2 mt-3 sm:mt-0">

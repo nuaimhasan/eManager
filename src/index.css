@@ -89,3 +89,7 @@ h2 {
   top: 50%;
   transform: translateY(-50%);
 }
+
+.top_header {
+  background-image: linear-gradient(to left, #fbc31c, #fee701);
+}

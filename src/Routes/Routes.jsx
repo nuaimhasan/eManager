@@ -13,6 +13,10 @@ import ContentResearch from "../pages/ServiceDetails/ContentResearch";
 import EComAutomation from "../pages/ServiceDetails/EComAutomation";
 import TrainingProgram from "../pages/ServiceDetails/TrainingProgram";
 import DomainHosting from "../pages/ServiceDetails/DomainHosting";
+import ServicesPage from "../pages/Services/Services";
+import AboutUs from "../pages/AboutUs/AboutUs";
+import ContactUs from "../pages/ContactUs/ContactUs";
+import Blogs from "../pages/Blogs/Blogs";
 
 export const routes = createBrowserRouter([
   {
@@ -22,6 +26,22 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/services",
+        element: <ServicesPage />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
       {
         path: "/service/web-development",

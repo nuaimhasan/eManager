@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { FaTrophy, FaUsers } from "react-icons/fa";
 import { AiFillProject } from "react-icons/ai";
 import { BiSolidLike } from "react-icons/bi";
@@ -49,7 +48,7 @@ export default function About() {
                 </div>
                 <div>
                   <h2 className="text-xl sm:text-2xl font-medium text-neutral">
-                    <span>12</span>+
+                    <span>7</span>+
                   </h2>
                   <p className="text-neutral-content text-sm -mt-1">
                     Successful Years
@@ -63,7 +62,7 @@ export default function About() {
                 </div>
                 <div>
                   <h2 className="text-xl sm:text-2xl font-medium text-neutral">
-                    <span>2500</span>+
+                    <span>1500</span>+
                   </h2>
                   <p className="text-neutral-content text-sm -mt-1">
                     Project Done
@@ -91,7 +90,7 @@ export default function About() {
                 </div>
                 <div>
                   <h2 className="text-xl sm:text-2xl font-medium text-neutral">
-                    <span>99</span>%
+                    <span>98</span>%
                   </h2>
                   <p className="text-neutral-content text-sm -mt-1">
                     Positive Feedback
@@ -101,9 +100,9 @@ export default function About() {
             </div>
 
             <div className="mt-8">
-              <Link to="" className="gradient-primary-btn">
-                Contact Us
-              </Link>
+              <button className="gradient-primary-btn text-sm">
+                Company Profile
+              </button>
             </div>
           </div>
 

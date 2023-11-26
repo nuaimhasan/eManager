@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Header.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiMenu3Fill } from "react-icons/ri";
 
 export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.addEventListener("click", (e) => {
+      if (e.target.closest(".menu_wrap ul li a")) {
+        setMobileMenu(false);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -40,22 +49,38 @@ export default function Header() {
                   </NavLink>
                 </li>
                 <li>
-                  <a href="#services">Services</a>
+                  {pathname === "/" ? (
+                    <a href="#services">Services</a>
+                  ) : (
+                    <NavLink to="/services">Services</NavLink>
+                  )}
                 </li>
                 <li>
-                  <a href="#about-us">About Us</a>
+                  {pathname === "/" ? (
+                    <a href="#about-us">About Us</a>
+                  ) : (
+                    <NavLink to="/about-us">About Us</NavLink>
+                  )}
                 </li>
                 <li>
-                  <a href="#contact-us">Contact Us</a>
+                  {pathname === "/" ? (
+                    <a href="#contact-us">Contact Us</a>
+                  ) : (
+                    <NavLink to="/contact-us">Contact Us</NavLink>
+                  )}
                 </li>
                 <li>
-                  <a href="/news-blogs">News & Blogs</a>
+                  {pathname === "/" ? (
+                    <a href="#blogs">Blogs</a>
+                  ) : (
+                    <NavLink to="/blogs">Blogs</NavLink>
+                  )}
                 </li>
                 <li>
                   <a href="#clients">Clients</a>
                 </li>
                 <Link
-                  to="https://api.whatsapp.com/send?phone=01913076103"
+                  to="https://api.whatsapp.com/send?phone=01906198022"
                   target="_blank"
                   className="gradient-primary-btn flex items-center gap-1 text-sm"
                 >

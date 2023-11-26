@@ -1,8 +1,10 @@
 import { FaPhone, FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { HiBuildingOffice2 } from "react-icons/hi2";
 
 export default function ContactUs() {
+  window.scroll(0, 0);
   return (
     <section className="py-10 lg:py-20" id="contact-us">
       <div className="container">
@@ -40,6 +42,12 @@ export default function ContactUs() {
                   <FaLocationDot />
                 </p>
                 <p>80, Shahjalal Complex, Circular Road, Malibagh Dhaka</p>
+              </div>
+              <div className="flex gap-1 items-center">
+                <p>
+                  <HiBuildingOffice2 className="text-lg" />
+                </p>
+                <p>House:-517, Road:-10, Baridhara DOHS, Dhaka, Bangladesh</p>
               </div>
             </div>
           </div>
