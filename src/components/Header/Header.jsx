@@ -79,6 +79,9 @@ export default function Header() {
                 <li>
                   <a href="#clients">Clients</a>
                 </li>
+                <li>
+                  <NavLink to="/career">Career</NavLink>
+                </li>
                 <Link
                   to="https://api.whatsapp.com/send?phone=01906198022"
                   target="_blank"

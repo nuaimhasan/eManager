@@ -1,0 +1,30 @@
+.career_form {
+  .form_control {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+}
+
+.form_control label {
+  font-size: 17px;
+}
+
+.form_control input,
+.form_control textarea {
+  background: transparent;
+  border: 1px solid #6e6e6e3c;
+  padding: 6px 10px;
+  border-radius: 6px;
+  width: 100%;
+  outline: none;
+}
+
+.form_control input:focus,
+.form_control textarea:focus {
+  border-color: #cf9e0a;
+}
+input:disabled {
+  background: #eeeeeec7;
+}

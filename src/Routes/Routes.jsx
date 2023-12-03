@@ -17,6 +17,8 @@ import ServicesPage from "../pages/Services/Services";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Blogs from "../pages/Blogs/Blogs";
+import Career from "../pages/Career/Career";
+import CareerDetails from "../pages/CareerDetails/CareerDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ export const routes = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+      },
+      {
+        path: "/career",
+        element: <Career />,
+      },
+      {
+        path: "/career/:id",
+        element: <CareerDetails />,
       },
       {
         path: "/service/web-development",
