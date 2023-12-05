@@ -15,12 +15,20 @@ const adminSidebarItems = [
     title: "Services",
     subMenu: [
       {
-        title: "Add New Services",
-        path: "/admin/product/add-product",
+        title: "Add Service",
+        path: "/admin/services/add-service",
       },
       {
         title: "All Services",
-        path: "/admin/product/all-products",
+        path: "/admin/services/all-services",
+      },
+      {
+        title: "Service Banner Setting",
+        path: "/admin/services/banner",
+      },
+      {
+        title: "Service Section Setting",
+        path: "/admin/services/section-setting",
       },
     ],
   },
@@ -29,8 +37,12 @@ const adminSidebarItems = [
     title: "Blogs",
     subMenu: [
       {
-        title: "All Administrator",
-        path: "/admin/administrator/all-administrator",
+        title: "All Blogs",
+        path: "/admin/blogs/all-blogs",
+      },
+      {
+        title: "Blog Section Setting",
+        path: "/admin/blogs/blog-section-setting",
       },
     ],
   },

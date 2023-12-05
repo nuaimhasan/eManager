@@ -34,6 +34,16 @@ import AddNewChoose from "../pages/DashboardPages/WhyChooseLists/AddNewChoose";
 import EditChoose from "../pages/DashboardPages/WhyChooseLists/EditChoose";
 import Menu from "../pages/DashboardPages/Menu/Menu";
 import EditMenu from "../pages/DashboardPages/Menu/EditMenu";
+import ServicesList from "../pages/DashboardPages/Services/ServicesList";
+import AddService from "../pages/DashboardPages/Services/AddService";
+import BlogsList from "../pages/DashboardPages/Blogs/BlogsList";
+import AddBlog from "../pages/DashboardPages/Blogs/AddBlog";
+import BlogSection from "../pages/DashboardPages/Blogs/BlogSection";
+import EditBlog from "../pages/DashboardPages/Blogs/EditBlog";
+import ServiceBanner from "../pages/DashboardPages/Services/ServiceBanner";
+import ServiceSection from "../pages/DashboardPages/Services/ServiceSection";
+import EditService from "../pages/DashboardPages/Services/EditService";
+import BlogDetails from "../pages/BlogDetails/BlogDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -59,6 +69,10 @@ export const routes = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+      },
+      {
+        path: "/blog/:id",
+        element: <BlogDetails />,
       },
       {
         path: "/career",
@@ -129,6 +143,42 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/admin/services/banner",
+        element: <ServiceBanner />,
+      },
+      {
+        path: "/admin/services/section-setting",
+        element: <ServiceSection />,
+      },
+      {
+        path: "/admin/services/all-services",
+        element: <ServicesList />,
+      },
+      {
+        path: "/admin/services/add-service",
+        element: <AddService />,
+      },
+      {
+        path: "/admin/services/edit/:slug",
+        element: <EditService />,
+      },
+      {
+        path: "/admin/blogs/all-blogs",
+        element: <BlogsList />,
+      },
+      {
+        path: "/admin/blogs/blog-section-setting",
+        element: <BlogSection />,
+      },
+      {
+        path: "/admin/blogs/add-blog",
+        element: <AddBlog />,
+      },
+      {
+        path: "/admin/blogs/edit-blog/:id",
+        element: <EditBlog />,
       },
       {
         path: "/admin/front-end/logo",
