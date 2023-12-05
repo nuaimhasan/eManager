@@ -27,87 +27,114 @@ export default function Contact() {
       <div className="p-4 border-b text-neutral font-medium">
         <h3>Contact Info</h3>
       </div>
-      <form
-        onSubmit={handleUpdateContact}
-        className="p-4 form_group flex flex-col gap-3 md:mx-48 border rounded mt-3 text-sm"
-      >
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <p className="text-neutral-content">Phone</p>
-            <input
-              type="text"
-              name="phone"
-              //  defaultValue={data?.data?.phone}
-            />
+      <form onSubmit={handleUpdateContact} className="p-4 mt-3 text-sm">
+        <div className="grid lg:grid-cols-5 gap-4">
+          <div className="lg:col-span-2 flex flex-col gap-3">
+            <div>
+              <p className="text-neutral-content">Title</p>
+              <input
+                type="text"
+                name="title"
+                //  defaultValue={data?.data?.email}
+              />
+            </div>
+            <div>
+              <p className="text-neutral-content">Description</p>
+              <input
+                type="text"
+                name="description"
+                //  defaultValue={data?.data?.email}
+              />
+            </div>
           </div>
 
-          <div>
-            <p className="text-neutral-content">Email</p>
-            <input
-              type="email"
-              name="email"
-              //  defaultValue={data?.data?.email}
-            />
+          <div className="lg:col-span-3 flex flex-col gap-3">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <p className="text-neutral-content">Phone</p>
+                <input
+                  type="text"
+                  name="phone"
+                  //  defaultValue={data?.data?.phone}
+                />
+              </div>
+
+              <div>
+                <p className="text-neutral-content">Whatsapp</p>
+                <input
+                  type="text"
+                  name="whatsapp"
+                  //  defaultValue={data?.data?.whatsapp}
+                />
+              </div>
+            </div>
+
+            <div>
+              <p className="text-neutral-content">Email</p>
+              <input
+                type="email"
+                name="email"
+                //  defaultValue={data?.data?.email}
+              />
+            </div>
+
+            <div>
+              <p className="text-neutral-content">Address</p>
+              <textarea
+                name="address"
+                rows="5"
+                // defaultValue={data?.data?.address}
+              ></textarea>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <p className="text-neutral-content">Facebook Link</p>
+                <input
+                  type="text"
+                  name="facebook"
+                  // defaultValue={data?.data?.facebookLink}
+                />
+              </div>
+
+              <div>
+                <p className="text-neutral-content">Instagram Link</p>
+                <input
+                  type="text"
+                  name="instagram"
+                  // defaultValue={data?.data?.instagramLink}
+                />
+              </div>
+
+              <div>
+                <p className="text-neutral-content">Youtube Link</p>
+                <input
+                  type="text"
+                  name="youtube"
+                  // defaultValue={data?.data?.youtubeLink}
+                />
+              </div>
+
+              <div>
+                <p className="text-neutral-content">Linkedin Link</p>
+                <input
+                  type="text"
+                  name="linkedin"
+                  // defaultValue={data?.data?.linkedinLink}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div>
-          <p className="text-neutral-content">Address</p>
-          <textarea
-            name="address"
-            rows="5"
-            // defaultValue={data?.data?.address}
-          ></textarea>
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <p className="text-neutral-content">Facebook Link</p>
-            <input
-              type="text"
-              name="facebook"
-              // defaultValue={data?.data?.facebookLink}
-            />
-          </div>
-
-          <div>
-            <p className="text-neutral-content">Instagram Link</p>
-            <input
-              type="text"
-              name="instagram"
-              // defaultValue={data?.data?.instagramLink}
-            />
-          </div>
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <p className="text-neutral-content">Youtube Link</p>
-            <input
-              type="text"
-              name="youtube"
-              // defaultValue={data?.data?.youtubeLink}
-            />
-          </div>
-
-          <div>
-            <p className="text-neutral-content">Linkedin Link</p>
-            <input
-              type="text"
-              name="linkedin"
-              // defaultValue={data?.data?.linkedinLink}
-            />
-          </div>
-        </div>
-
-        <div className="flex justify-end">
+        <div className="mt-4">
           {/* <button
             disabled={updateLoading && "disabled"}
             className="gradient-primary-btn"
           >
             {updateLoading ? "Loading" : "Save"}
           </button> */}
-          <button className="gradient-primary-btn">Save</button>
+          <button className="gradient-primary-btn">Save Contact</button>
         </div>
       </form>
     </section>

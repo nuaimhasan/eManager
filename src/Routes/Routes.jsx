@@ -30,6 +30,10 @@ import AddAdministrator from "../pages/DashboardPages/Administrator/AddAdministr
 import Clients from "../pages/DashboardPages/Clients/Clients";
 import AddClient from "../pages/DashboardPages/Clients/AddClient";
 import WhyChooseLists from "../pages/DashboardPages/WhyChooseLists/WhyChooseLists";
+import AddNewChoose from "../pages/DashboardPages/WhyChooseLists/AddNewChoose";
+import EditChoose from "../pages/DashboardPages/WhyChooseLists/EditChoose";
+import Menu from "../pages/DashboardPages/Menu/Menu";
+import EditMenu from "../pages/DashboardPages/Menu/EditMenu";
 
 export const routes = createBrowserRouter([
   {
@@ -155,12 +159,28 @@ export const routes = createBrowserRouter([
         element: <WhyChooseLists />,
       },
       {
+        path: "/admin/why-choose/add-new",
+        element: <AddNewChoose />,
+      },
+      {
+        path: "/admin/why-choose/edit/:id",
+        element: <EditChoose />,
+      },
+      {
         path: "/admin/administrator/all-administrator",
         element: <Administrator />,
       },
       {
         path: "/admin/administrator/add-administrator",
         element: <AddAdministrator />,
+      },
+      {
+        path: "/admin/front-end/menu",
+        element: <Menu />,
+      },
+      {
+        path: "/admin/front-end/menu/edit/:id",
+        element: <EditMenu />,
       },
     ],
   },

@@ -22,7 +22,6 @@ export default function Administrator() {
               <th>User name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>Role</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -43,7 +42,6 @@ export default function Administrator() {
               </td>
               <td>email</td>
               <td>phone</td>
-              <td>role</td>
               <td>
                 <button>
                   <AiOutlineDelete className="text-lg hover:text-red-500" />

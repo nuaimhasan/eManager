@@ -1,6 +1,6 @@
-import { FaTrophy, FaUsers } from "react-icons/fa";
-import { AiFillProject } from "react-icons/ai";
-import { BiSolidLike } from "react-icons/bi";
+// import { FaTrophy, FaUsers } from "react-icons/fa";
+// import { AiFillProject } from "react-icons/ai";
+// import { BiSolidLike } from "react-icons/bi";
 
 export default function About() {
   return (
@@ -32,6 +32,23 @@ export default function About() {
                 and industry best practices to deliver high-quality, customized
                 solutions.
               </p>
+
+              <p>
+                In addition to development services, our expertise extends to
+                software solutions that streamline business operations and drive
+                productivity. From CRM systems to enterprise applications, we
+                provide tailored software solutions to meet specific business
+                needs.
+              </p>
+
+              <p>
+                Our team of skilled professionals excels in creating visually
+                appealing and user-friendly websites, as well as developing
+                robust mobile applications. We leverage the latest technologies
+                and industry best practices to deliver high-quality, customized
+                solutions.
+              </p>
+
               <p>
                 In addition to development services, our expertise extends to
                 software solutions that streamline business operations and drive
@@ -41,7 +58,7 @@ export default function About() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mt-4">
+            {/* <div className="grid grid-cols-2 gap-6 mt-4">
               <div className="flex gap-3 items-center">
                 <div className="w-9 h-9 flex justify-center items-center rounded bg-secondary/20 text-secondary">
                   <FaTrophy className="text-lg" />
@@ -97,9 +114,9 @@ export default function About() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            <div className="mt-8">
+            <div className="mt-4">
               <button className="gradient-primary-btn text-sm">
                 Company Profile
               </button>

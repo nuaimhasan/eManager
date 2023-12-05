@@ -39,7 +39,7 @@ export default function WhyChooseLists() {
               </td>
               <td>
                 <div className="flex items-center gap-2">
-                  <Link to="">
+                  <Link to="/admin/why-choose/edit/1">
                     <FaRegEdit className="text-[17px] hover:text-secondary" />
                   </Link>
                   <button>
@@ -61,7 +61,7 @@ export default function WhyChooseLists() {
               </td>
               <td>
                 <div className="flex items-center gap-2">
-                  <Link to="">
+                  <Link to="/admin/why-choose/edit/2">
                     <FaRegEdit className="text-[17px] hover:text-secondary" />
                   </Link>
                   <button>

@@ -127,3 +127,11 @@ table tbody td {
   text-align: start;
   border-bottom: 1px solid #dddddd94;
 }
+
+.jodit-workplace {
+  height: 220px !important;
+}
+
+.jodit-status-bar {
+  display: none !important;
+}
