@@ -19,6 +19,17 @@ import ContactUs from "../pages/ContactUs/ContactUs";
 import Blogs from "../pages/Blogs/Blogs";
 import Career from "../pages/Career/Career";
 import CareerDetails from "../pages/CareerDetails/CareerDetails";
+import DashboardLayout from "../Layout/DashboardLayout/DashboardLayout";
+import Dashboard from "../pages/DashboardPages/Dashboard/Dashboard";
+import Logo from "../pages/DashboardPages/Logo/Logo";
+import About from "../pages/DashboardPages/About/About";
+import Contact from "../pages/DashboardPages/Contact/Contact";
+import Banner from "../pages/DashboardPages/Banner/Banner";
+import Administrator from "../pages/DashboardPages/Administrator/Administrator";
+import AddAdministrator from "../pages/DashboardPages/Administrator/AddAdministrator";
+import Clients from "../pages/DashboardPages/Clients/Clients";
+import AddClient from "../pages/DashboardPages/Clients/AddClient";
+import WhyChooseLists from "../pages/DashboardPages/WhyChooseLists/WhyChooseLists";
 
 export const routes = createBrowserRouter([
   {
@@ -100,6 +111,56 @@ export const routes = createBrowserRouter([
       {
         path: "/service/domain-hosting",
         element: <DomainHosting />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/admin",
+        element: <Dashboard />,
+      },
+      {
+        path: "/admin/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/admin/front-end/logo",
+        element: <Logo />,
+      },
+      {
+        path: "/admin/front-end/about-us",
+        element: <About />,
+      },
+      {
+        path: "/admin/front-end/contact-us",
+        element: <Contact />,
+      },
+      {
+        path: "/admin/front-end/banner",
+        element: <Banner />,
+      },
+      {
+        path: "/admin/clients/all-clients",
+        element: <Clients />,
+      },
+      {
+        path: "/admin/clients/add-client",
+        element: <AddClient />,
+      },
+      {
+        path: "/admin/why-choose",
+        element: <WhyChooseLists />,
+      },
+      {
+        path: "/admin/administrator/all-administrator",
+        element: <Administrator />,
+      },
+      {
+        path: "/admin/administrator/add-administrator",
+        element: <AddAdministrator />,
       },
     ],
   },

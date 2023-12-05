@@ -93,3 +93,37 @@ h2 {
 .top_header {
   background-image: linear-gradient(to left, #fbc31c, #fee701);
 }
+
+input,
+textarea,
+select {
+  outline: none;
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  font-size: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+table thead th {
+  background: #dddddd5c;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #404145e6;
+  text-transform: uppercase;
+  text-align: start;
+  white-space: nowrap;
+}
+
+table tbody td {
+  padding: 10px;
+  text-align: start;
+  border-bottom: 1px solid #dddddd94;
+}

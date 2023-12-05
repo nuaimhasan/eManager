@@ -1,10 +1,8 @@
-.career_form {
-  .form_control {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
+.career_form .form_control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
 .form_control label {
