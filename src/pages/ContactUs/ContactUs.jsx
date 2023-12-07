@@ -2,8 +2,30 @@ import { FaPhone, FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { HiBuildingOffice2 } from "react-icons/hi2";
+import { useGetContactUsByIdQuery } from "../../redux/api/contactUsApi";
 
 export default function ContactUs() {
+  
+  const {data, isLoading} = useGetContactUsByIdQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const contactus = data.data;
+  const {
+    title,
+    description,
+    phone,
+    whatsapp,
+    email,
+    address,
+    facebookLink,
+    instagramLink,
+    youtubeLink,
+    linkedinLink,
+  } = contactus;
+
   window.scroll(0, 0);
   return (
     <section className="py-10 lg:py-20" id="contact-us">
@@ -11,11 +33,10 @@ export default function ContactUs() {
         <div className="grid md:grid-cols-2 gap-8 md:gap-14">
           <div>
             <h2 className="text-2xl md:text-3xl font-semibold text-neutral">
-              Have Some Questions?
+              {title}
             </h2>
             <p className="text-neutral-content text-[15px] mt-1">
-              Thank you for interest in our service. Please fil up the form
-              below or call us.
+              {description}
             </p>
 
             <div className="mt-6 flex flex-col gap-1.5 text-neutral-content">
@@ -23,19 +44,19 @@ export default function ContactUs() {
                 <p>
                   <FaPhone />
                 </p>
-                <p>01906-198021</p>
+                <p>{phone}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
                   <IoLogoWhatsapp />
                 </p>
-                <p>01906-198022</p>
+                <p>{whatsapp}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
                   <MdEmail className="text-lg" />
                 </p>
-                <p>eManagerbd.xyz@gmail.com</p>
+                <p>{email}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
@@ -47,7 +68,7 @@ export default function ContactUs() {
                 <p>
                   <HiBuildingOffice2 className="text-lg" />
                 </p>
-                <p>House:-517, Road:-10, Baridhara DOHS, Dhaka, Bangladesh</p>
+                <p>{address}</p>
               </div>
             </div>
           </div>

@@ -1,17 +1,28 @@
+import { useUpdateContactUsByIdMutation } from "../../../redux/api/contactUsApi";
+import Swal from "sweetalert2";
+
 export default function Contact() {
-  const handleUpdateContact = (e) => {
+  const [updateContactUsById] = useUpdateContactUsByIdMutation();
+
+  const handleUpdateContact = async (e) => {
     e.preventDefault();
     const form = e.target;
     const phone = form.phone.value;
+    const whatsapp = form.whatsapp.value;
     const email = form.email.value;
     const address = form.address.value;
     const facebookLink = form.facebook.value;
     const instagramLink = form.instagram.value;
     const youtubeLink = form.youtube.value;
     const linkedinLink = form.linkedin.value;
+    const title = form.title.value;
+    const description = form.description.value;
 
     const contactInfo = {
+      title,
+      description,
       phone,
+      whatsapp,
       email,
       address,
       facebookLink,
@@ -19,7 +30,20 @@ export default function Contact() {
       youtubeLink,
       linkedinLink,
     };
-    console.log(contactInfo);
+    // console.log(contactInfo);
+
+    const res = await updateContactUsById({ ...contactInfo }).unwrap();
+    // console.log(res);
+    if(res.success) {
+      e.target.reset();
+      Swal.fire(
+        "Good job!",
+        "Your form has been submitted successfully!",
+        "success"
+      );
+    } else {
+      Swal.fire("Oops!", "Something went wrong. Please try again.", "error");
+    }
   };
 
   return (
