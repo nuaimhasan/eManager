@@ -1,10 +1,43 @@
-import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import {
+  useDeleteAdminMutation,
+  useGetAdminsQuery,
+} from "../../../redux/api/administratorApi";
 // import Spinner from "../../../components/Spinner/Spinner";
 // import { useEffect } from "react";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 export default function Administrator() {
+  const { data, isLoading } = useGetAdminsQuery();
+  const [deleteAdmin] = useDeleteAdminMutation();
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  const admins = data?.data;
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await deleteAdmin(id).unwrap();
+      if (res.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Admin deleted successfully",
+        });
+      }
+    } catch (error) {
+      // console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: `${error?.message}`,
+      });
+    }
+  };
+
   return (
     <section>
       <div className="flex justify-end mb-2">
@@ -26,28 +59,20 @@ export default function Administrator() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div className="flex items-center gap-2">
-                  {/* <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/images/users/${
-                      user?.image
-                    }`}
-                    alt=""
-                    className="w-10 h-10 rounded-full"
-                  /> */}
-                  <img src="" alt="" className="w-10 h-10 rounded-full" />
-                  Name
-                </div>
-              </td>
-              <td>email</td>
-              <td>phone</td>
-              <td>
-                <button>
-                  <AiOutlineDelete className="text-lg hover:text-red-500" />
-                </button>
-              </td>
-            </tr>
+            {admins?.map((admin) => (
+              <tr key={admin?.id}>
+                <td>
+                  <div className="flex items-center gap-2">{admin?.name}</div>
+                </td>
+                <td>{admin?.email}</td>
+                <td>{admin?.phone}</td>
+                <td>
+                  <button onClick={() => handleDelete(admin?.id)}>
+                    <AiOutlineDelete className="text-lg hover:text-red-500" />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

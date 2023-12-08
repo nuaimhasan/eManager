@@ -1,5 +1,5 @@
 import { baseApi } from "./baseApi";
-const id = "";
+const id = "65707e7dd42a4f24a4dce9d9";
 
 export const logoApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -11,10 +11,10 @@ export const logoApi = baseApi.injectEndpoints({
       providesTags: ["logo"],
     }),
     updateLogoById: builder.mutation({
-      query: ({ file }) => ({
+      query: ( formData ) => ({
         url: `logo/${id}`,
         method: "PATCH",
-        file: file,
+        body: formData,
       }),
       invalidatesTags: ["logo"],
     }),

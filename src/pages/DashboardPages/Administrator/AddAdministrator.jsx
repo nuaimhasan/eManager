@@ -1,11 +1,14 @@
 // import { useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
+
+import { useAddAdministratorMutation } from "../../../redux/api/administratorApi";
 
 export default function AddAdministrator() {
   // const navigate = useNavigate();
+  const [addAdministrator] = useAddAdministratorMutation();
 
-  const handleAdd = (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -21,7 +24,26 @@ export default function AddAdministrator() {
       password,
     };
 
-    console.log(info);
+    try {
+      const res = await addAdministrator({ ...info }).unwrap();
+      // console.log(res);
+
+      if (res.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Administrator added successfully",
+        });
+        form.reset();
+      }
+    } catch (error) {
+      // console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong",
+      });
+    }
   };
 
   return (
