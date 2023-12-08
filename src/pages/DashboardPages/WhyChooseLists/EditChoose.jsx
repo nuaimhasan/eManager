@@ -1,9 +1,66 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import { useParams } from "react-router-dom";
+import {
+  useGetWhyChooseByIdQuery,
+  useUpdateWhyChooseMutation,
+} from "../../../redux/api/WhyChooseApi";
+
+import swal from "sweetalert2";
 
 export default function EditChoose() {
   const [mainLogos, setMainLogos] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const { id } = useParams();
+  const { data, isLoading } = useGetWhyChooseByIdQuery(id);
+  const [updateWhyChoose] = useUpdateWhyChooseMutation();
+
+  useEffect(() => {
+    if (!isLoading && data) {
+      const { title, description } = data.data;
+      setTitle(title);
+      setDescription(description);
+    }
+  }, [data, isLoading]);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const file = mainLogos[0]?.file;
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+
+    if (file) {
+      formData.append("whyChoose", file);
+    }
+
+    try {
+      await updateWhyChoose({ id, formData });
+
+      setMainLogos([]);
+
+      swal.fire({
+        title: "Success!",
+        text: "Why Choose Updated Successfully!",
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
+    } catch (error) {
+      // console.log(error);
+      swal.fire({
+        title: "Error!",
+        text: "Something went wrong!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
+  };
 
   return (
     <section>
@@ -64,16 +121,32 @@ export default function EditChoose() {
 
           <div className="mt-4">
             <p className="mb-1">Title</p>
-            <input type="text" name="title" />
+            <input
+              type="text"
+              name="title"
+              value={title}
+              required
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
 
           <div className="mt-4">
             <p className="mb-1">Description</p>
-            <textarea name="description" rows="5"></textarea>
+            <textarea
+              name="description"
+              value={description}
+              required
+              rows={5}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </div>
 
           <div className="mt-5">
-            <button type="submit" className="gradient-primary-btn">
+            <button
+              onClick={handleUpdate}
+              type="submit"
+              className="gradient-primary-btn"
+            >
               Edit Choose
             </button>
           </div>
