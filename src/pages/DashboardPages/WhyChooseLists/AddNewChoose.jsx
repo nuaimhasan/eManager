@@ -1,9 +1,34 @@
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import { useCreateWhyChooseMutation } from "../../../redux/api/WhyChooseApi";
 
 export default function AddNewChoose() {
   const [mainLogos, setMainLogos] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const [createWhyChoose] = useCreateWhyChooseMutation();
+
+  const creteNewChoose = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("whyChoose", mainLogos[0].file);
+    formData.append("title", title);
+    formData.append("description", description);
+
+    try {
+      await createWhyChoose({...formData}).unwrap();
+      
+      // setMainLogos([]);
+      // setTitle("");
+      // setDescription("");
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   return (
     <section>
@@ -64,16 +89,30 @@ export default function AddNewChoose() {
 
           <div className="mt-4">
             <p className="mb-1">Title</p>
-            <input type="text" name="title" />
+            <input
+              type="text"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
 
           <div className="mt-4">
             <p className="mb-1">Description</p>
-            <textarea name="description" rows="5"></textarea>
+            <textarea
+              name="description"
+              rows="5"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
           </div>
 
           <div className="mt-5">
-            <button type="submit" className="gradient-primary-btn">
+            <button
+              onClick={creteNewChoose}
+              type="submit"
+              className="gradient-primary-btn"
+            >
               Add Choose
             </button>
           </div>

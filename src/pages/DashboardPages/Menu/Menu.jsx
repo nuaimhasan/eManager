@@ -1,7 +1,14 @@
 import { FaRegEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useGetMenusQuery } from "../../../redux/api/menuApi";
 
 export default function Menu() {
+  const { data, isLoading } = useGetMenusQuery();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const menus = data?.data;
+
   return (
     <section>
       <div className="mb-2 bg-base-100 p-3 rounded shadow">
@@ -19,7 +26,19 @@ export default function Menu() {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {menus.map((menu, index) => (
+              <tr key={menu.id}>
+                <td>{index + 1}</td>
+                <td>{menu.name}</td>
+                <td>{menu.order}</td>
+                <td>
+                  <Link to={`/admin/front-end/menu/edit/${menu.id}`}>
+                    <FaRegEdit className="text-[17px] hover:text-secondary" />
+                  </Link>
+                </td>
+              </tr>
+            ))}
+            {/* <tr>
               <td>1</td>
               <td>Home</td>
               <td>1</td>
@@ -48,7 +67,7 @@ export default function Menu() {
                   <FaRegEdit className="text-[17px] hover:text-secondary" />
                 </Link>
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </div>

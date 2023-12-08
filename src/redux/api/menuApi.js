@@ -4,7 +4,7 @@ const URL = "menus";
 export const menuApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     updateMenuById: builder.mutation({
-      query: ({body, id}) => ({
+      query: ({ id, body }) => ({
         url: `${URL}/${id}`,
         method: "PATCH",
         body,
@@ -18,7 +18,18 @@ export const menuApi = baseApi.injectEndpoints({
       }),
       providesTags: ["menu"],
     }),
+    getMenuById: builder.query({
+      query: (id) => ({
+        url: `${URL}/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["menu"],
+    }),
   }),
 });
 
-export const { useGetMenusQuery, useUpdateMenuByIdMutation } = menuApi;
+export const {
+  useGetMenusQuery,
+  useUpdateMenuByIdMutation,
+  useGetMenuByIdQuery,
+} = menuApi;

@@ -12,5 +12,7 @@ export const baseApi = createApi({
     "menu",
     "blogSection",
     "serviceSection",
+    "logo",
+    "whyChoose",
   ],
 });
