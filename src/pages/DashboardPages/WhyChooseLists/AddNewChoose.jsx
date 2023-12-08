@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import swal from "sweetalert2";
 import { useCreateWhyChooseMutation } from "../../../redux/api/WhyChooseApi";
 
 export default function AddNewChoose() {
@@ -12,23 +13,41 @@ export default function AddNewChoose() {
 
   const creteNewChoose = async (e) => {
     e.preventDefault();
+    const file = mainLogos[0]?.file;
+
+    if(!file || !title || !description) return swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please fill all the fields!",
+    });
 
     const formData = new FormData();
-    formData.append("whyChoose", mainLogos[0].file);
+    formData.append("whyChoose", file);
     formData.append("title", title);
     formData.append("description", description);
 
     try {
-      await createWhyChoose({...formData}).unwrap();
-      
-      // setMainLogos([]);
-      // setTitle("");
-      // setDescription("");
-    } catch (error) {
-      console.log(error);
-    }
+      await createWhyChoose(formData).unwrap();
 
-  }
+      setMainLogos([]);
+      setTitle("");
+      setDescription("");
+
+      swal.fire({
+        icon: "success",
+        title: "New Why Choose Added Successfully",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } catch (error) {
+      // console.log(error);
+      swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: 'Something went wrong!',
+      });
+    }
+  };
 
   return (
     <section>
@@ -93,6 +112,7 @@ export default function AddNewChoose() {
               type="text"
               name="title"
               value={title}
+              required
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
@@ -103,6 +123,7 @@ export default function AddNewChoose() {
               name="description"
               rows="5"
               value={description}
+              required
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
