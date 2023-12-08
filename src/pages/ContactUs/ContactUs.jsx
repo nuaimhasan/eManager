@@ -20,10 +20,6 @@ export default function ContactUs() {
     whatsapp,
     email,
     address,
-    facebookLink,
-    instagramLink,
-    youtubeLink,
-    linkedinLink,
   } = contactus;
 
   window.scroll(0, 0);
