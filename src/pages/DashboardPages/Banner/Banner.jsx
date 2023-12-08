@@ -1,13 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useGetBannerByIdQuery, useUpdateBannerByIdMutation } from "../../../redux/api/bannerApi";
+
+import swal from 'sweetalert2'
 
 export default function Banner() {
+  const { data, isLoading } = useGetBannerByIdQuery();
+  const [updateBannerById] = useUpdateBannerByIdMutation();
+
   const [edit, setEdit] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-  const handleEditBanner = (e) => {
+  useEffect(() => {
+    if (data && !isLoading) {
+      setTitle(data?.data?.title);
+      setDescription(data?.data?.description);
+    }
+  }, [data, isLoading]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const handleEditBanner =async (e) => {
     e.preventDefault();
-
-    const title = e.target.title.value;
-    const description = e.target.description.value;
 
     if (title === "" || description === "") {
       return alert("dont empty");
@@ -18,7 +34,23 @@ export default function Banner() {
       description,
     };
 
-    console.log(banner);
+    const res = await updateBannerById({...banner});
+    if (res?.data?.success === true) {
+      swal.fire({
+        title: 'Success',
+        text: res?.data?.message,
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+      setEdit(false);
+    } else {
+      swal.fire({
+        title: 'Error',
+        text: res?.data?.message,
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+    }
   };
 
   return (
@@ -33,10 +65,10 @@ export default function Banner() {
           <input
             type="text"
             name="title"
-            defaultValue="We are Hungry to take on your Challenge & Manage your business Like
-            a Pro"
+            value={title}
             disabled={!edit && "disabled"}
             required
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="mt-3">
@@ -44,10 +76,10 @@ export default function Banner() {
           <textarea
             name="description"
             rows="3"
-            defaultValue="In the digital age, your website is often the first point of contact with your audience.Our web development team specializes in creating stunning, responsive, and user-friendly websites that leave a
-            lasting impression."
+            value={description}
             disabled={!edit && "disabled"}
             required
+            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
 

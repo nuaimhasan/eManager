@@ -1,6 +1,6 @@
 import { baseApi } from "./baseApi";
 const URL = "banner";
-const id = "";
+const id = "656f34590c2e36ef0871a853";
 
 export const bannerApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
