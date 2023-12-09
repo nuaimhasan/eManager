@@ -1,12 +1,53 @@
-import { useRef, useState } from "react";
 import JoditEditor from "jodit-react";
+import { useRef, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import Swal from "sweetalert2";
+import { useAddServiceMutation } from "../../../redux/api/serviceApi";
 
 export default function AddService() {
   const editor = useRef(null);
   const [images, setImages] = useState([]);
-  const [details, setDetails] = useState("");
+  const [icons, setIcons] = useState([]);
+  const [description, setDescription] = useState("");
+  const [order, setOrder] = useState(0);
+  const [title, setTitle] = useState("");
+
+  const [addService] = useAddServiceMutation();
+
+  const addServiceHandler = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("order", order);
+    formData.append("image", images[0].file);
+    formData.append("icon", icons[0].file);
+
+    try {
+      const res = await addService(formData).unwrap();
+      if (res.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Service Added Successfully",
+        });
+        setImages([]);
+        setIcons([]);
+        setDescription("");
+        setOrder(0);
+        setTitle("");
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
+
   return (
     <section>
       <div className="p-4 border-b bg-base-100 rounded">
@@ -19,15 +60,20 @@ export default function AddService() {
             <div className="flex flex-col gap-3">
               <div>
                 <p className="mb-1">Order</p>
-                <input type="number" name="order" />
+                <input
+                  type="number"
+                  name="order"
+                  value={order}
+                  onChange={(e) => setOrder(e.target.value)}
+                />
               </div>
 
               <div>
                 <p className="mb-1">Icon</p>
                 <div>
                   <ImageUploading
-                    value={images}
-                    onChange={(icn) => setImages(icn)}
+                    value={icons}
+                    onChange={(icn) => setIcons(icn)}
                     dataURLKey="data_url"
                   >
                     {({ onImageUpload, onImageRemove, dragProps }) => (
@@ -46,8 +92,8 @@ export default function AddService() {
                           <p className="text-neutral-content">or Drop here</p>
                         </div>
 
-                        <div className={`${images?.length > 0 && "mt-4"} `}>
-                          {images?.map((img, index) => (
+                        <div className={`${icons?.length > 0 && "mt-4"} `}>
+                          {icons?.map((img, index) => (
                             <div key={index} className="image-item relative">
                               <img
                                 src={img["data_url"]}
@@ -130,19 +176,24 @@ export default function AddService() {
             <div className="md:col-span-2 flex flex-col gap-3">
               <div>
                 <p className="mb-1">Service Title</p>
-                <input type="text" name="serviceTitle" />
+                <input
+                  type="text"
+                  name="serviceTitle"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
               </div>
               <div>
                 <p className="mb-1">Description</p>
                 <JoditEditor
                   ref={editor}
-                  value={details}
+                  value={description}
                   // value={
                   //   data?.data?.description?.length > 0
                   //     ? data?.data?.description
                   //     : details
                   // }
-                  onBlur={(text) => setDetails(text)}
+                  onBlur={(text) => setDescription(text)}
                 />
               </div>
             </div>
@@ -155,7 +206,12 @@ export default function AddService() {
           >
             {updateLoading ? "Loading" : "Save"}
           </button> */}
-            <button className="gradient-primary-btn">Add Service</button>
+            <button
+              className="gradient-primary-btn"
+              onClick={addServiceHandler}
+            >
+              Add Service
+            </button>
           </div>
         </form>
       </div>

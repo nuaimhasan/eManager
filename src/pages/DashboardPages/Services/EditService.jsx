@@ -1,16 +1,70 @@
-import { useRef, useState } from "react";
 import JoditEditor from "jodit-react";
+import { useEffect, useRef, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import {
+  useGetServiceByIdQuery,
+  useUpdateServiceByIdMutation,
+} from "../../../redux/api/serviceApi";
 
 export default function EditService() {
+  const { slug } = useParams();
   const editor = useRef(null);
   const [images, setImages] = useState([]);
-  const [details, setDetails] = useState("");
+  const [icons, setIcons] = useState([]);
+  const [description, setDescription] = useState("");
+  const [order, setOrder] = useState(0);
+  const [title, setTitle] = useState("");
+
+  const { data, isLoading } = useGetServiceByIdQuery(slug);
+  const [updateServiceById] = useUpdateServiceByIdMutation();
+
+  useEffect(() => {
+    if (data?.data && !isLoading) {
+      setOrder(data.data.order);
+      setTitle(data.data.title);
+      setDescription(data.data.description);
+    }
+  }, [data, isLoading]);
+
+  if (isLoading) return <h1>Loading...</h1>;
+
+  const updateServiceHandler = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("order", order);
+    if (images.length > 0) {
+      formData.append("image", images[0].file);
+    }
+    if (icons.length > 0) {
+      formData.append("icon", icons[0].file);
+    }
+
+    try {
+      const res = await updateServiceById({ id: slug, formData }).unwrap();
+
+      if (res.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Service Updated Successfully",
+        });
+        setImages([]);
+        setIcons([]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section>
       <div className="p-4 border-b bg-base-100 rounded">
-        <h1 className="font-medium text-neutral">Add Service</h1>
+        <h1 className="font-medium text-neutral">Update Service</h1>
       </div>
 
       <div className="bg-base-100">
@@ -19,14 +73,19 @@ export default function EditService() {
             <div className="flex flex-col gap-3">
               <div>
                 <p className="mb-1">Order</p>
-                <input type="number" name="order" />
+                <input
+                  type="number"
+                  name="order"
+                  value={order}
+                  onChange={(e) => setOrder(e.target.value)}
+                />
               </div>
               <div>
                 <p className="mb-1">Icon</p>
                 <div>
                   <ImageUploading
-                    value={images}
-                    onChange={(icn) => setImages(icn)}
+                    value={icons}
+                    onChange={(icn) => setIcons(icn)}
                     dataURLKey="data_url"
                   >
                     {({ onImageUpload, onImageRemove, dragProps }) => (
@@ -45,8 +104,8 @@ export default function EditService() {
                           <p className="text-neutral-content">or Drop here</p>
                         </div>
 
-                        <div className={`${images?.length > 0 && "mt-4"} `}>
-                          {images?.map((img, index) => (
+                        <div className={`${icons?.length > 0 && "mt-4"} `}>
+                          {icons?.map((img, index) => (
                             <div key={index} className="image-item relative">
                               <img
                                 src={img["data_url"]}
@@ -129,19 +188,24 @@ export default function EditService() {
             <div className="md:col-span-2 flex flex-col gap-3">
               <div>
                 <p className="mb-1">Service Title</p>
-                <input type="text" name="serviceTitle" />
+                <input
+                  type="text"
+                  name="serviceTitle"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
               </div>
               <div>
                 <p className="mb-1">Description</p>
                 <JoditEditor
                   ref={editor}
-                  value={details}
+                  value={description}
                   // value={
                   //   data?.data?.description?.length > 0
                   //     ? data?.data?.description
                   //     : details
                   // }
-                  onBlur={(text) => setDetails(text)}
+                  onBlur={(text) => setDescription(text)}
                 />
               </div>
             </div>
@@ -154,7 +218,12 @@ export default function EditService() {
           >
             {updateLoading ? "Loading" : "Save"}
           </button> */}
-            <button className="gradient-primary-btn">Add Service</button>
+            <button
+              className="gradient-primary-btn"
+              onClick={updateServiceHandler}
+            >
+              Update Service
+            </button>
           </div>
         </form>
       </div>
