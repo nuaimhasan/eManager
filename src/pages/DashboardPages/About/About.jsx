@@ -1,12 +1,72 @@
-import { useRef, useState } from "react";
 import JoditEditor from "jodit-react";
+import { useEffect, useRef, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import Swal from "sweetalert2";
+import {
+  useGetAboutUsByIdQuery,
+  useUpdateAboutUsMutation,
+} from "../../../redux/api/aboutUsApi";
 
 export default function About() {
   const editor = useRef(null);
-  const [images, setImages] = useState([]);
-  const [details, setDetails] = useState("");
+
+  const { data, isLoading } = useGetAboutUsByIdQuery();
+  const [updateAboutUs] = useUpdateAboutUsMutation();
+
+  const [image, setImage] = useState([]);
+  const [title, setTitle] = useState("");
+  const [tagline, setTagline] = useState("");
+  const [description, setDescription] = useState("");
+  const [profile, setProfile] = useState("");
+
+  useEffect(() => {
+    if (data && !isLoading) {
+      const aboutUs = data.data;
+      setTitle(aboutUs.title);
+      setTagline(aboutUs.tagline);
+      setDescription(aboutUs.description);
+    }
+  }, [data, isLoading]);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const updateAboutUsHandler = async (e) => {
+    e.preventDefault();
+
+    const img = image[0]?.file;
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("tagline", tagline);
+    formData.append("description", description);
+    formData.append("profileDoc", profile);
+    formData.append("image", img);
+
+    try {
+      const res = await updateAboutUs(formData).unwrap();
+
+      console.log(res);
+      if (res.success) {
+        setProfile("");
+        setImage([]);
+
+        Swal.fire({
+          icon: "success",
+          title: "About Us Updated Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
 
   return (
     <section className="bg-base-100 rounded shadow">
@@ -19,19 +79,33 @@ export default function About() {
           <div className="flex flex-col gap-3">
             <div>
               <p className="mb-1">Title</p>
-              <input type="text" name="title" defaultValue="" />
+              <input
+                type="text"
+                name="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
 
             <div>
               <p className="mb-1">Tagline</p>
-              <input type="text" name="title" defaultValue="" />
+              <input
+                type="text"
+                name="title"
+                value={tagline}
+                onChange={(e) => setTagline(e.target.value)}
+              />
             </div>
 
             <div>
               <p className="mb-1">
                 Profile - <small>(only pdf)</small>
               </p>
-              <input type="file" name="profile" defaultValue="" />
+              <input
+                type="file"
+                name="profile"
+                onChange={(e) => setProfile(e.target.files[0])}
+              />
             </div>
 
             <div>
@@ -39,8 +113,8 @@ export default function About() {
                 <p className="mb-1">Image</p>
                 <div>
                   <ImageUploading
-                    value={images}
-                    onChange={(icn) => setImages(icn)}
+                    value={image}
+                    onChange={(icn) => setImage(icn)}
                     dataURLKey="data_url"
                   >
                     {({ onImageUpload, onImageRemove, dragProps }) => (
@@ -59,8 +133,8 @@ export default function About() {
                           <p className="text-neutral-content">or Drop here</p>
                         </div>
 
-                        <div className={`${images?.length > 0 && "mt-4"} `}>
-                          {images?.map((img, index) => (
+                        <div className={`${image?.length > 0 && "mt-4"} `}>
+                          {image?.map((img, index) => (
                             <div key={index} className="image-item relative">
                               <img
                                 src={img["data_url"]}
@@ -100,13 +174,13 @@ export default function About() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
-                value={details}
+                value={description}
                 // value={
                 //   data?.data?.description?.length > 0
                 //     ? data?.data?.description
                 //     : details
                 // }
-                onBlur={(text) => setDetails(text)}
+                onBlur={(text) => setDescription(text)}
               />
             </div>
           </div>
@@ -119,7 +193,12 @@ export default function About() {
           >
             {updateLoading ? "Loading" : "Save"}
           </button> */}
-          <button className="gradient-primary-btn">Save About</button>
+          <button
+            onClick={updateAboutUsHandler}
+            className="gradient-primary-btn"
+          >
+            Save About
+          </button>
         </div>
       </form>
     </section>

@@ -1,22 +1,42 @@
-import { useUpdateContactUsByIdMutation } from "../../../redux/api/contactUsApi";
+import { useEffect, useState } from "react";
+import { useGetContactUsByIdQuery, useUpdateContactUsByIdMutation } from "../../../redux/api/contactUsApi";
 import Swal from "sweetalert2";
 
 export default function Contact() {
   const [updateContactUsById] = useUpdateContactUsByIdMutation();
+  const {data, isLoading} = useGetContactUsByIdQuery();
+
+  const [phone, setPhone] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [facebookLink, setFacebookLink] = useState("");
+  const [instagramLink, setInstagramLink] = useState("");
+  const [youtubeLink, setYoutubeLink] = useState("");
+  const [linkedinLink, setLinkedinLink] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    if (data && !isLoading) {
+      const contactUs = data.data;
+      setPhone(contactUs.phone);
+      setWhatsapp(contactUs.whatsapp);
+      setEmail(contactUs.email);
+      setAddress(contactUs.address);
+      setFacebookLink(contactUs.facebookLink);
+      setInstagramLink(contactUs.instagramLink);
+      setYoutubeLink(contactUs.youtubeLink);
+      setLinkedinLink(contactUs.linkedinLink);
+      setTitle(contactUs.title);
+      setDescription(contactUs.description);
+    }
+  }, [data, isLoading]);
+
+  if(isLoading) return <div>Loading...</div>
 
   const handleUpdateContact = async (e) => {
     e.preventDefault();
-    const form = e.target;
-    const phone = form.phone.value;
-    const whatsapp = form.whatsapp.value;
-    const email = form.email.value;
-    const address = form.address.value;
-    const facebookLink = form.facebook.value;
-    const instagramLink = form.instagram.value;
-    const youtubeLink = form.youtube.value;
-    const linkedinLink = form.linkedin.value;
-    const title = form.title.value;
-    const description = form.description.value;
 
     const contactInfo = {
       title,
@@ -30,7 +50,6 @@ export default function Contact() {
       youtubeLink,
       linkedinLink,
     };
-    // console.log(contactInfo);
 
     const res = await updateContactUsById({ ...contactInfo }).unwrap();
     // console.log(res);
@@ -59,7 +78,8 @@ export default function Contact() {
               <input
                 type="text"
                 name="title"
-                //  defaultValue={data?.data?.email}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
             <div>
@@ -67,7 +87,8 @@ export default function Contact() {
               <input
                 type="text"
                 name="description"
-                //  defaultValue={data?.data?.email}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
           </div>
@@ -79,7 +100,8 @@ export default function Contact() {
                 <input
                   type="text"
                   name="phone"
-                  //  defaultValue={data?.data?.phone}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
 
@@ -88,7 +110,8 @@ export default function Contact() {
                 <input
                   type="text"
                   name="whatsapp"
-                  //  defaultValue={data?.data?.whatsapp}
+                  value={whatsapp}
+                  onChange={(e) => setWhatsapp(e.target.value)}
                 />
               </div>
             </div>
@@ -98,7 +121,8 @@ export default function Contact() {
               <input
                 type="email"
                 name="email"
-                //  defaultValue={data?.data?.email}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -107,7 +131,8 @@ export default function Contact() {
               <textarea
                 name="address"
                 rows="5"
-                // defaultValue={data?.data?.address}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               ></textarea>
             </div>
 
@@ -117,7 +142,8 @@ export default function Contact() {
                 <input
                   type="text"
                   name="facebook"
-                  // defaultValue={data?.data?.facebookLink}
+                  value={facebookLink}
+                  onChange={(e) => setFacebookLink(e.target.value)}
                 />
               </div>
 
@@ -126,7 +152,8 @@ export default function Contact() {
                 <input
                   type="text"
                   name="instagram"
-                  // defaultValue={data?.data?.instagramLink}
+                  value={instagramLink}
+                  onChange={(e) => setInstagramLink(e.target.value)}
                 />
               </div>
 
@@ -135,7 +162,8 @@ export default function Contact() {
                 <input
                   type="text"
                   name="youtube"
-                  // defaultValue={data?.data?.youtubeLink}
+                  value={youtubeLink}
+                  onChange={(e) => setYoutubeLink(e.target.value)}
                 />
               </div>
 
@@ -144,7 +172,8 @@ export default function Contact() {
                 <input
                   type="text"
                   name="linkedin"
-                  // defaultValue={data?.data?.linkedinLink}
+                  value={linkedinLink}
+                  onChange={(e) => setLinkedinLink(e.target.value)}
                 />
               </div>
             </div>
