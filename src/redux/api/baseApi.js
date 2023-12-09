@@ -14,5 +14,10 @@ export const baseApi = createApi({
     "serviceSection",
     "logo",
     "whyChoose",
+    "aboutUs",
+    "blog",
+    "client",
+    "service",
+    "serviceBanner",
   ],
 });

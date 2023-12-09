@@ -26,13 +26,13 @@ export default function Menu() {
             </tr>
           </thead>
           <tbody>
-            {menus.map((menu, index) => (
-              <tr key={menu.id}>
+            {menus?.map((menu, index) => (
+              <tr key={menu?.id}>
                 <td>{index + 1}</td>
-                <td>{menu.name}</td>
-                <td>{menu.order}</td>
+                <td>{menu?.name}</td>
+                <td>{menu?.order}</td>
                 <td>
-                  <Link to={`/admin/front-end/menu/edit/${menu.id}`}>
+                  <Link to={`/admin/front-end/menu/edit/${menu?.id}`}>
                     <FaRegEdit className="text-[17px] hover:text-secondary" />
                   </Link>
                 </td>
