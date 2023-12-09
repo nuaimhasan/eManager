@@ -18,9 +18,9 @@ export const serviceBannerApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["serviceBanner"],
     }),
-    getServiceBannerById: builder.query({
-      query: (id) => ({
-        url: `servicebanner/${id}`,
+    getServiceBanner: builder.query({
+      query: () => ({
+        url: `servicebanner`,
         method: "GET",
       }),
       providesTags: ["serviceBanner"],
@@ -31,5 +31,5 @@ export const serviceBannerApi = baseApi.injectEndpoints({
 export const {
   useAddServiceBannerMutation,
   useUpdateServiceBannerMutation,
-  useGetServiceBannerByIdQuery,
+  useGetServiceBannerQuery
 } = serviceBannerApi;

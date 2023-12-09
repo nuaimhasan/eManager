@@ -1,9 +1,60 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import Swal from "sweetalert2";
+import {
+  useGetServiceBannerQuery,
+  useUpdateServiceBannerMutation,
+} from "../../../redux/api/serviceBannerApi";
 
 export default function ServiceBanner() {
   const [images, setImages] = useState([]);
+  const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const { data, isLoading } = useGetServiceBannerQuery();
+  const [updateServiceBanner] = useUpdateServiceBannerMutation();
+
+  useEffect(() => {
+    if (data?.data && !isLoading) {
+      setTitle(data?.data[0]?.title);
+      setSubtitle(data?.data[0]?.subtitle);
+      setDescription(data?.data[0]?.description);
+    }
+  }, [data, isLoading]);
+
+  if (isLoading) return <h1>Loading...</h1>;
+
+  const updateHandler = async (e) => {
+    e.preventDefault();
+
+    const id = data?.data[0]?.id;
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("subtitle", subtitle);
+    formData.append("description", description);
+    formData.append("serviceBanner", images[0]?.file);
+
+    try {
+      const res = await updateServiceBanner({ id, formData }).unwrap();
+      if (res.success) {
+        setImages([]);
+        Swal.fire({
+          icon: "success",
+          title: "Service Banner Updated Successfully",
+        });
+      }
+    } catch (error) {
+      // console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
 
   return (
     <section className="bg-base-100 rounded shadow">
@@ -73,11 +124,22 @@ export default function ServiceBanner() {
           <div className="md:col-span-2 rounded flex flex-col gap-3">
             <div>
               <p className="mb-1">Title</p>
-              <input type="text" name="title" required />
+              <input
+                type="text"
+                name="title"
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
             <div>
               <p className="mb-1">Sub Title</p>
-              <input type="text" name="subTitle" />
+              <input
+                type="text"
+                name="subTitle"
+                value={subtitle}
+                onChange={(e) => setSubtitle(e.target.value)}
+              />
             </div>
             <div>
               <p className="mb-1">Description</p>
@@ -86,6 +148,8 @@ export default function ServiceBanner() {
                 rows="3"
                 defaultValue=""
                 required
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
           </div>
@@ -98,7 +162,9 @@ export default function ServiceBanner() {
         >
           {updateLoading ? "Loading" : "Save"}
         </button> */}
-          <button className="gradient-primary-btn">Save</button>
+          <button className="gradient-primary-btn" onClick={updateHandler}>
+            Save
+          </button>
         </div>
       </form>
     </section>

@@ -1,18 +1,17 @@
 import { baseApi } from "./baseApi";
 const URL = "servicesection";
-const id = "";
 
 export const serviceSectionApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getServiceSectionById: builder.query({
+    getServiceSections: builder.query({
       query: () => ({
-        url: `${URL}/${id}`,
+        url: `${URL}`,
         method: "GET",
       }),
       providesTags: ["serviceSection"],
     }),
     updateServiceSectionById: builder.mutation({
-      query: (body) => ({
+      query: ({id, body}) => ({
         url: `${URL}/${id}`,
         method: "PATCH",
         body,
@@ -23,6 +22,6 @@ export const serviceSectionApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useGetServiceSectionByIdQuery,
+  useGetServiceSectionsQuery,
   useUpdateServiceSectionByIdMutation,
 } = serviceSectionApi;
