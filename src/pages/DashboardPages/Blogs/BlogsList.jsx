@@ -1,8 +1,40 @@
-import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import {
+  useDeleteBlogMutation,
+  useGetBlogsQuery,
+} from "../../../redux/api/blogApi";
 
 export default function BlogsList() {
+  const { data, isLoading } = useGetBlogsQuery();
+  const [deleteBlog] = useDeleteBlogMutation();
+
+  if (isLoading) return <h1>Loading...</h1>;
+
+  const blogs = data?.data;
+  // console.log(blogs);
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await deleteBlog(id).unwrap();
+      if (res.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: res.message,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
+
   return (
     <section>
       <div className="flex justify-between mb-2 bg-base-100 p-3 rounded shadow">
@@ -22,23 +54,25 @@ export default function BlogsList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>10-12-2023</td>
-              <td>
-                <img src="" alt="" className="w-10 h-10" />
-              </td>
-              <td>eManager release a new service : Domain & Hosting</td>
-              <td>
-                <div className="flex items-center gap-2">
-                  <Link to="/admin/blogs/edit-blog/1">
-                    <FaRegEdit className="text-[17px] hover:text-secondary" />
-                  </Link>
-                  <button>
-                    <AiOutlineDelete className="text-lg hover:text-red-500" />
-                  </button>
-                </div>
-              </td>
-            </tr>
+            {blogs?.map((blog) => (
+              <tr key={blog.id}>
+                <td>{blog.createdAt ? blog.createdAt.split("T")[0] : ""}</td>
+                <td>
+                  <img src={blog?.image} alt="" className="w-10 h-10" />
+                </td>
+                <td>{blog?.title}</td>
+                <td>
+                  <div className="flex items-center gap-2">
+                    <Link to={`/admin/blogs/edit-blog/${blog.id}`}>
+                      <FaRegEdit className="text-[17px] hover:text-secondary" />
+                    </Link>
+                    <button onClick={() => handleDelete(blog?.id)}>
+                      <AiOutlineDelete className="text-lg hover:text-red-500" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

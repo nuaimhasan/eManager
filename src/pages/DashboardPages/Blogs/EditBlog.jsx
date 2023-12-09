@@ -1,17 +1,66 @@
-import { useRef, useState } from "react";
 import JoditEditor from "jodit-react";
+import { useEffect, useRef, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import {
+  useGetBlogByIdQuery,
+  useUpdateBlogMutation,
+} from "../../../redux/api/blogApi";
 
 export default function EditBlog() {
+  const { id } = useParams();
+  const { data, isLoading } = useGetBlogByIdQuery(id);
+  const [updateBlog] = useUpdateBlogMutation();
+
   const editor = useRef(null);
   const [images, setImages] = useState([]);
-  const [details, setDetails] = useState("");
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    if (data?.data && !isLoading) {
+      setDescription(data?.data?.description);
+      setTitle(data?.data?.title);
+    }
+  }, [data, isLoading]);
+
+  if (isLoading) return <h1>Loading...</h1>;
+
+  const updateBlogHandler = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("blog", images[0]?.file);
+
+    try {
+      const res = await updateBlog({ id, formData }).unwrap();
+      if (res.success) {
+        setImages([]);
+
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: res.message,
+        });
+      }
+    } catch (error) {
+      // console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
 
   return (
     <section className="bg-base-100 rounded shadow">
       <div className="p-4 border-b">
-        <h3 className="font-medium text-neutral">Add Blogs</h3>
+        <h3 className="font-medium text-neutral">Update Blog</h3>
       </div>
 
       <form className="p-4">
@@ -19,7 +68,12 @@ export default function EditBlog() {
           <div className="flex flex-col gap-3">
             <div>
               <p className="mb-1">Title</p>
-              <input type="text" name="title" defaultValue="" />
+              <input
+                type="text"
+                name="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
             <div>
               <p className="mb-1">Image</p>
@@ -85,13 +139,13 @@ export default function EditBlog() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
-                value={details}
+                value={description}
                 // value={
                 //   data?.data?.description?.length > 0
                 //     ? data?.data?.description
                 //     : details
                 // }
-                onBlur={(text) => setDetails(text)}
+                onBlur={(text) => setDescription(text)}
               />
             </div>
           </div>
@@ -104,7 +158,9 @@ export default function EditBlog() {
         >
           {updateLoading ? "Loading" : "Save"}
         </button> */}
-          <button className="gradient-primary-btn">Save About</button>
+          <button className="gradient-primary-btn" onClick={updateBlogHandler}>
+            Save Blog
+          </button>
         </div>
       </form>
     </section>

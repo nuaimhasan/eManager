@@ -1,12 +1,48 @@
-import { useRef, useState } from "react";
 import JoditEditor from "jodit-react";
+import { useRef, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
+import Swal from "sweetalert2";
+import { useAddBlogMutation } from "../../../redux/api/blogApi";
 
 export default function AddBlog() {
   const editor = useRef(null);
   const [images, setImages] = useState([]);
-  const [details, setDetails] = useState("");
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+
+  const [addBlog] = useAddBlogMutation();
+
+  const handleAddBlog = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("blog", images[0]?.file);
+
+    try {
+      const res = await addBlog(formData).unwrap();
+      if (res.success) {
+        setTitle("");
+        setDescription("");
+        setImages([]);
+
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: res.message,
+        });
+      }
+    } catch (error) {
+      // console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
 
   return (
     <section className="bg-base-100 rounded shadow">
@@ -19,7 +55,13 @@ export default function AddBlog() {
           <div className="flex flex-col gap-3">
             <div>
               <p className="mb-1">Title</p>
-              <input type="text" name="title" required />
+              <input
+                type="text"
+                name="title"
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
             <div>
               <p className="mb-1">Image</p>
@@ -85,13 +127,13 @@ export default function AddBlog() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
-                value={details}
+                value={description}
                 // value={
                 //   data?.data?.description?.length > 0
                 //     ? data?.data?.description
                 //     : details
                 // }
-                onBlur={(text) => setDetails(text)}
+                onBlur={(text) => setDescription(text)}
               />
             </div>
           </div>
@@ -104,7 +146,9 @@ export default function AddBlog() {
         >
           {updateLoading ? "Loading" : "Save"}
         </button> */}
-          <button className="gradient-primary-btn">Save About</button>
+          <button onClick={handleAddBlog} className="gradient-primary-btn">
+            Save Blog
+          </button>
         </div>
       </form>
     </section>
