@@ -2,11 +2,17 @@ import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
+import { useAddClientMutation } from "../../../redux/api/clientApi";
 
 export default function AddClient() {
   const [logos, setLogos] = useState([]);
+  const [order, setOrder] = useState(0);
 
-  const handleAddClient = () => {
+  const [addClient] = useAddClientMutation();
+
+  const handleAddClient = async (e) => {
+    e.preventDefault();
+
     let logo = logos[0]?.file;
 
     if (!logo) {
@@ -14,7 +20,31 @@ export default function AddClient() {
     }
 
     const formData = new FormData();
-    formData.append("logo", logo);
+    formData.append("client", logo);
+    formData.append("order", order);
+
+    try {
+      const res = await addClient(formData).unwrap();
+      if (res.success) {
+        setOrder(0);
+        setLogos([]);
+        
+        Swal.fire({
+          title: "Success!",
+          text: res.message,
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: "Error!",
+        text: "Something went wrong",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
   };
 
   return (
@@ -23,7 +53,7 @@ export default function AddClient() {
         <h1 className="font-medium text-neutral">Add Client</h1>
       </div>
 
-      <div className="mt-2 bg-base-100 rounded md:w-1/2">
+      <form className="mt-2 bg-base-100 rounded md:w-1/2">
         <div>
           <p className="text-neutral-content border-b p-3">Client Logo</p>
           <div className="p-4 sm:flex items-center gap-4">
@@ -66,13 +96,22 @@ export default function AddClient() {
             </ImageUploading>
           </div>
         </div>
+        <div className="mt-4 px-4">
+          <p className="mb-1">Order</p>
+          <input
+            type="number"
+            name="order"
+            value={order}
+            onChange={(e) => setOrder(e.target.value)}
+          />
+        </div>
 
         <div className="flex justify-end mt-6 border-t p-4">
           <button onClick={handleAddClient} className="gradient-primary-btn">
             Add Client
           </button>
         </div>
-      </div>
+      </form>
     </section>
   );
 }

@@ -1,7 +1,41 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import {
+  useDeleteClientMutation,
+  useGetClientsQuery,
+} from "../../../redux/api/clientApi";
 
 export default function Clients() {
+  const { data, isLoading } = useGetClientsQuery();
+  const [deleteClient] = useDeleteClientMutation();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const clients = data.data;
+
+  const deleteClientHandler = async (id) => {
+    try {
+      const res = await deleteClient(id).unwrap();
+      if (res.success) {
+        Swal.fire({
+          title: "Success!",
+          text: "Client Deleted Successfully",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      }
+    } catch (error) {
+      // console.log(error);
+      Swal.fire({
+        title: "Error!",
+        text: "Something went wrong",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
+  };
+
   return (
     <section>
       <div className="p-4 border-b bg-base-100 rounded">
@@ -24,16 +58,20 @@ export default function Clients() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>image</td>
-              <td>1</td>
-              <td>
-                <button>
-                  <AiOutlineDelete className="text-lg hover:text-red-500" />
-                </button>
-              </td>
-            </tr>
+            {clients?.map((client, index) => (
+              <tr key={client.id}>
+                <td>{index + 1}</td>
+                <td>
+                  <img src={client.logo} alt={client.logo} className="w-20" />
+                </td>
+                <td>{client.order}</td>
+                <td>
+                  <button onClick={() => deleteClientHandler(client.id)}>
+                    <AiOutlineDelete className="text-lg hover:text-red-500" />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
