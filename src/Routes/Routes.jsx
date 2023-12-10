@@ -1,48 +1,51 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../Layout/DashboardLayout/DashboardLayout";
 import MainLayout from "../Layout/MainLayout";
-import Home from "../pages/Home/Home";
-import UIUX from "../pages/ServiceDetails/UIUX";
-import EmbeddedSystem from "../pages/ServiceDetails/EmbeddedSystem";
-import DigitalMarketing from "../pages/ServiceDetails/DegitalMarketing";
-import SEO from "../pages/ServiceDetails/SEO";
-import GraphicsDesign from "../pages/ServiceDetails/GraphicsDesign";
-import Videography from "../pages/ServiceDetails/Videography";
-import ContentResearch from "../pages/ServiceDetails/ContentResearch";
-import EComAutomation from "../pages/ServiceDetails/EComAutomation";
-import TrainingProgram from "../pages/ServiceDetails/TrainingProgram";
-import DomainHosting from "../pages/ServiceDetails/DomainHosting";
-import ServicesPage from "../pages/Services/Services";
 import AboutUs from "../pages/AboutUs/AboutUs";
-import ContactUs from "../pages/ContactUs/ContactUs";
+import BlogDetails from "../pages/BlogDetails/BlogDetails";
 import Blogs from "../pages/Blogs/Blogs";
 import Career from "../pages/Career/Career";
 import CareerDetails from "../pages/CareerDetails/CareerDetails";
-import DashboardLayout from "../Layout/DashboardLayout/DashboardLayout";
-import Dashboard from "../pages/DashboardPages/Dashboard/Dashboard";
-import Logo from "../pages/DashboardPages/Logo/Logo";
+import ContactUs from "../pages/ContactUs/ContactUs";
 import About from "../pages/DashboardPages/About/About";
-import Contact from "../pages/DashboardPages/Contact/Contact";
-import Banner from "../pages/DashboardPages/Banner/Banner";
-import Administrator from "../pages/DashboardPages/Administrator/Administrator";
 import AddAdministrator from "../pages/DashboardPages/Administrator/AddAdministrator";
-import Clients from "../pages/DashboardPages/Clients/Clients";
-import AddClient from "../pages/DashboardPages/Clients/AddClient";
-import WhyChooseLists from "../pages/DashboardPages/WhyChooseLists/WhyChooseLists";
-import AddNewChoose from "../pages/DashboardPages/WhyChooseLists/AddNewChoose";
-import EditChoose from "../pages/DashboardPages/WhyChooseLists/EditChoose";
-import Menu from "../pages/DashboardPages/Menu/Menu";
-import EditMenu from "../pages/DashboardPages/Menu/EditMenu";
-import ServicesList from "../pages/DashboardPages/Services/ServicesList";
-import AddService from "../pages/DashboardPages/Services/AddService";
-import BlogsList from "../pages/DashboardPages/Blogs/BlogsList";
+import Administrator from "../pages/DashboardPages/Administrator/Administrator";
+import Banner from "../pages/DashboardPages/Banner/Banner";
 import AddBlog from "../pages/DashboardPages/Blogs/AddBlog";
 import BlogSection from "../pages/DashboardPages/Blogs/BlogSection";
+import BlogsList from "../pages/DashboardPages/Blogs/BlogsList";
 import EditBlog from "../pages/DashboardPages/Blogs/EditBlog";
+import AddClient from "../pages/DashboardPages/Clients/AddClient";
+import Clients from "../pages/DashboardPages/Clients/Clients";
+import Contact from "../pages/DashboardPages/Contact/Contact";
+import CounterLists from "../pages/DashboardPages/Counter/CounterLists";
+import Dashboard from "../pages/DashboardPages/Dashboard/Dashboard";
+import Logo from "../pages/DashboardPages/Logo/Logo";
+import EditMenu from "../pages/DashboardPages/Menu/EditMenu";
+import Menu from "../pages/DashboardPages/Menu/Menu";
+import AddService from "../pages/DashboardPages/Services/AddService";
+import EditService from "../pages/DashboardPages/Services/EditService";
 import ServiceBanner from "../pages/DashboardPages/Services/ServiceBanner";
 import ServiceSection from "../pages/DashboardPages/Services/ServiceSection";
-import EditService from "../pages/DashboardPages/Services/EditService";
-import BlogDetails from "../pages/BlogDetails/BlogDetails";
+import ServicesList from "../pages/DashboardPages/Services/ServicesList";
+import AddNewChoose from "../pages/DashboardPages/WhyChooseLists/AddNewChoose";
+import EditChoose from "../pages/DashboardPages/WhyChooseLists/EditChoose";
+import WhyChooseLists from "../pages/DashboardPages/WhyChooseLists/WhyChooseLists";
+import Home from "../pages/Home/Home";
+import ContentResearch from "../pages/ServiceDetails/ContentResearch";
+import DigitalMarketing from "../pages/ServiceDetails/DegitalMarketing";
+import DomainHosting from "../pages/ServiceDetails/DomainHosting";
+import EComAutomation from "../pages/ServiceDetails/EComAutomation";
+import EmbeddedSystem from "../pages/ServiceDetails/EmbeddedSystem";
+import GraphicsDesign from "../pages/ServiceDetails/GraphicsDesign";
+import SEO from "../pages/ServiceDetails/SEO";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
+import TrainingProgram from "../pages/ServiceDetails/TrainingProgram";
+import UIUX from "../pages/ServiceDetails/UIUX";
+import Videography from "../pages/ServiceDetails/Videography";
+import ServicesPage from "../pages/Services/Services";
+import AddNewCounter from "../pages/DashboardPages/Counter/AddNewCounter";
+import EditCounter from "../pages/DashboardPages/Counter/EditCounter";
 
 export const routes = createBrowserRouter([
   {
@@ -85,14 +88,6 @@ export const routes = createBrowserRouter([
         path: "/career/:id",
         element: <CareerDetails />,
       },
-      // {
-      //   path: "/service/web-development",
-      //   element: <WebDevelopment />,
-      // },
-      // {
-      //   path: "/service/app-development",
-      //   element: <AddDevelopment />,
-      // },
       {
         path: "/service/ui-ux-design",
         element: <UIUX />,
@@ -234,6 +229,18 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/front-end/menu/edit/:id",
         element: <EditMenu />,
+      },
+      {
+        path: "/admin/counter",
+        element: <CounterLists />,
+      },
+      {
+        path: "/admin/counter/add-new",
+        element: <AddNewCounter />,
+      },
+      {
+        path: "/admin/counter/edit/:id",
+        element: <EditCounter />,
       },
     ],
   },

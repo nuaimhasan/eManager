@@ -1,8 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import { useGetClientsQuery } from "../../../redux/api/clientApi";
 
 export default function Clients() {
+
+  const {data} = useGetClientsQuery();
+
+  const clients = data?.data;
+
   return (
     <section className="py-10 lg:py-16 bg-base-100" id="clients">
       <div className="container">
@@ -38,78 +44,17 @@ export default function Clients() {
             }}
             modules={[Autoplay]}
           >
-            <SwiperSlide>
-              <div className="shadow w-full h-20 rounded flex justify-center items-center">
-                <img
-                  src="/images/clients/aesthetic.png"
-                  alt=""
-                  className="w-[70%] h-1/2"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="shadow w-full h-20 rounded flex justify-center items-center">
-                <img
-                  src="/images/clients/skrp.png"
-                  alt=""
-                  className="w-[70%] h-1/2"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="shadow w-full h-20 rounded flex justify-center items-center">
-                <img
-                  src="/images/clients/aesthetic.png"
-                  alt=""
-                  className="w-[70%] h-1/2"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="shadow w-full h-20 rounded flex justify-center items-center">
-                <img
-                  src="/images/clients/skrp.png"
-                  alt=""
-                  className="w-[70%] h-1/2"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="shadow w-full h-20 rounded flex justify-center items-center">
-                <img
-                  src="/images/clients/aesthetic.png"
-                  alt=""
-                  className="w-[70%] h-1/2"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="shadow w-full h-20 rounded flex justify-center items-center">
-                <img
-                  src="/images/clients/skrp.png"
-                  alt=""
-                  className="w-[70%] h-1/2"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="shadow w-full h-20 rounded flex justify-center items-center">
-                <img
-                  src="/images/clients/aesthetic.png"
-                  alt=""
-                  className="w-[70%] h-1/2"
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="shadow w-full h-20 rounded flex justify-center items-center">
-                <img
-                  src="/images/clients/skrp.png"
-                  alt=""
-                  className="w-[70%] h-1/2"
-                />
-              </div>
-            </SwiperSlide>
+            {clients?.map((client) => (
+              <SwiperSlide key={client.id}>
+                <div className="shadow w-full h-20 rounded flex justify-center items-center">
+                  <img
+                    src={`http://localhost:5000/clients/${client?.image}`}
+                    alt=""
+                    className="w-[70%] h-1/2"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

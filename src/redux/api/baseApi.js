@@ -19,5 +19,6 @@ export const baseApi = createApi({
     "client",
     "service",
     "serviceBanner",
+    "counter",
   ],
 });

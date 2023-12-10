@@ -68,6 +68,38 @@ const adminSidebarItems = [
   },
   {
     icon: <RiAdminFill />,
+    title: "Counter Area",
+    subMenu: [
+      {
+        title: "Counter Area Lists",
+        path: "/admin/counter",
+      },
+    ],
+  },
+  {
+    icon: <RiAdminFill />,
+    title: "Career",
+    subMenu: [
+      {
+        title: "Career Banner Setting",
+        path: "/admin/administrator/all-administrator",
+      },
+      {
+        title: "Career Beneits Setting",
+        path: "/admin/administrator/all-administrator",
+      },
+      {
+        title: "Jobs",
+        path: "/admin/administrator/all-administrator",
+      },
+      {
+        title: "Applicants List",
+        path: "/admin/administrator/all-administrator",
+      },
+    ],
+  },
+  {
+    icon: <RiAdminFill />,
     title: "Administrator",
     subMenu: [
       {
