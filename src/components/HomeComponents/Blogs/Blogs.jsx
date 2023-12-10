@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+import { useGetBlogsQuery } from "../../../redux/api/blogApi";
 import { useGetBlogSectionQuery } from "../../../redux/api/blogSectionApi";
 import BlogCard from "../../BlogCard/BlogCard";
 import "./Blogs.css";
-import { Link } from "react-router-dom";
 
 export default function Blogs() {
-  const {data} = useGetBlogSectionQuery();
+  const { data } = useGetBlogSectionQuery();
+  const { data: blogData } = useGetBlogsQuery();
+
+  const blogs = blogData?.data;
 
   const blogSection = data?.data[0];
   return (
@@ -24,9 +28,9 @@ export default function Blogs() {
 
         <div className="mt-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 lg:mx-20">
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
+            {blogs?.map((blog) => (
+              <BlogCard key={blog.id} blog={blog} />
+            ))}
           </div>
         </div>
 

@@ -58,7 +58,11 @@ export default function BlogsList() {
               <tr key={blog.id}>
                 <td>{blog.createdAt ? blog.createdAt.split("T")[0] : ""}</td>
                 <td>
-                  <img src={blog?.image} alt="" className="w-10 h-10" />
+                  <img
+                    src={`http://localhost:5000/blogs/${blog?.image}`}
+                    alt=""
+                    className="w-10 h-10"
+                  />
                 </td>
                 <td>{blog?.title}</td>
                 <td>

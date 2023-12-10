@@ -12,7 +12,7 @@ export default function ContactUs() {
     return <div>Loading...</div>;
   }
 
-  const contactus = data.data;
+  const contactus = data?.data;
   const {
     title,
     description,

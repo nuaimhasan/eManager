@@ -62,7 +62,11 @@ export default function Clients() {
               <tr key={client.id}>
                 <td>{index + 1}</td>
                 <td>
-                  <img src={client.logo} alt={client.logo} className="w-20" />
+                  <img
+                    src={`http://localhost:5000/clients/${client?.image}`}
+                    alt={client.logo}
+                    className="w-20"
+                  />
                 </td>
                 <td>{client.order}</td>
                 <td>
