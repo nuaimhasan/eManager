@@ -1,8 +1,56 @@
-import { FaPhone, FaLocationDot } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
+import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { MdEmail } from "react-icons/md";
+import Swal from "sweetalert2";
+import { useSendMessageMutation } from "../../../redux/api/sendMessageApi";
 
 export default function ContactUs() {
+  const [sendMessage] = useSendMessageMutation();
+
+  const sendMessasgeHandler = async (e) => {
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const phone = e.target.phone.value;
+    const subject = e.target.subject.value;
+    const message = e.target.message.value;
+    const email = e.target.email.value;
+
+    if (!name || !phone || !subject || !message || !email) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill up all the fields!",
+      });
+      return;
+    }
+
+    const data = {
+      name,
+      phone,
+      subject,
+      message,
+      email,
+    };
+
+    try {
+      const res = await sendMessage(data).unwrap();
+      if (res.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent",
+          text: "We will contact you soon",
+        });
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
+
   return (
     <section className="py-10 lg:py-20" id="contact-us">
       <div className="container">
@@ -48,7 +96,10 @@ export default function ContactUs() {
             <h2 className="text-secondary font-semibold text-xl mb-3">
               Get In Touch
             </h2>
-            <form className="flex flex-col gap-3">
+            <form
+              onSubmit={sendMessasgeHandler}
+              className="flex flex-col gap-3"
+            >
               <div>
                 <input
                   type="text"
@@ -67,6 +118,14 @@ export default function ContactUs() {
               </div>
               <div>
                 <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  className="w-full border rounded px-4 py-2 outline-none"
+                />
+              </div>
+              <div>
+                <input
                   type="text"
                   name="subject"
                   placeholder="Subject"
@@ -75,7 +134,7 @@ export default function ContactUs() {
               </div>
               <div>
                 <textarea
-                  name=""
+                  name="message"
                   rows="5"
                   placeholder="Type you message..."
                   className="w-full border rounded px-4 py-2 outline-none"
@@ -83,7 +142,9 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <button className="gradient-primary-btn">Send Message</button>
+                <button type="submit" className="gradient-primary-btn">
+                  Send Message
+                </button>
               </div>
             </form>
           </div>
