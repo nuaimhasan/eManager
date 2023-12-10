@@ -4,14 +4,14 @@ import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
 import {
-  useGetAboutUsByIdQuery,
+  useGetAboutUsQuery,
   useUpdateAboutUsMutation,
 } from "../../../redux/api/aboutUsApi";
 
 export default function About() {
   const editor = useRef(null);
 
-  const { data, isLoading } = useGetAboutUsByIdQuery();
+  const { data, isLoading } = useGetAboutUsQuery();
   const [updateAboutUs] = useUpdateAboutUsMutation();
 
   const [image, setImage] = useState([]);
@@ -22,10 +22,10 @@ export default function About() {
 
   useEffect(() => {
     if (data && !isLoading) {
-      const aboutUs = data.data;
-      setTitle(aboutUs.title);
-      setTagline(aboutUs.tagline);
-      setDescription(aboutUs.description);
+      const aboutUs = data.data[0];
+      setTitle(aboutUs?.title);
+      setTagline(aboutUs?.tagline);
+      setDescription(aboutUs?.description);
     }
   }, [data, isLoading]);
 
@@ -34,19 +34,20 @@ export default function About() {
   const updateAboutUsHandler = async (e) => {
     e.preventDefault();
 
+    const id = data?.data[0]?.id;
+
     const img = image[0]?.file;
 
     const formData = new FormData();
     formData.append("title", title);
     formData.append("tagline", tagline);
     formData.append("description", description);
-    formData.append("profileDoc", profile);
-    formData.append("image", img);
+    if (profile) formData.append("profileDoc", profile);
+    if (img) formData.append("image", img);
 
     try {
-      const res = await updateAboutUs(formData).unwrap();
+      const res = await updateAboutUs({ id, formData }).unwrap();
 
-      console.log(res);
       if (res.success) {
         setProfile("");
         setImage([]);

@@ -63,11 +63,19 @@ export default function ServicesList() {
               <tr key={service._id}>
                 <td>{index + 1}</td>
                 <td>
-                  <img src={service.icon} alt="icon" className="w-10" />
+                  <img
+                    src={`http://localhost:5000/service/icon/${service?.icon}`}
+                    alt="icon"
+                    className="w-10"
+                  />
                 </td>
                 <td>{service.title}</td>
                 <td>
-                  <img src={service.image} alt="icon" className="w-10" />
+                  <img
+                    src={`http://localhost:5000/service/image/${service?.image}`}
+                    alt="icon"
+                    className="w-10"
+                  />
                 </td>
                 <td>
                   <div className="flex items-center gap-2">

@@ -64,7 +64,11 @@ export default function WhyChooseLists() {
               <tr key={item.id}>
                 <td>{index + 1}</td>
                 <td>
-                  <img src={item?.icon} alt="icon" className="w-10" />
+                  <img
+                    src={`http://localhost:5000/whychoose/${item?.icon}`}
+                    alt="icon"
+                    className="w-10"
+                  />
                 </td>
                 <td>{item.title}</td>
                 <td>{item.description}</td>

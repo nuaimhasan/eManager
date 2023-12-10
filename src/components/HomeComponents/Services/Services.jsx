@@ -1,51 +1,55 @@
 import { Link } from "react-router-dom";
 import "./Services.css";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { useGetServiceSectionsQuery } from "../../../redux/api/serviceSectionApi";
+import { useGetAllServicesQuery } from "../../../redux/api/serviceApi";
 
 export default function Services() {
+
+  const {data, isLoading} = useGetServiceSectionsQuery();
+  const {data: serviceData, isLoading: serviceDataLoading} = useGetAllServicesQuery();
+
+  if (isLoading || serviceDataLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const serviceSection = data?.data[0];
+  const services = serviceData?.data;
+
   return (
     <section className="py-10 lg:py-20 bg-base-100" id="services">
       <div className="container">
         <div className="text-center">
           <h2 className="text-2xl md:text-4xl font-medium text-neutral">
-            Our Services
+            {serviceSection?.title}
           </h2>
-          <p className="text-neutral-content">
-            IT Solutions & Business Services for your Success
-          </p>
+          <p className="text-neutral-content">{serviceSection?.description}</p>
         </div>
 
         <div className="mt-10">
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <Link to="/service/web-development" className="service_card">
-              <img src="/images/services/web.png" alt="" />
-              <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
-                Web Development
-              </h2>
-              <p className="text-neutral-content text-[15px]">
-                Experience the power of a professionally designed and fully
-                functio...
-              </p>
+            {services?.map((service) => (
+              <Link
+                to={`/service/${service.slug}`}
+                key={service.id}
+                className="service_card"
+              >
+                <img
+                  src={`http://localhost:5000/service/icon/${service?.icon}`}
+                  alt=""
+                />
+                <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
+                  {service.title}
+                </h2>
+                <p className="text-neutral-content text-[15px]">
+                  {service.description.slice(0, 80)}...
+                </p>
 
-              <button>
-                Read More <FaLongArrowAltRight />
-              </button>
-            </Link>
-
-            <Link to="/service/app-development" className="service_card">
-              <img src="/images/services/app.png" alt="" />
-              <h2 className="text-neutral text-xl font-medium mb-2 mt-5">
-                App Development
-              </h2>
-              <p className="text-neutral-content text-[15px]">
-                We provide excellent App development services to launch your
-                projec...
-              </p>
-
-              <button>
-                Read More <FaLongArrowAltRight />
-              </button>
-            </Link>
+                <button>
+                  Read More <FaLongArrowAltRight />
+                </button>
+              </Link>
+            ))}
 
             <Link to="/service/ui-ux-design" className="service_card">
               <img src="/images/services/ui-ux.png" alt="" />

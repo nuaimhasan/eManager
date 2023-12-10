@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Home/Home";
-import WebDevelopment from "../pages/ServiceDetails/webDevelopment";
-import AddDevelopment from "../pages/ServiceDetails/AppDevelopment";
 import UIUX from "../pages/ServiceDetails/UIUX";
 import EmbeddedSystem from "../pages/ServiceDetails/EmbeddedSystem";
 import DigitalMarketing from "../pages/ServiceDetails/DegitalMarketing";
@@ -44,6 +42,7 @@ import ServiceBanner from "../pages/DashboardPages/Services/ServiceBanner";
 import ServiceSection from "../pages/DashboardPages/Services/ServiceSection";
 import EditService from "../pages/DashboardPages/Services/EditService";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
+import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -57,6 +56,10 @@ export const routes = createBrowserRouter([
       {
         path: "/services",
         element: <ServicesPage />,
+      },
+      {
+        path: "/service/:slug",
+        element: <ServiceDetails />,
       },
       {
         path: "/about-us",
@@ -82,14 +85,14 @@ export const routes = createBrowserRouter([
         path: "/career/:id",
         element: <CareerDetails />,
       },
-      {
-        path: "/service/web-development",
-        element: <WebDevelopment />,
-      },
-      {
-        path: "/service/app-development",
-        element: <AddDevelopment />,
-      },
+      // {
+      //   path: "/service/web-development",
+      //   element: <WebDevelopment />,
+      // },
+      // {
+      //   path: "/service/app-development",
+      //   element: <AddDevelopment />,
+      // },
       {
         path: "/service/ui-ux-design",
         element: <UIUX />,

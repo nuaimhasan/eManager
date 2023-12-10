@@ -1,20 +1,24 @@
+import { useGetBlogSectionQuery } from "../../../redux/api/blogSectionApi";
 import BlogCard from "../../BlogCard/BlogCard";
 import "./Blogs.css";
 import { Link } from "react-router-dom";
 
 export default function Blogs() {
+  const {data} = useGetBlogSectionQuery();
+
+  const blogSection = data?.data[0];
   return (
     <section className="py-10 lg:py-20 bg-base-100" id="blogs">
       <div className="container">
         <div className="text-center ">
-          <h3 className="text-lg text-neutral-content">LATEST FROM BLOG</h3>
+          <h3 className="text-lg text-neutral-content">
+            {blogSection?.subtitle}
+          </h3>
           <h2 className="text-4xl font-bold text-neutral">
-            Read stories, tips, and our opinions
+            {blogSection?.title}
           </h2>
           <p className="text-sm text-neutral-content mt-3">
-            Read our blogs and get effective tips/ideas from website development
-            to <br />
-            effective marketing strategies.
+            {blogSection?.description}
           </p>
         </div>
 

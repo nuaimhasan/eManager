@@ -1,7 +1,16 @@
 import Services from "../../components/HomeComponents/Services/Services";
+import { useGetServiceBannerQuery } from "../../redux/api/serviceBannerApi";
 
 export default function ServicesPage() {
   window.scroll(0, 0);
+
+  const {data , isLoading} = useGetServiceBannerQuery();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const serviceBanner = data?.data[0];
+
   return (
     <section>
       <div className="py-10">
@@ -10,19 +19,15 @@ export default function ServicesPage() {
             <div className="flex justify-center items-center">
               <div className="lg:w-2/3 text-center">
                 <h3 className="text-xl text-primary">
-                  GROW YOUR BUSINESS FROM TODAY
+                  {serviceBanner?.subtitle}
                 </h3>
                 <h2 className="text-2xl md:text-4xl font-semibold text-secondary my-2">
-                  Business Solutions For All Enterprises
+                  {serviceBanner?.title}
                 </h2>
 
                 <div className="mt-4 text-neutral-content flex flex-col gap-2 text-sm md:text-base">
                   <p>
-                    We deliver a complete business solution that covers
-                    everything from Branding to Product Promotion. We have an
-                    expert team in Business Strategy and Consultancy, Graphics,
-                    Web Design/Development, and Digital Marketing. We provide
-                    end-to-end solutions that drive your business forward.
+                    {serviceBanner?.description}
                   </p>
                 </div>
               </div>

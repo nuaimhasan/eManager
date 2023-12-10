@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useGetBannerByIdQuery, useUpdateBannerByIdMutation } from "../../../redux/api/bannerApi";
+import { useGetBannerQuery, useUpdateBannerByIdMutation } from "../../../redux/api/bannerApi";
 
 import swal from 'sweetalert2'
 
 export default function Banner() {
-  const { data, isLoading } = useGetBannerByIdQuery();
+  const { data, isLoading } = useGetBannerQuery();
   const [updateBannerById] = useUpdateBannerByIdMutation();
 
   const [edit, setEdit] = useState(false);
@@ -13,8 +13,8 @@ export default function Banner() {
 
   useEffect(() => {
     if (data && !isLoading) {
-      setTitle(data?.data?.title);
-      setDescription(data?.data?.description);
+      setTitle(data?.data[0]?.title);
+      setDescription(data?.data[0]?.description);
     }
   }, [data, isLoading]);
 
@@ -24,6 +24,7 @@ export default function Banner() {
 
   const handleEditBanner =async (e) => {
     e.preventDefault();
+    const id = data?.data[0]?.id;
 
     if (title === "" || description === "") {
       return alert("dont empty");
@@ -34,7 +35,7 @@ export default function Banner() {
       description,
     };
 
-    const res = await updateBannerById({...banner});
+    const res = await updateBannerById({id, ...banner});
     if (res?.data?.success === true) {
       swal.fire({
         title: 'Success',

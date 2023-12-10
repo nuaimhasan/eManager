@@ -1,18 +1,17 @@
 import { baseApi } from "./baseApi";
 const URL = "banner";
-const id = "656f34590c2e36ef0871a853";
 
 export const bannerApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getBannerById: builder.query({
+    getBanner: builder.query({
       query: () => ({
-        url: `${URL}/${id}`,
+        url: `${URL}`,
         method: "GET",
       }),
       providesTags: ["banner"],
     }),
     updateBannerById: builder.mutation({
-      query: (body) => ({
+      query: ({id,body}) => ({
         url: `${URL}/${id}`,
         method: "PATCH",
         body,
@@ -22,4 +21,4 @@ export const bannerApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetBannerByIdQuery, useUpdateBannerByIdMutation } = bannerApi;
+export const { useGetBannerQuery, useUpdateBannerByIdMutation } = bannerApi;

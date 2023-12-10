@@ -1,7 +1,11 @@
-import { LuBrainCircuit, LuSettings, LuTimer } from "react-icons/lu";
-import { BiHappy } from "react-icons/bi";
+
+import { useGetAllWhyChooseQuery } from "../../../redux/api/WhyChooseApi";
 
 export default function WhyChooseUs() {
+
+  const {data} = useGetAllWhyChooseQuery();
+  const chooseLists = data?.data;
+
   return (
     <section className="py-10 lg:py-20 bg-secondary text-base-100">
       <div className="container">
@@ -16,54 +20,21 @@ export default function WhyChooseUs() {
 
         <div className="mt-14">
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div className="text-center">
-              <p className="flex justify-center text-4xl ">
-                <LuBrainCircuit />
-              </p>
-              <h2 className="text-xl font-medium my-2">Expertise</h2>
-              <p className="text-sm opacity-80 font-light">
-                Our team consists of skilled professionals with extensive
-                experience in their respective fields, ensuring top-notch
-                quality and innovation in our solutions.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <p className="flex justify-center text-4xl ">
-                <LuSettings />
-              </p>
-              <h2 className="text-xl font-medium my-2">Customization</h2>
-              <p className="text-sm opacity-80 font-light">
-                We understand that every business has unique requirements.
-                Hence, we offer personalized solutions that align with your
-                specific goals and objectives.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <p className="flex justify-center text-4xl ">
-                <LuTimer />
-              </p>
-              <h2 className="text-xl font-medium my-2">Timely Delivery</h2>
-              <p className="text-sm opacity-80 font-light">
-                We value time and strive to complete projects within the
-                agreed-upon timelines, ensuring prompt delivery without
-                compromising on quality.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <p className="flex justify-center text-4xl ">
-                <BiHappy />
-              </p>
-              <h2 className="text-xl font-medium my-2">
-                Customer Satisfaction
-              </h2>
-              <p className="text-sm opacity-80 font-light">
-                We prioritize customer satisfaction and provide ongoing support
-                to our clients, ensuring their success in the digital landscape.
-              </p>
-            </div>
+            {chooseLists?.map((list) => (
+              <div key={list.id} className="text-center">
+                <p className="flex justify-center text-4xl ">
+                  <img
+                    src={`http://localhost:5000/whychoose/${list?.icon}`}
+                    alt="icon"
+                    className="w-10"
+                  />
+                </p>
+                <h2 className="text-xl font-medium my-2">{list.title}</h2>
+                <p className="text-sm opacity-80 font-light">
+                  {list.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

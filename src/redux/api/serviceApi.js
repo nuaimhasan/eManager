@@ -39,6 +39,13 @@ export const serviceApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["service"],
     }),
+    getServiceBySlug: builder.query({
+      query: (slug) => ({
+        url: `services/slug/${slug}`,
+        method: "GET",
+      }),
+      providesTags: ["service"],
+    }),
   }),
 });
 
@@ -48,4 +55,5 @@ export const {
   useGetServiceByIdQuery,
   useGetAllServicesQuery,
   useDeleteServiceByIdMutation,
+  useGetServiceBySlugQuery
 } = serviceApi;

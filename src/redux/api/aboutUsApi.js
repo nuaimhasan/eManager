@@ -1,5 +1,4 @@
 import { baseApi } from "./baseApi";
-const id = "657416541355bff6bc8878b4";
 
 export const aboutUsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -12,16 +11,16 @@ export const aboutUsApi = baseApi.injectEndpoints({
       invalidatesTags: ["aboutUs"],
     }),
     updateAboutUs: builder.mutation({
-      query: (formData) => ({
+      query: ({ id, formData }) => ({
         url: `aboutus/${id}`,
         method: "PATCH",
         body: formData,
       }),
       invalidatesTags: ["aboutUs"],
     }),
-    getAboutUsById: builder.query({
+    getAboutUs: builder.query({
       query: () => ({
-        url: `aboutus/${id}`,
+        url: `aboutus`,
         method: "GET",
       }),
       providesTags: ["aboutUs"],
@@ -32,5 +31,5 @@ export const aboutUsApi = baseApi.injectEndpoints({
 export const {
   useCreateAboutUsMutation,
   useUpdateAboutUsMutation,
-  useGetAboutUsByIdQuery,
+  useGetAboutUsQuery,
 } = aboutUsApi;

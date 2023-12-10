@@ -2,60 +2,30 @@
 // import { AiFillProject } from "react-icons/ai";
 // import { BiSolidLike } from "react-icons/bi";
 
+import { useGetAboutUsQuery } from "../../../redux/api/aboutUsApi";
+
 export default function About() {
+
+  const {data} = useGetAboutUsQuery();
+  const aboutUs = data?.data[0];
+
   return (
     <section className="py-10 lg:py-20" id="about-us">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <h3 className="section_text">About Us</h3>
+            <h3 className="section_text">
+              {aboutUs?.tagline || "About Us"}
+            </h3>
             <h2 className="text-2xl text-neutral">
-              Empowering Efficiency, Unleashing <br /> Potential:{" "}
+              {aboutUs?.title}:{" "}
               <span className="text-secondary">
                 Bridging Digital Success with eManager
               </span>
             </h2>
 
             <div className="mt-3 text-neutral-content text-[14.5px] flex flex-col gap-1">
-              <p>
-                eManager is a leading digital solutions company, specializing in
-                website and app development, software development, and total
-                digital marketing strategies. We are committed to helping
-                businesses establish a strong online presence and achieve their
-                digital goals.
-              </p>
-
-              <p>
-                Our team of skilled professionals excels in creating visually
-                appealing and user-friendly websites, as well as developing
-                robust mobile applications. We leverage the latest technologies
-                and industry best practices to deliver high-quality, customized
-                solutions.
-              </p>
-
-              <p>
-                In addition to development services, our expertise extends to
-                software solutions that streamline business operations and drive
-                productivity. From CRM systems to enterprise applications, we
-                provide tailored software solutions to meet specific business
-                needs.
-              </p>
-
-              <p>
-                Our team of skilled professionals excels in creating visually
-                appealing and user-friendly websites, as well as developing
-                robust mobile applications. We leverage the latest technologies
-                and industry best practices to deliver high-quality, customized
-                solutions.
-              </p>
-
-              <p>
-                In addition to development services, our expertise extends to
-                software solutions that streamline business operations and drive
-                productivity. From CRM systems to enterprise applications, we
-                provide tailored software solutions to meet specific business
-                needs.
-              </p>
+              {aboutUs?.description}
             </div>
 
             {/* <div className="grid grid-cols-2 gap-6 mt-4">
@@ -125,7 +95,7 @@ export default function About() {
 
           <div>
             <img
-              src="/images/about2.png"
+              src={`http://localhost:5000/aboutus/image/${aboutUs?.image}`}
               alt=""
               className="h-80 sm:h-[450px] lg:h-[500px] w-full lg:w-[85%] ml-auto rounded"
             />
