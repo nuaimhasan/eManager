@@ -20,5 +20,9 @@ export const baseApi = createApi({
     "service",
     "serviceBanner",
     "counter",
+    "careerBanner",
+    "jobs",
+    "benefits",
+    "jobapplyform",
   ],
 });
