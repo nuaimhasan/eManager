@@ -82,7 +82,7 @@ const adminSidebarItems = [
     subMenu: [
       {
         title: "Career Banner Setting",
-        path: "/admin/administrator/all-administrator",
+        path: "/admin/career/banner",
       },
       {
         title: "Career Beneits Setting",
@@ -90,7 +90,7 @@ const adminSidebarItems = [
       },
       {
         title: "Jobs",
-        path: "/admin/administrator/all-administrator",
+        path: "/admin/career/jobs",
       },
       {
         title: "Applicants List",

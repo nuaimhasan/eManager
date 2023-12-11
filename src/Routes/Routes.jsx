@@ -46,6 +46,10 @@ import Videography from "../pages/ServiceDetails/Videography";
 import ServicesPage from "../pages/Services/Services";
 import AddNewCounter from "../pages/DashboardPages/Counter/AddNewCounter";
 import EditCounter from "../pages/DashboardPages/Counter/EditCounter";
+import JobsList from "../pages/DashboardPages/Career/Jobs/JobList";
+import CareerBanner from "../pages/DashboardPages/career/CareerBanner";
+import AddJob from "../pages/DashboardPages/Career/Jobs/AddJob";
+import EditJob from "../pages/DashboardPages/Career/Jobs/EditJob";
 
 export const routes = createBrowserRouter([
   {
@@ -241,6 +245,22 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/counter/edit/:id",
         element: <EditCounter />,
+      },
+      {
+        path: "/admin/career/banner",
+        element: <CareerBanner />,
+      },
+      {
+        path: "/admin/career/jobs",
+        element: <JobsList />,
+      },
+      {
+        path: "/admin/jobs/add-job",
+        element: <AddJob />,
+      },
+      {
+        path: "/admin/jobs/edit-job/:id",
+        element: <EditJob />,
       },
     ],
   },
