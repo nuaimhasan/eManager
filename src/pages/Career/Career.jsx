@@ -1,14 +1,28 @@
-import "./Career.css";
-import { BiDownArrowAlt, BiSolidBriefcase, BiTimeFive } from "react-icons/bi";
-import { GiTeacher } from "react-icons/gi";
-import { BsHourglassSplit } from "react-icons/bs";
-import { FaUsers } from "react-icons/fa";
-import { VscServerEnvironment } from "react-icons/vsc";
-import { PiHamburger } from "react-icons/pi";
+import { BiDownArrowAlt, BiSolidBriefcase } from "react-icons/bi";
+
 import { Link } from "react-router-dom";
+import { useGetBenefitsQuery } from "../../redux/api/benefitsApi";
+import { useGetCareerBannerQuery } from "../../redux/api/careerBannerApi";
+import { useGetJobsQuery } from "../../redux/api/jobsApi";
+import "./Career.css";
 
 export default function Career() {
   window.scroll(0, 0);
+
+  const { data: careerBanners, isLoading: isCareerBannersLoading } =
+    useGetCareerBannerQuery();
+  const { data: jobData, isLoading: isJobDataLoading } = useGetJobsQuery();
+  const { data: benefitData, isLoading: isBenefitDataLoading } =
+    useGetBenefitsQuery();
+
+  if (isCareerBannersLoading || isJobDataLoading || isBenefitDataLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const jobs = jobData?.data;
+  const benefits = benefitData?.data;
+  const careerBanner = careerBanners?.data[0];
+
   return (
     <section>
       <div className="career_wrap relative h-screen md:h-[80vh]">
@@ -17,17 +31,10 @@ export default function Career() {
             <div className="grid md:grid-cols-2 gap-10 items-center">
               <div className="relative z-10">
                 <h2 className="text-3xl lg:text-5xl text-neutral">
-                  Start your career <br /> with eManager
+                  {careerBanner?.title}
                 </h2>
                 <p className="text-neutral-content mt-4">
-                  If you don&apos;t see a role that&apos;s right for you but
-                  you&apos;d love to get involved, pitch us! Send your CV/Resume
-                  to{" "}
-                  <span className="font-medium text-neutral">
-                    career@emanagerit.com
-                  </span>{" "}
-                  and let us know what you can bring to the team + why
-                  you&apos;re interested in eManager.
+                  {careerBanner?.description}
                 </p>
 
                 <div className="mt-6">
@@ -63,53 +70,34 @@ export default function Career() {
       {/* Jobs Lists */}
       <div className="py-16 bg-base-100" id="jobs">
         <div className="container">
-          <div className="sm:flex justify-between items-center border-b py-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <div className="bg-secondary text-base-100 px-1.5 py-1 w-max rounded">
-                  <BiSolidBriefcase />
+          {jobs?.map((job) => (
+            <div
+              key={job.id}
+              className="sm:flex justify-between items-center border-b py-4"
+            >
+              <div>
+                <div className="flex items-center gap-2">
+                  <div className="bg-secondary text-base-100 px-1.5 py-1 w-max rounded">
+                    <BiSolidBriefcase />
+                  </div>
+                  <h3 className="font-semibold text-lg text-neutral uppercase">
+                    {job?.title}
+                  </h3>
                 </div>
-                <h3 className="font-semibold text-lg text-neutral uppercase">
-                  Digital Marketing Expert
-                </h3>
+                <p className="text-neutral-content text-[15px]">
+                  {job?.jobType}
+                </p>
               </div>
-              <p className="text-neutral-content text-[15px]">
-                Job Type: Work at office
-              </p>
-            </div>
-            <div className="mt-5 sm:mt-0">
-              <Link
-                to="/career/1"
-                className="sm:block bg-primary text-neutral font-medium px-6 py-2 rounded-full text-sm scale-[.98] hover:scale-[1] duration-200"
-              >
-                Apply Now
-              </Link>
-            </div>
-          </div>
-
-          <div className="sm:flex justify-between items-center border-b py-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <div className="bg-secondary text-base-100 px-1.5 py-1 w-max rounded">
-                  <BiSolidBriefcase />
-                </div>
-                <h3 className="font-semibold text-lg uppercase">
-                  Graphic Designer
-                </h3>
+              <div className="mt-5 sm:mt-0">
+                <Link
+                  to={`/career/${job?.id}`}
+                  className="sm:block bg-primary text-neutral font-medium px-6 py-2 rounded-full text-sm scale-[.98] hover:scale-[1] duration-200"
+                >
+                  Apply Now
+                </Link>
               </div>
-              <p className="text-neutral-content text-[15px]">
-                Job Type: Work at office
-              </p>
             </div>
-            <div className="mt-5 sm:mt-0">
-              <Link
-                to="/career/2"
-                className="sm:block bg-primary text-neutral font-medium px-6 py-2 rounded-full text-sm scale-[.98] hover:scale-[1] duration-200"
-              >
-                Apply Now
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -119,76 +107,21 @@ export default function Career() {
           <h2 className="text-3xl">Benefit</h2>
 
           <div className="mt-8 grid sm:grid-cols-3 gap-6">
-            <div>
-              <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
-                <GiTeacher />
+            {benefits?.map((benefit) => (
+              <div key={benefit.id}>
+                <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
+                  <img
+                    src={`http://localhost:5000/benefit/${benefit?.image}`}
+                    alt=""
+                    className="w-6 h-7"
+                  />
+                </div>
+                <h3 className="text-lg font-medium mt-2">{benefit?.title}</h3>
+                <p className="text-neutral-content text-sm">
+                  {benefit?.description}
+                </p>
               </div>
-              <h3 className="text-lg font-medium mt-2">
-                Training & Development
-              </h3>
-              <p className="text-neutral-content text-sm">
-                We make training & development plans and arrange courses to
-                enhance the skills for our employees professional and personal
-                development.
-              </p>
-            </div>
-
-            <div>
-              <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
-                <FaUsers />
-              </div>
-              <h3 className="text-lg font-medium mt-2">Great Team Members</h3>
-              <p className="text-neutral-content text-sm">
-                In our office, you will be surrounded by friendly, cooperative,
-                and compassionate team members.
-              </p>
-            </div>
-
-            <div>
-              <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
-                <BsHourglassSplit />
-              </div>
-              <h3 className="text-lg font-medium mt-2">
-                Flexibility on work hour
-              </h3>
-              <p className="text-neutral-content text-sm">
-                We maintain our office hours from 10 AM to 6 PM and weekly one
-                day off (as per company policy).
-              </p>
-            </div>
-
-            <div>
-              <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
-                <VscServerEnvironment />
-              </div>
-              <h3 className="text-lg font-medium mt-2">Work Environment</h3>
-              <p className="text-neutral-content text-sm">
-                We always maintain an innovative, amiable, safe as well as
-                collaborative office environment where we can all enjoy working.
-              </p>
-            </div>
-
-            <div>
-              <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
-                <PiHamburger />
-              </div>
-              <h3 className="text-lg font-medium mt-2">Never go Hungry</h3>
-              <p className="text-neutral-content text-sm">
-                We take diligent care of our employees, so you are not going to
-                feel hunger throughout the office time of our provided lunch and
-                all sorts of snacks & tea.
-              </p>
-            </div>
-
-            <div>
-              <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
-                <BiTimeFive />
-              </div>
-              <h3 className="text-lg font-medium mt-2">On time salary</h3>
-              <p className="text-neutral-content text-sm">
-                We practice paying salary within the first week of the month.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </div>

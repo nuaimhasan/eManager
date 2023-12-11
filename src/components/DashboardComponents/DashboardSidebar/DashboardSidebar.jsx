@@ -85,8 +85,8 @@ const adminSidebarItems = [
         path: "/admin/career/banner",
       },
       {
-        title: "Career Beneits Setting",
-        path: "/admin/administrator/all-administrator",
+        title: "Career Benefits Setting",
+        path: "/admin/career/benefits",
       },
       {
         title: "Jobs",

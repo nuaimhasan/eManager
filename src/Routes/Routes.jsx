@@ -50,6 +50,9 @@ import JobsList from "../pages/DashboardPages/Career/Jobs/JobList";
 import CareerBanner from "../pages/DashboardPages/career/CareerBanner";
 import AddJob from "../pages/DashboardPages/Career/Jobs/AddJob";
 import EditJob from "../pages/DashboardPages/Career/Jobs/EditJob";
+import BenefitList from "../pages/DashboardPages/Career/Benefits/BenefitList";
+import AddBenefit from "../pages/DashboardPages/Career/Benefits/AddBenefit";
+import EditBenefit from "../pages/DashboardPages/Career/Benefits/EditBenefit";
 
 export const routes = createBrowserRouter([
   {
@@ -261,6 +264,18 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/jobs/edit-job/:id",
         element: <EditJob />,
+      },
+      {
+        path: "/admin/career/benefits",
+        element: <BenefitList />,
+      },
+      {
+        path: "/admin/benefits/add-benefit",
+        element: <AddBenefit />,
+      },
+      {
+        path: "/admin/benefit/edit-benefit/:id",
+        element: <EditBenefit />,
       },
     ],
   },
