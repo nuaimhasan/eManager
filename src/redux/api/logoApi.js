@@ -1,17 +1,16 @@
 import { baseApi } from "./baseApi";
-const id = "65707e7dd42a4f24a4dce9d9";
 
 export const logoApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getLogoById: builder.query({
+    getLogos: builder.query({
       query: () => ({
-        url: `logo/${id}`,
+        url: `logo`,
         method: "GET",
       }),
       providesTags: ["logo"],
     }),
     updateLogoById: builder.mutation({
-      query: ( formData ) => ({
+      query: ({ id, formData }) => ({
         url: `logo/${id}`,
         method: "PATCH",
         body: formData,
@@ -21,4 +20,4 @@ export const logoApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetLogoByIdQuery, useUpdateLogoByIdMutation } = logoApi;
+export const { useGetLogosQuery, useUpdateLogoByIdMutation } = logoApi;

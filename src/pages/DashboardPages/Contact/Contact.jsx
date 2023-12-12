@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
-import { useGetContactUsByIdQuery, useUpdateContactUsByIdMutation } from "../../../redux/api/contactUsApi";
 import Swal from "sweetalert2";
+import {
+  useGetContactUsQuery,
+  useUpdateContactUsByIdMutation,
+} from "../../../redux/api/contactUsApi";
 
 export default function Contact() {
   const [updateContactUsById] = useUpdateContactUsByIdMutation();
-  const {data, isLoading} = useGetContactUsByIdQuery();
+  const { data, isLoading } = useGetContactUsQuery();
+  // console.log(data.data[0]);
 
   const [phone, setPhone] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -19,7 +23,7 @@ export default function Contact() {
 
   useEffect(() => {
     if (data && !isLoading) {
-      const contactUs = data.data;
+      const contactUs = data?.data[0];
       setPhone(contactUs.phone);
       setWhatsapp(contactUs.whatsapp);
       setEmail(contactUs.email);
@@ -33,12 +37,14 @@ export default function Contact() {
     }
   }, [data, isLoading]);
 
-  if(isLoading) return <div>Loading...</div>
+  if (isLoading) return <div>Loading...</div>;
+
+  const id = data?.data[0]?.id;
 
   const handleUpdateContact = async (e) => {
     e.preventDefault();
 
-    const contactInfo = {
+    const data = {
       title,
       description,
       phone,
@@ -51,9 +57,9 @@ export default function Contact() {
       linkedinLink,
     };
 
-    const res = await updateContactUsById({ ...contactInfo }).unwrap();
+    const res = await updateContactUsById({ id, data }).unwrap();
     // console.log(res);
-    if(res.success) {
+    if (res.success) {
       e.target.reset();
       Swal.fire(
         "Good job!",

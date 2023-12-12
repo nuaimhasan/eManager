@@ -1,25 +1,25 @@
 import { baseApi } from "./baseApi";
 const URL = "contactus";
-const id = "656f2809ac9e30474aa8a808";
 
 export const contactUsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getContactUsById: builder.query({
+    getContactUs: builder.query({
       query: () => ({
-        url: `${URL}/${id}`,
+        url: `${URL}`,
         method: "GET",
       }),
       providesTags: ["contactUs"],
     }),
     updateContactUsById: builder.mutation({
-      query: (body) => ({
+      query: ({ id, data }) => ({
         url: `${URL}/${id}`,
         method: "PATCH",
-        body,
+        body : data,
       }),
       invalidatesTags: ["contactUs"],
     }),
   }),
 });
 
-export const { useGetContactUsByIdQuery, useUpdateContactUsByIdMutation } = contactUsApi;
+export const { useGetContactUsQuery, useUpdateContactUsByIdMutation } =
+  contactUsApi;

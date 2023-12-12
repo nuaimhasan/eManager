@@ -2,11 +2,21 @@ import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
-import { useUpdateLogoByIdMutation } from "../../../redux/api/logoApi";
+import {
+  useGetLogosQuery,
+  useUpdateLogoByIdMutation,
+} from "../../../redux/api/logoApi";
 
 export default function Logo() {
+  const { data, isLoading } = useGetLogosQuery();
+
   const [mainLogos, setMainLogos] = useState([]);
   const [updateLogoById] = useUpdateLogoByIdMutation();
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+  const id = data?.data[0]?.id;
 
   const handleUpdateMainLogo = async () => {
     let logo = mainLogos[0]?.file;
@@ -19,9 +29,9 @@ export default function Logo() {
     formData.append("logo", logo);
 
     try {
-      const res = await updateLogoById(formData);
+      const res = await updateLogoById({ id, formData });
       setMainLogos([]);
-      if (res.data.success === true) {
+      if (res?.data?.success) {
         Swal.fire({
           title: "Success!",
           text: res?.data?.message,
@@ -30,6 +40,7 @@ export default function Logo() {
         });
       }
     } catch (error) {
+      console.log(error);
       Swal.fire({
         title: "Error!",
         text: error?.data?.message,

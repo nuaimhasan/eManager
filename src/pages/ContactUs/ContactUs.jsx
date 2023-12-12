@@ -1,26 +1,18 @@
-import { FaPhone, FaLocationDot } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
-import { IoLogoWhatsapp } from "react-icons/io";
+import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { HiBuildingOffice2 } from "react-icons/hi2";
-import { useGetContactUsByIdQuery } from "../../redux/api/contactUsApi";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { MdEmail } from "react-icons/md";
+import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
 
 export default function ContactUs() {
-  
-  const {data, isLoading} = useGetContactUsByIdQuery();
+  const { data, isLoading } = useGetContactUsQuery();
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  const contactus = data?.data;
-  const {
-    title,
-    description,
-    phone,
-    whatsapp,
-    email,
-    address,
-  } = contactus;
+  const contactus = data?.data[0];
+  const { title, description, phone, whatsapp, email, address } = contactus;
 
   window.scroll(0, 0);
   return (
