@@ -21,7 +21,7 @@ export default function WhyChooseUs() {
         <div className="mt-14">
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {chooseLists?.map((list) => (
-              <div key={list.id} className="text-center">
+              <div key={list?.id} className="text-center">
                 <p className="flex justify-center text-4xl ">
                   <img
                     src={`http://localhost:5000/whychoose/${list?.icon}`}
@@ -29,9 +29,9 @@ export default function WhyChooseUs() {
                     className="w-10"
                   />
                 </p>
-                <h2 className="text-xl font-medium my-2">{list.title}</h2>
+                <h2 className="text-xl font-medium my-2">{list?.title}</h2>
                 <p className="text-sm opacity-80 font-light">
-                  {list.description}
+                  {list?.description}
                 </p>
               </div>
             ))}

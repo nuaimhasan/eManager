@@ -3,8 +3,18 @@ import { Link } from "react-router-dom";
 import { BsFacebook, BsYoutube } from "react-icons/bs";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { AiFillInstagram } from "react-icons/ai";
+import { useGetAllServicesQuery } from "../../redux/api/serviceApi";
+import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
 
 export default function Footer() {
+
+  const {data: serviceData} = useGetAllServicesQuery();
+  const {data: contactUsData} = useGetContactUsQuery();
+
+  const services = serviceData?.data;
+  const contactUs = contactUsData?.data[0];
+  // console.log(contactUs);
+
   return (
     <footer className="pt-10 pb-5 font-extralight">
       <div className="container">
@@ -33,46 +43,16 @@ export default function Footer() {
               Popular Services
             </h2>
             <ul className="text-sm flex flex-col gap-1">
-              <li>
-                <Link to="/" className="hover:underline">
-                  Web Development
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
-                  App Development
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
-                  Content & Research
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
-                  Digital Marketing
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
-                  SEO
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
-                  Graphics Design
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
-                  Videography Solution
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="hover:underline">
-                  Domain & Hosting
-                </Link>
-              </li>
+              {services?.slice(0, 5).map((service) => (
+                <li key={service?.id}>
+                  <Link
+                    to={`/service/${service?.slug}`}
+                    className="hover:underline"
+                  >
+                    {service?.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -118,13 +98,13 @@ export default function Footer() {
             </h2>
             <ul className="text-sm">
               <li className="mb-1">
-                <p>80, Shahjalal Complex, Circular Road, Malibagh Dhaka</p>
+                <p>{contactUs?.address}</p>
               </li>
               <li className="mb-1">
-                <p>01906-198021</p>
+                <p>{contactUs?.phone}</p>
               </li>
               <li>
-                <p>eManagerbd.xyz@gmail.com</p>
+                <p>{contactUs?.email}</p>
               </li>
             </ul>
           </div>
@@ -138,22 +118,22 @@ export default function Footer() {
           </span>
           <ul className="flex items-center gap-2 mt-3 sm:mt-0">
             <li>
-              <Link to="" target="_blank">
+              <Link to={contactUs?.facebookLink} target="_blank">
                 <BsFacebook className="text-lg hover:-mt-2 duration-300" />
               </Link>
             </li>
             <li>
-              <Link to="" target="_blank">
+              <Link to={contactUs?.whatsapp} target="_blank">
                 <IoLogoWhatsapp className="text-xl hover:-mt-2 duration-300" />
               </Link>
             </li>
             <li>
-              <Link to="">
+              <Link to={contactUs?.instagramLink}>
                 <AiFillInstagram className="text-xl hover:-mt-2 duration-300" />
               </Link>
             </li>
             <li>
-              <Link to="">
+              <Link to={contactUs?.youtubeLink}>
                 <BsYoutube className="text-xl hover:-mt-2 duration-300" />
               </Link>
             </li>

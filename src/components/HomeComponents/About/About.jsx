@@ -5,8 +5,7 @@
 import { useGetAboutUsQuery } from "../../../redux/api/aboutUsApi";
 
 export default function About() {
-
-  const {data} = useGetAboutUsQuery();
+  const { data } = useGetAboutUsQuery();
   const aboutUs = data?.data[0];
 
   return (
@@ -14,14 +13,10 @@ export default function About() {
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <h3 className="section_text">
-              {aboutUs?.tagline || "About Us"}
-            </h3>
+            <h3 className="section_text">About Us</h3>
             <h2 className="text-2xl text-neutral">
               {aboutUs?.title}:{" "}
-              <span className="text-secondary">
-                Bridging Digital Success with eManager
-              </span>
+              <span className="text-secondary">{aboutUs?.tagline}</span>
             </h2>
 
             <div className="mt-3 text-neutral-content text-[14.5px] flex flex-col gap-1">

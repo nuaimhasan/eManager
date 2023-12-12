@@ -2,27 +2,31 @@ import { Link } from "react-router-dom";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsTelephoneInbound, BsInstagram } from "react-icons/bs";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { AiOutlineTwitter } from "react-icons/ai";
+import { AiOutlineYoutube } from "react-icons/ai";
+import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
 
 export default function TopHeader() {
+
+  const {data} = useGetContactUsQuery();
+  
+  const contactUs = data?.data[0];
+  // console.log(contactUs);
+
   return (
     <div className="hidden sm:block top_header py-1">
       <div className="container">
         <div className="flex justify-between items-center text-sm">
           <div className="flex items-center gap-2.5">
-            <Link to="https://www.facebook.com/eManagerbd.xyz/" target="_blank">
+            <Link to={contactUs?.facebookLink} target="_blank">
               <FaFacebookF className="h-3.5" />
             </Link>
-            <Link to="" target="_blank">
-              <AiOutlineTwitter className="text-[17px]" />
+            <Link to={contactUs?.youtubeLink} target="_blank">
+              <AiOutlineYoutube className="text-[17px]" />
             </Link>
-            <Link to="" target="_blank">
+            <Link to={contactUs?.linkedinLink} target="_blank">
               <FaLinkedinIn className="text-[15px]" />
             </Link>
-            <Link
-              to="https://www.instagram.com/emanagerbd.xyz/"
-              target="_blank"
-            >
+            <Link to={contactUs?.instagramLink} target="_blank">
               <BsInstagram className="text-sm" />
             </Link>
           </div>
@@ -32,7 +36,7 @@ export default function TopHeader() {
               target="_blank"
               className="flex items-center gap-1"
             >
-              <MdOutlineEmail className="text-base" /> eManagerbd.xyz@gmail.com
+              <MdOutlineEmail className="text-base" /> {contactUs?.email}
             </Link>
             <Link
               to="tel:01904-099871"
@@ -40,7 +44,7 @@ export default function TopHeader() {
               className="flex items-center gap-1"
             >
               <BsTelephoneInbound />
-              01906-198021
+              {contactUs?.phone}
             </Link>
           </div>
         </div>

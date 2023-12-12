@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import "./Header.css";
-import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiMenu3Fill } from "react-icons/ri";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useGetLogosQuery } from "../../redux/api/logoApi";
+import "./Header.css";
 
 export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const { pathname } = useLocation();
+
+  const { data } = useGetLogosQuery();
+  // const {data: menuData} = useGetMenusQuery();
+  
 
   useEffect(() => {
     window.addEventListener("click", (e) => {
@@ -16,21 +21,27 @@ export default function Header() {
     });
   }, []);
 
+  const logo = data?.data[0];
+  // const menus = menuData?.data;
+  // console.log(menus);
+
   return (
     <>
       <header className="py-1 lg:py-0 sticky top-0 bg-[#ffffffcc] backdrop-blur-[10px] border-b z-50">
         <div className="container">
           <div className="flex justify-between items-center">
-            <Link
-              to="/"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            >
-              <img
-                src="/images/logo/logo.png"
-                alt="emanager logo"
-                className="w-40 lg:w-44"
-              />
-            </Link>
+            {logo && (
+              <Link
+                to="/"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
+                <img
+                  src={`http://localhost:5000/logos/${logo?.filename}`}
+                  alt="emanager logo"
+                  className="w-40 lg:w-44"
+                />
+              </Link>
+            )}
 
             <nav className="menu_wrap flex items-center gap-4">
               <button

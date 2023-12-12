@@ -15,7 +15,7 @@ export default function BlogCard({blog}) {
         </h2>
 
         <div className="mt-2">
-          <Link to="/blog/1" className="text-secondary hover:underline text-sm">
+          <Link to={`/blogs/${blog?.id}`} className="text-secondary hover:underline text-sm">
             Read More
           </Link>
         </div>

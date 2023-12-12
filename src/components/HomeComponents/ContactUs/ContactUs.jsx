@@ -3,9 +3,18 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useSendMessageMutation } from "../../../redux/api/sendMessageApi";
+import { useGetContactUsQuery } from "../../../redux/api/contactUsApi";
+import { HiBuildingOffice2 } from "react-icons/hi2";
 
 export default function ContactUs() {
   const [sendMessage] = useSendMessageMutation();
+  const { data, isLoading } = useGetContactUsQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const contactus = data?.data[0];
 
   const sendMessasgeHandler = async (e) => {
     e.preventDefault();
@@ -57,11 +66,10 @@ export default function ContactUs() {
         <div className="grid md:grid-cols-2 gap-8 md:gap-14">
           <div>
             <h2 className="text-2xl md:text-3xl font-semibold text-neutral">
-              Have Some Questions?
+              {contactus?.title}
             </h2>
             <p className="text-neutral-content text-[15px] mt-1">
-              Thank you for interest in our service. Please fil up the form
-              below or call us.
+              {contactus?.description}
             </p>
 
             <div className="mt-6 flex flex-col gap-1.5 text-neutral-content">
@@ -69,25 +77,31 @@ export default function ContactUs() {
                 <p>
                   <FaPhone />
                 </p>
-                <p>01906-198021</p>
+                <p>{contactus?.phone}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
                   <IoLogoWhatsapp />
                 </p>
-                <p>01906-198022</p>
+                <p>{contactus?.whatsapp}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
                   <MdEmail className="text-lg" />
                 </p>
-                <p>eManagerbd.xyz@gmail.com</p>
+                <p>{contactus?.email}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
                   <FaLocationDot />
                 </p>
                 <p>80, Shahjalal Complex, Circular Road, Malibagh Dhaka</p>
+              </div>
+              <div className="flex gap-1 items-center">
+                <p>
+                  <HiBuildingOffice2 className="text-lg" />
+                </p>
+                <p>{contactus?.address}</p>
               </div>
             </div>
           </div>

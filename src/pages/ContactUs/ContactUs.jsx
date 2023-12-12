@@ -2,9 +2,14 @@ import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
+import Swal from "sweetalert2";
 import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
+import { useSendMessageMutation } from "../../redux/api/sendMessageApi";
 
 export default function ContactUs() {
+  window.scroll(0, 0);
+
+  const [sendMessage] = useSendMessageMutation();
   const { data, isLoading } = useGetContactUsQuery();
 
   if (isLoading) {
@@ -12,19 +17,61 @@ export default function ContactUs() {
   }
 
   const contactus = data?.data[0];
-  const { title, description, phone, whatsapp, email, address } = contactus;
 
-  window.scroll(0, 0);
+  const sendMessasgeHandler = async (e) => {
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const phone = e.target.phone.value;
+    const subject = e.target.subject.value;
+    const message = e.target.message.value;
+    const email = e.target.email.value;
+
+    if (!name || !phone || !subject || !message || !email) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill up all the fields!",
+      });
+      return;
+    }
+
+    const data = {
+      name,
+      phone,
+      subject,
+      message,
+      email,
+    };
+
+    try {
+      const res = await sendMessage(data).unwrap();
+      if (res.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent",
+          text: "We will contact you soon",
+        });
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
+
   return (
     <section className="py-10 lg:py-20" id="contact-us">
       <div className="container">
         <div className="grid md:grid-cols-2 gap-8 md:gap-14">
           <div>
             <h2 className="text-2xl md:text-3xl font-semibold text-neutral">
-              {title}
+              {contactus?.title}
             </h2>
             <p className="text-neutral-content text-[15px] mt-1">
-              {description}
+              {contactus?.description}
             </p>
 
             <div className="mt-6 flex flex-col gap-1.5 text-neutral-content">
@@ -32,19 +79,19 @@ export default function ContactUs() {
                 <p>
                   <FaPhone />
                 </p>
-                <p>{phone}</p>
+                <p>{contactus?.phone}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
                   <IoLogoWhatsapp />
                 </p>
-                <p>{whatsapp}</p>
+                <p>{contactus?.whatsapp}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
                   <MdEmail className="text-lg" />
                 </p>
-                <p>{email}</p>
+                <p>{contactus?.email}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
@@ -56,7 +103,7 @@ export default function ContactUs() {
                 <p>
                   <HiBuildingOffice2 className="text-lg" />
                 </p>
-                <p>{address}</p>
+                <p>{contactus?.address}</p>
               </div>
             </div>
           </div>
@@ -65,7 +112,10 @@ export default function ContactUs() {
             <h2 className="text-secondary font-semibold text-xl mb-3">
               Get In Touch
             </h2>
-            <form className="flex flex-col gap-3">
+            <form
+              onSubmit={sendMessasgeHandler}
+              className="flex flex-col gap-3"
+            >
               <div>
                 <input
                   type="text"
@@ -84,6 +134,14 @@ export default function ContactUs() {
               </div>
               <div>
                 <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  className="w-full border rounded px-4 py-2 outline-none"
+                />
+              </div>
+              <div>
+                <input
                   type="text"
                   name="subject"
                   placeholder="Subject"
@@ -92,7 +150,7 @@ export default function ContactUs() {
               </div>
               <div>
                 <textarea
-                  name=""
+                  name="message"
                   rows="5"
                   placeholder="Type you message..."
                   className="w-full border rounded px-4 py-2 outline-none"
@@ -100,7 +158,9 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <button className="gradient-primary-btn">Send Message</button>
+                <button type="submit" className="gradient-primary-btn">
+                  Send Message
+                </button>
               </div>
             </form>
           </div>

@@ -1,24 +1,24 @@
-import "./Hero.css";
-import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
-import hero from "../../../../public/images//hero/hero.json";
-import Typed from "typed.js";
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import Typed from "typed.js";
+import hero from "../../../../public/images//hero/hero.json";
 import { useGetBannerQuery } from "../../../redux/api/bannerApi";
+import { useGetAllServicesQuery } from "../../../redux/api/serviceApi";
+import "./Hero.css";
 
 export default function Hero() {
   const el = useRef(null);
-  const {data} = useGetBannerQuery();
+  const { data } = useGetBannerQuery();
+  const { data: serviceData } = useGetAllServicesQuery();
+
+  const services = serviceData?.data;
 
   useEffect(() => {
+    const titles = services ? services.map((service) => service?.title) : [];
     if (el.current) {
       const typed = new Typed(el.current, {
-        strings: [
-          "Web Development",
-          "App Development",
-          "UI/UX Design",
-          "Digital Marketing",
-        ],
+        strings: titles,
         typeSpeed: 70,
         backSpeed: 70,
         backDelay: 500,
@@ -30,7 +30,7 @@ export default function Hero() {
         typed.destroy();
       };
     }
-  }, []);
+  }, [services]);
 
   const banner = data?.data[0];
 
@@ -46,7 +46,7 @@ export default function Hero() {
               </span>
             </h2>
             <p className="text-neutral-content mt-4 text-sm md:text-[15px]">
-             {banner?.description}
+              {banner?.description}
             </p>
 
             <div className="mt-6">

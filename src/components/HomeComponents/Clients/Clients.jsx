@@ -45,7 +45,7 @@ export default function Clients() {
             modules={[Autoplay]}
           >
             {clients?.map((client) => (
-              <SwiperSlide key={client.id}>
+              <SwiperSlide key={client?.id}>
                 <div className="shadow w-full h-20 rounded flex justify-center items-center">
                   <img
                     src={`http://localhost:5000/clients/${client?.image}`}

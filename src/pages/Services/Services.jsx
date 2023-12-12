@@ -10,6 +10,7 @@ export default function ServicesPage() {
   }
 
   const serviceBanner = data?.data[0];
+  console.log(serviceBanner);
 
   return (
     <section>
