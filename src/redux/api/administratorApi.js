@@ -12,10 +12,10 @@ export const administratorApi = baseApi.injectEndpoints({
       invalidatesTags: ["admin"],
     }),
     adminLogin: builder.mutation({
-      query: (body) => ({
+      query: (data) => ({
         url: `${URL}/login`,
         method: "POST",
-        body,
+        body : data,
       }),
       invalidatesTags: ["admin"],
     }),

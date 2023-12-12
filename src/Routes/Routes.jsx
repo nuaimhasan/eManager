@@ -54,6 +54,7 @@ import BenefitList from "../pages/DashboardPages/Career/Benefits/BenefitList";
 import AddBenefit from "../pages/DashboardPages/Career/Benefits/AddBenefit";
 import EditBenefit from "../pages/DashboardPages/Career/Benefits/EditBenefit";
 import ApplicantsList from "../pages/DashboardPages/Career/Applicants/ApplicantsList";
+import Login from "../pages/Login/Login";
 
 export const routes = createBrowserRouter([
   {
@@ -284,4 +285,8 @@ export const routes = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/login',
+    element: <Login />
+  }
 ]);
