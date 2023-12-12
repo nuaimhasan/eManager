@@ -94,7 +94,7 @@ const adminSidebarItems = [
       },
       {
         title: "Applicants List",
-        path: "/admin/administrator/all-administrator",
+        path: "/admin/career/all-applicants",
       },
     ],
   },

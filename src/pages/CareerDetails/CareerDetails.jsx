@@ -9,17 +9,19 @@ export default function CareerDetails() {
   window.scroll(0, 0);
   const { id } = useParams();
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [facebook, setFacebook] = useState("");
-  const [yearsOfExperience, setYearsOfExperience] = useState("");
-  const [expectedSalary, setExpectedSalary] = useState("");
-  const [coverLetter, setCoverLetter] = useState("");
-  const [file, setFile] = useState([]);
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+    linkedin: "",
+    facebook: "",
+    yearsOfExperience: "",
+    expectedSalary: "",
+    coverLetter: "",
+    file: [],
+  });
 
   const { data, isLoading } = useGetJobByIdQuery(id);
   const [addJobApplyForm] = useAddJobApplyFormMutation();
@@ -30,10 +32,17 @@ export default function CareerDetails() {
 
   const job = data?.data;
 
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const resume = file[0];
+    const resume = form.file[0];
 
     if (!resume) {
       return Swal.fire({
@@ -44,35 +53,32 @@ export default function CareerDetails() {
     }
 
     const formData = new FormData();
-    formData.append("positionName", job?.title);
     formData.append("jobId", id);
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
-    formData.append("email", email);
-    formData.append("phone", phone);
-    formData.append("address", address);
-    formData.append("linkedin", linkedin);
-    formData.append("facebook", facebook);
-    formData.append("yearsOfExperience", yearsOfExperience);
-    formData.append("expectedSalary", expectedSalary);
-    formData.append("coverLetter", coverLetter);
+    formData.append("positionName", job?.title);
     formData.append("resume", resume);
+
+    Object.keys(form).forEach((key) => {
+      formData.append(key, form[key]);
+    });
+    
 
     try {
       const res = await addJobApplyForm(formData).unwrap();
 
       if (res?.success) {
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setPhone("");
-        setAddress("");
-        setLinkedin("");
-        setFacebook("");
-        setYearsOfExperience("");
-        setExpectedSalary("");
-        setCoverLetter("");
-        setFile([]);
+        setForm({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          address: "",
+          linkedin: "",
+          facebook: "",
+          yearsOfExperience: "",
+          expectedSalary: "",
+          coverLetter: "",
+          file: [],
+        });
 
         Swal.fire({
           icon: "success",
@@ -104,7 +110,6 @@ export default function CareerDetails() {
               <input
                 type="text"
                 name=""
-                defaultValue="DIGITAL MARKETING EXPERT"
                 disabled
                 value={job?.title}
               />
@@ -115,17 +120,17 @@ export default function CareerDetails() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <input
                   type="text"
-                  name=""
+                  name="firstName"
                   placeholder="First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={form.firstName}
+                  onChange={handleChange}
                 />
                 <input
                   type="text"
-                  name=""
+                  name="lastName"
                   placeholder="Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={form.lastName}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -135,20 +140,20 @@ export default function CareerDetails() {
                 <label htmlFor="">Email</label>
                 <input
                   type="email"
-                  name=""
+                  name="email"
                   placeholder="example@gmail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={form.email}
+                  onChange={handleChange}
                 />
               </div>
               <div className="form_control">
                 <label htmlFor="">Number</label>
                 <input
                   type="text"
-                  name=""
+                  name="phone"
                   placeholder="+880"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={form.phone}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -156,10 +161,11 @@ export default function CareerDetails() {
             <div className="form_control">
               <label htmlFor="">Address</label>
               <textarea
-                name=""
+                name="address"
                 rows="3"
                 placeholder="state, city"
-                onChange={(e) => setAddress(e.target.value)}
+                value={form.address}
+                onChange={handleChange}
               ></textarea>
             </div>
 
@@ -167,10 +173,10 @@ export default function CareerDetails() {
               <label htmlFor="">Linkedin profile</label>
               <input
                 type="text"
-                name=""
+                name="linkedin"
                 placeholder="https://"
-                value={linkedin}
-                onChange={(e) => setLinkedin(e.target.value)}
+                value={form.linkedin}
+                onChange={handleChange}
               />
             </div>
 
@@ -178,10 +184,10 @@ export default function CareerDetails() {
               <label htmlFor="">Facebook profile</label>
               <input
                 type="text"
-                name=""
+                name="facebook"
                 placeholder="https://"
-                value={facebook}
-                onChange={(e) => setFacebook(e.target.value)}
+                value={form.facebook}
+                onChange={handleChange}
               />
             </div>
 
@@ -190,20 +196,20 @@ export default function CareerDetails() {
                 <label htmlFor="">Years of experience</label>
                 <input
                   type="text"
-                  name=""
+                  name="yearsOfExperience"
                   placeholder="0"
-                  value={yearsOfExperience}
-                  onChange={(e) => setYearsOfExperience(e.target.value)}
+                  value={form.yearsOfExperience}
+                  onChange={handleChange}
                 />
               </div>
               <div className="form_control">
                 <label htmlFor="">Expected Salary</label>
                 <input
                   type="text"
-                  name=""
+                  name="expectedSalary"
                   placeholder="0000"
-                  value={expectedSalary}
-                  onChange={(e) => setExpectedSalary(e.target.value)}
+                  value={form.expectedSalary}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -211,11 +217,11 @@ export default function CareerDetails() {
             <div className="form_control">
               <label htmlFor="">Cover Letter</label>
               <textarea
-                name=""
+                name="coverLetter"
                 rows="4"
                 placeholder="Type here..."
-                value={coverLetter}
-                onChange={(e) => setCoverLetter(e.target.value)}
+                value={form.coverLetter}
+                onChange={handleChange}
               ></textarea>
             </div>
 
@@ -229,7 +235,13 @@ export default function CareerDetails() {
                 aria-describedby="file_input_help"
                 id="file_input"
                 type="file"
-                onChange={(e) => setFile(e.target.files)}
+                name="file"
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    file: e.target.files,
+                  })
+                }
               />
               <p className="text-sm text-neutral-content">
                 Accepted file types: pdf, Max. file size: 5 MB.
