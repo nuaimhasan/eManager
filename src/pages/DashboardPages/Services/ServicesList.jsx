@@ -64,7 +64,9 @@ export default function ServicesList() {
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`http://localhost:5000/service/icon/${service?.icon}`}
+                    src={`${import.meta.env.VITE_SERVER_IMG}/service/icon/${
+                      service?.icon
+                    }`}
                     alt="icon"
                     className="w-10"
                   />
@@ -72,7 +74,9 @@ export default function ServicesList() {
                 <td>{service.title}</td>
                 <td>
                   <img
-                    src={`http://localhost:5000/service/image/${service?.image}`}
+                    src={`${import.meta.env.VITE_SERVER_IMG}/service/image/${
+                      service?.image
+                    }`}
                     alt="icon"
                     className="w-10"
                   />

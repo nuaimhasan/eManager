@@ -1,4 +1,5 @@
 import Services from "../../components/HomeComponents/Services/Services";
+import Spinner from "../../components/Spinner/Spinner";
 import { useGetServiceBannerQuery } from "../../redux/api/serviceBannerApi";
 
 export default function ServicesPage() {
@@ -6,7 +7,7 @@ export default function ServicesPage() {
 
   const { data, isLoading } = useGetServiceBannerQuery();
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   const serviceBanner = data?.data[0];

@@ -1,8 +1,9 @@
+import parse from "html-react-parser";
 import { GiCheckMark } from "react-icons/gi";
 import { Link, useParams } from "react-router-dom";
 import { useGetServiceBySlugQuery } from "../../redux/api/serviceApi";
 import "./ServiceDetails.css";
-import parse from "html-react-parser";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function ServiceDetails() {
   window.scroll(0, 0);
@@ -11,7 +12,7 @@ export default function ServiceDetails() {
 
   const { data, isLoading } = useGetServiceBySlugQuery(slug);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
   const service = data?.data;
   const details = service?.description && parse(service?.description);
@@ -40,7 +41,9 @@ export default function ServiceDetails() {
 
             <div className="lg:col-span-2 ">
               <img
-                src={`http://localhost:5000/service/image/${service?.image}`}
+                src={`${import.meta.env.VITE_SERVER_IMG}/service/image/${
+                  service?.image
+                }`}
                 alt=""
                 className="w-full sm:w-1/2 lg:w-full mx-auto h-auto"
               />

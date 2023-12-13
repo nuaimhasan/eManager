@@ -3,7 +3,10 @@ import { FaRegEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import swal from "sweetalert2";
-import { useDeleteCounterMutation, useGetAllCounterQuery } from "../../../redux/api/CounterApi";
+import {
+  useDeleteCounterMutation,
+  useGetAllCounterQuery,
+} from "../../../redux/api/CounterApi";
 
 export default function CounterLists() {
   const { data, isLoading } = useGetAllCounterQuery();
@@ -62,7 +65,9 @@ export default function CounterLists() {
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`http://localhost:5000/counter/${item?.icon}`}
+                    src={`${import.meta.env.VITE_SERVER_IMG}/counter/${
+                      item?.icon
+                    }`}
                     alt="icon"
                     className="w-10"
                   />

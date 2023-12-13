@@ -1,6 +1,6 @@
+import parse from "html-react-parser";
 import { useParams } from "react-router-dom";
 import { useGetBlogByIdQuery } from "../../redux/api/blogApi";
-import parse from "html-react-parser";
 
 export default function BlogDetails() {
   window.scroll(0, 0);
@@ -15,7 +15,7 @@ export default function BlogDetails() {
     <section className="pb-10">
       <div className="container">
         <img
-          src={`http://localhost:5000/blogs/${blog?.image}`}
+          src={`${import.meta.env.VITE_SERVER_IMG}/blogs/${blog?.image}`}
           alt=""
           className="w-full h-96"
         />

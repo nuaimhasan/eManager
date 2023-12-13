@@ -65,7 +65,9 @@ export default function WhyChooseLists() {
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`http://localhost:5000/whychoose/${item?.icon}`}
+                    src={`${import.meta.env.VITE_SERVER_IMG}/whychoose/${
+                      item?.icon
+                    }`}
                     alt="icon"
                     className="w-10"
                   />

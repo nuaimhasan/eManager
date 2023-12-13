@@ -28,7 +28,9 @@ export default function AboutComponent() {
 
         <div>
           <img
-            src={`http://localhost:5000/aboutus/image/${aboutUs?.image}`}
+            src={`${import.meta.env.VITE_SERVER_IMG}/aboutus/image/${
+              aboutUs?.image
+            }`}
             alt=""
             className="h-80 sm:h-[450px] lg:h-[500px] w-full lg:w-[85%] ml-auto rounded"
           />

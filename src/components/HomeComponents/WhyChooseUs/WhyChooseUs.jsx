@@ -1,9 +1,7 @@
-
 import { useGetAllWhyChooseQuery } from "../../../redux/api/WhyChooseApi";
 
 export default function WhyChooseUs() {
-
-  const {data} = useGetAllWhyChooseQuery();
+  const { data } = useGetAllWhyChooseQuery();
   const chooseLists = data?.data;
 
   return (
@@ -24,7 +22,9 @@ export default function WhyChooseUs() {
               <div key={list?.id} className="text-center">
                 <p className="flex justify-center text-4xl ">
                   <img
-                    src={`http://localhost:5000/whychoose/${list?.icon}`}
+                    src={`${import.meta.env.VITE_SERVER_IMG}/whychoose/${
+                      list?.icon
+                    }`}
                     alt="icon"
                     className="w-10"
                   />

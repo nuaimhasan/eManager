@@ -35,7 +35,7 @@ export default function AddBenefit() {
         });
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Oops...",

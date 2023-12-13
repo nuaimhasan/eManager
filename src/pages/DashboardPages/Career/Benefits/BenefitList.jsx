@@ -59,7 +59,9 @@ export default function BenefitList() {
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`http://localhost:5000/benefit/${benefit?.image}`}
+                    src={`${import.meta.env.VITE_SERVER_IMG}/benefit/${
+                      benefit?.image
+                    }`}
                     alt=""
                     className="w-10 h-10"
                   />

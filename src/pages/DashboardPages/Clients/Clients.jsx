@@ -63,7 +63,9 @@ export default function Clients() {
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`http://localhost:5000/clients/${client?.image}`}
+                    src={`${import.meta.env.VITE_SERVER_IMG}/clients/${
+                      client?.image
+                    }`}
                     alt={client.logo}
                     className="w-20"
                   />

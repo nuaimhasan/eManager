@@ -146,7 +146,6 @@ export default function ServiceBanner() {
               <textarea
                 name="description"
                 rows="3"
-                defaultdefaultValue=""
                 required
                 defaultValue={description}
                 onChange={(e) => setDescription(e.target.value)}

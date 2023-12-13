@@ -48,7 +48,9 @@ export default function Clients() {
               <SwiperSlide key={client?.id}>
                 <div className="shadow w-full h-20 rounded flex justify-center items-center">
                   <img
-                    src={`http://localhost:5000/clients/${client?.image}`}
+                    src={`${import.meta.env.VITE_SERVER_IMG}/clients/${
+                      client?.image
+                    }`}
                     alt=""
                     className="w-[70%] h-1/2"
                   />
