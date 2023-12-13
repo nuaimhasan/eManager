@@ -11,14 +11,12 @@
   flex-direction: column;
 }
 
-.counter_card .icon {
+.counter_card .icon img {
   width: 40px;
-  height: 45px;
+  height: 40px;
   background: #0e4677;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 7px;
+  border-radius: 50%;
 }
 
 .counter_card h1 {

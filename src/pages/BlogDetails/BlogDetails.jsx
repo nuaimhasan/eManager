@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useGetBlogByIdQuery } from "../../redux/api/blogApi";
+import parse from "html-react-parser";
 
 export default function BlogDetails() {
   window.scroll(0, 0);
 
-  const {id} = useParams();
+  const { id } = useParams();
 
-  const {data} = useGetBlogByIdQuery(id);
+  const { data } = useGetBlogByIdQuery(id);
   const blog = data?.data;
-  // console.log(data?.data);
+  const details = blog?.description && parse(blog?.description);
 
   return (
     <section className="pb-10">
@@ -23,9 +24,7 @@ export default function BlogDetails() {
           {blog?.title}
         </h2>
 
-        <p className="mt-4 text-[15px] text-neutral-content">
-          {blog?.description}
-        </p>
+        <p className="mt-4 text-[15px] text-neutral-content">{details}</p>
       </div>
     </section>
   );

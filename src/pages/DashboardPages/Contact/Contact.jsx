@@ -24,16 +24,16 @@ export default function Contact() {
   useEffect(() => {
     if (data && !isLoading) {
       const contactUs = data?.data[0];
-      setPhone(contactUs.phone);
-      setWhatsapp(contactUs.whatsapp);
-      setEmail(contactUs.email);
-      setAddress(contactUs.address);
-      setFacebookLink(contactUs.facebookLink);
-      setInstagramLink(contactUs.instagramLink);
-      setYoutubeLink(contactUs.youtubeLink);
-      setLinkedinLink(contactUs.linkedinLink);
-      setTitle(contactUs.title);
-      setDescription(contactUs.description);
+      setPhone(contactUs?.phone);
+      setWhatsapp(contactUs?.whatsapp);
+      setEmail(contactUs?.email);
+      setAddress(contactUs?.address);
+      setFacebookLink(contactUs?.facebookLink);
+      setInstagramLink(contactUs?.instagramLink);
+      setYoutubeLink(contactUs?.youtubeLink);
+      setLinkedinLink(contactUs?.linkedinLink);
+      setTitle(contactUs?.title);
+      setDescription(contactUs?.description);
     }
   }, [data, isLoading]);
 

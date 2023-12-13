@@ -15,7 +15,6 @@ export default function CounterArea() {
                 <img
                   src={`http://localhost:5000/counter/${counter?.icon}`}
                   alt="icon"
-                  className="w-10"
                 />
               </div>
               <h1>{counter?.title}</h1>

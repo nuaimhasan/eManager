@@ -32,17 +32,7 @@ import AddNewChoose from "../pages/DashboardPages/WhyChooseLists/AddNewChoose";
 import EditChoose from "../pages/DashboardPages/WhyChooseLists/EditChoose";
 import WhyChooseLists from "../pages/DashboardPages/WhyChooseLists/WhyChooseLists";
 import Home from "../pages/Home/Home";
-import ContentResearch from "../pages/ServiceDetails/ContentResearch";
-import DigitalMarketing from "../pages/ServiceDetails/DegitalMarketing";
-import DomainHosting from "../pages/ServiceDetails/DomainHosting";
-import EComAutomation from "../pages/ServiceDetails/EComAutomation";
-import EmbeddedSystem from "../pages/ServiceDetails/EmbeddedSystem";
-import GraphicsDesign from "../pages/ServiceDetails/GraphicsDesign";
-import SEO from "../pages/ServiceDetails/SEO";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
-import TrainingProgram from "../pages/ServiceDetails/TrainingProgram";
-import UIUX from "../pages/ServiceDetails/UIUX";
-import Videography from "../pages/ServiceDetails/Videography";
 import ServicesPage from "../pages/Services/Services";
 import AddNewCounter from "../pages/DashboardPages/Counter/AddNewCounter";
 import EditCounter from "../pages/DashboardPages/Counter/EditCounter";
@@ -96,46 +86,6 @@ export const routes = createBrowserRouter([
       {
         path: "/career/:id",
         element: <CareerDetails />,
-      },
-      {
-        path: "/service/ui-ux-design",
-        element: <UIUX />,
-      },
-      {
-        path: "/service/embedded-system",
-        element: <EmbeddedSystem />,
-      },
-      {
-        path: "/service/digital-marketing",
-        element: <DigitalMarketing />,
-      },
-      {
-        path: "/service/seo",
-        element: <SEO />,
-      },
-      {
-        path: "/service/graphics-design",
-        element: <GraphicsDesign />,
-      },
-      {
-        path: "/service/videography",
-        element: <Videography />,
-      },
-      {
-        path: "/service/content-research",
-        element: <ContentResearch />,
-      },
-      {
-        path: "/service/eCom-automation",
-        element: <EComAutomation />,
-      },
-      {
-        path: "/service/training-programn",
-        element: <TrainingProgram />,
-      },
-      {
-        path: "/service/domain-hosting",
-        element: <DomainHosting />,
       },
     ],
   },
@@ -286,7 +236,7 @@ export const routes = createBrowserRouter([
     ],
   },
   {
-    path: '/login',
-    element: <Login />
-  }
+    path: "/login",
+    element: <Login />,
+  },
 ]);

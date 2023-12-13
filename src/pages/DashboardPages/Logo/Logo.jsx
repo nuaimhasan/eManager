@@ -13,10 +13,9 @@ export default function Logo() {
   const [mainLogos, setMainLogos] = useState([]);
   const [updateLogoById] = useUpdateLogoByIdMutation();
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
   const id = data?.data[0]?.id;
+
+  console.log(data?.data[0]?.filename);
 
   const handleUpdateMainLogo = async () => {
     let logo = mainLogos[0]?.file;
@@ -101,32 +100,25 @@ export default function Logo() {
                 )}
               </ImageUploading>
 
-              {/* {mainLogo?.data?.logo && mainLogos?.length >= 0 && (
+              {data?.data && mainLogos?.length >= 0 && (
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/images/logos/${
-                    mainLogo?.data?.logo
+                  src={`${import.meta.env.VITE_SERVER_IMG}/logos/${
+                    data?.data[0]?.filename
                   }`}
                   alt=""
                   className="w-32 mt-4"
                 />
-              )} */}
+              )}
             </div>
           </div>
 
           <div className="flex justify-end mt-6 border-t p-4">
-            {/* <button
-              disabled={mainLogoLoading && "disabled"}
-              onClick={handleUpdateMainLogo}
-              className="gradient-primary-btn"
-            >
-              {mainLogoLoading ? "Loading" : "Update Logo"}
-            </button> */}
-
             <button
+              disabled={isLoading && "disabled"}
               onClick={handleUpdateMainLogo}
               className="gradient-primary-btn"
             >
-              Update Logo
+              {isLoading ? "Loading" : "Update Logo"}
             </button>
           </div>
         </div>

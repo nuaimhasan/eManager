@@ -2,6 +2,7 @@ import { GiCheckMark } from "react-icons/gi";
 import { Link, useParams } from "react-router-dom";
 import { useGetServiceBySlugQuery } from "../../redux/api/serviceApi";
 import "./ServiceDetails.css";
+import parse from "html-react-parser";
 
 export default function ServiceDetails() {
   window.scroll(0, 0);
@@ -13,6 +14,7 @@ export default function ServiceDetails() {
     return <div>Loading...</div>;
   }
   const service = data?.data;
+  const details = service?.description && parse(service?.description);
 
   return (
     <section>
@@ -26,7 +28,7 @@ export default function ServiceDetails() {
               </h2>
 
               <div className="mt-4 text-neutral-content flex flex-col gap-2 text-sm md:text-base">
-                <p>{service?.description}</p>
+                <p>{details}</p>
               </div>
 
               <div className="mt-6">

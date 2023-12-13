@@ -105,6 +105,7 @@ export default function About() {
               <input
                 type="file"
                 name="profile"
+                accept="application/pdf"
                 onChange={(e) => setProfile(e.target.files[0])}
               />
             </div>

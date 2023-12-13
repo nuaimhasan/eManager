@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { useGetBannerQuery, useUpdateBannerByIdMutation } from "../../../redux/api/bannerApi";
+import {
+  useGetBannerQuery,
+  useUpdateBannerByIdMutation,
+} from "../../../redux/api/bannerApi";
 
-import swal from 'sweetalert2'
+import swal from "sweetalert2";
 
 export default function Banner() {
   const { data, isLoading } = useGetBannerQuery();
@@ -18,16 +21,12 @@ export default function Banner() {
     }
   }, [data, isLoading]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  const handleEditBanner =async (e) => {
+  const handleEditBanner = async (e) => {
     e.preventDefault();
     const id = data?.data[0]?.id;
 
     if (title === "" || description === "") {
-      return alert("dont empty");
+      return alert("don't empty");
     }
 
     const banner = {
@@ -35,22 +34,22 @@ export default function Banner() {
       description,
     };
 
-    const res = await updateBannerById({id, ...banner});
-    if (res?.data?.success === true) {
+    const res = await updateBannerById({ id, ...banner });
+    if (res?.data?.success) {
       swal.fire({
-        title: 'Success',
+        title: "Success",
         text: res?.data?.message,
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
       setEdit(false);
     } else {
       swal.fire({
-        title: 'Error',
+        title: "Error",
         text: res?.data?.message,
-        icon: 'error',
-        confirmButtonText: 'Ok'
-      })
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
     }
   };
 
@@ -87,7 +86,12 @@ export default function Banner() {
         <div className="mt-4">
           {edit ? (
             <div className="flex gap-2">
-              <button className="gradient-primary-btn">Update Banner</button>
+              <button
+                disabled={isLoading && "disabled"}
+                className="gradient-primary-btn"
+              >
+                {isLoading ? "Loading..." : "Update Banner"}
+              </button>
               <div
                 onClick={() => setEdit(false)}
                 className="bg-primary cursor-pointer w-max px-6 rounded flex justify-center items-center"
