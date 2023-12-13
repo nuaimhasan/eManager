@@ -70,9 +70,9 @@ export default function BlogSection() {
           <input
             type="text"
             name="title"
-            defaultValue=""
+            defaultdefaultValue=""
             required
-            value={title}
+            defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -82,9 +82,9 @@ export default function BlogSection() {
           <input
             type="text"
             name="subTitle"
-            defaultValue=""
+            defaultdefaultValue=""
             required
-            value={subtitle}
+            defaultValue={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
           />
         </div>
@@ -94,9 +94,9 @@ export default function BlogSection() {
           <textarea
             name="description"
             rows="3"
-            defaultValue=""
+            defaultdefaultValue=""
             required
-            value={description}
+            defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>

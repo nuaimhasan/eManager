@@ -7,6 +7,7 @@ import {
   useGetAboutUsQuery,
   useUpdateAboutUsMutation,
 } from "../../../redux/api/aboutUsApi";
+import Spinner from "../../../components/Spinner/Spinner";
 
 export default function About() {
   const editor = useRef(null);
@@ -29,7 +30,9 @@ export default function About() {
     }
   }, [data, isLoading]);
 
-  if (isLoading) return <div>Loading...</div>;
+  console.log(data?.data[0]?.description);
+
+  if (isLoading) return <Spinner />;
 
   const updateAboutUsHandler = async (e) => {
     e.preventDefault();
@@ -83,7 +86,7 @@ export default function About() {
               <input
                 type="text"
                 name="title"
-                value={title}
+                defaultValue={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -93,7 +96,7 @@ export default function About() {
               <input
                 type="text"
                 name="title"
-                value={tagline}
+                defaultValue={tagline}
                 onChange={(e) => setTagline(e.target.value)}
               />
             </div>
@@ -115,7 +118,7 @@ export default function About() {
                 <p className="mb-1">Image</p>
                 <div>
                   <ImageUploading
-                    value={image}
+                    defaultValue={image}
                     onChange={(icn) => setImage(icn)}
                     dataURLKey="data_url"
                   >
@@ -156,15 +159,15 @@ export default function About() {
                     )}
                   </ImageUploading>
 
-                  {/* {data?.data?.image && (
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/images/about/${
-                      data?.data?.image
-                    }`}
-                    alt=""
-                    className="w-32 mt-4"
-                  />
-                )} */}
+                  {data?.success && (
+                    <img
+                      src={`${import.meta.env.VITE_SERVER_IMG}/aboutus/image/${
+                        data?.data[0]?.image
+                      }`}
+                      alt=""
+                      className="w-32 mt-4"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -176,12 +179,11 @@ export default function About() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
-                value={description}
-                // value={
-                //   data?.data?.description?.length > 0
-                //     ? data?.data?.description
-                //     : details
-                // }
+                value={
+                  data?.data[0]?.description?.length > 0
+                    ? data?.data[0]?.description
+                    : description
+                }
                 onBlur={(text) => setDescription(text)}
               />
             </div>

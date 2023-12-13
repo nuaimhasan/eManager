@@ -1,5 +1,5 @@
 import { baseApi } from "./baseApi";
-const URL = "admins";
+const URL = "admin";
 
 export const administratorApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -15,7 +15,7 @@ export const administratorApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: `${URL}/login`,
         method: "POST",
-        body : data,
+        body: data,
       }),
       invalidatesTags: ["admin"],
     }),

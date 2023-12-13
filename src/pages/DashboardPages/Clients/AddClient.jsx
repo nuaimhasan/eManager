@@ -28,7 +28,7 @@ export default function AddClient() {
       if (res.success) {
         setOrder(0);
         setLogos([]);
-        
+
         Swal.fire({
           title: "Success!",
           text: res.message,
@@ -58,7 +58,7 @@ export default function AddClient() {
           <p className="text-neutral-content border-b p-3">Client Logo</p>
           <div className="p-4 sm:flex items-center gap-4">
             <ImageUploading
-              value={logos}
+              defaultValue={logos}
               onChange={(icn) => setLogos(icn)}
               dataURLKey="data_url"
             >
@@ -101,7 +101,7 @@ export default function AddClient() {
           <input
             type="number"
             name="order"
-            value={order}
+            defaultValue={order}
             onChange={(e) => setOrder(e.target.value)}
           />
         </div>

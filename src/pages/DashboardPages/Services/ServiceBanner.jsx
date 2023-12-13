@@ -68,7 +68,7 @@ export default function ServiceBanner() {
             <p className="mb-1">Background Image</p>
             <div>
               <ImageUploading
-                value={images}
+                defaultValue={images}
                 onChange={(icn) => setImages(icn)}
                 dataURLKey="data_url"
               >
@@ -128,7 +128,7 @@ export default function ServiceBanner() {
                 type="text"
                 name="title"
                 required
-                value={title}
+                defaultValue={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -137,7 +137,7 @@ export default function ServiceBanner() {
               <input
                 type="text"
                 name="subTitle"
-                value={subtitle}
+                defaultValue={subtitle}
                 onChange={(e) => setSubtitle(e.target.value)}
               />
             </div>
@@ -146,9 +146,9 @@ export default function ServiceBanner() {
               <textarea
                 name="description"
                 rows="3"
-                defaultValue=""
+                defaultdefaultValue=""
                 required
-                value={description}
+                defaultValue={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>

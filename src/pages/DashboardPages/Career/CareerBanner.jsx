@@ -69,7 +69,7 @@ export default function CareerBanner() {
           <input
             type="text"
             name="title"
-            value={title}
+            defaultValue={title}
             disabled={!edit && "disabled"}
             required
             onChange={(e) => setTitle(e.target.value)}
@@ -80,7 +80,7 @@ export default function CareerBanner() {
           <textarea
             name="description"
             rows="3"
-            value={description}
+            defaultValue={description}
             disabled={!edit && "disabled"}
             required
             onChange={(e) => setDescription(e.target.value)}

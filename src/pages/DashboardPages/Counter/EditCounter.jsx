@@ -37,7 +37,7 @@ export default function EditCounter() {
     formData.append("description", description);
 
     if (file) {
-      formData.append("whyChoose", file);
+      formData.append("icon", file);
     }
 
     try {
@@ -52,7 +52,6 @@ export default function EditCounter() {
         confirmButtonText: "Ok",
       });
     } catch (error) {
-      // console.log(error);
       swal.fire({
         title: "Error!",
         text: "Something went wrong!",
@@ -76,7 +75,7 @@ export default function EditCounter() {
             </p>
             <div className="sm:flex items-center gap-4">
               <ImageUploading
-                value={mainLogos}
+                defaultValue={mainLogos}
                 onChange={(icn) => setMainLogos(icn)}
                 dataURLKey="data_url"
               >
@@ -116,6 +115,16 @@ export default function EditCounter() {
                   </div>
                 )}
               </ImageUploading>
+
+              {data?.success && (
+                <img
+                  src={`${import.meta.env.VITE_SERVER_IMG}/counter/${
+                    data?.data?.icon
+                  }`}
+                  alt=""
+                  className="w-16"
+                />
+              )}
             </div>
           </div>
 
@@ -124,7 +133,7 @@ export default function EditCounter() {
             <input
               type="text"
               name="title"
-              value={title}
+              defaultValue={title}
               required
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -134,7 +143,7 @@ export default function EditCounter() {
             <p className="mb-1">Description</p>
             <textarea
               name="description"
-              value={description}
+              defaultValue={description}
               required
               rows={5}
               onChange={(e) => setDescription(e.target.value)}

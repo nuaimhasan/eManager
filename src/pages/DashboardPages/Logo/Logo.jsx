@@ -63,7 +63,7 @@ export default function Logo() {
             </p>
             <div className="p-4 sm:flex items-center gap-4">
               <ImageUploading
-                value={mainLogos}
+                defaultValue={mainLogos}
                 onChange={(icn) => setMainLogos(icn)}
                 dataURLKey="data_url"
               >

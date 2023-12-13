@@ -23,7 +23,7 @@ export default function AddNewCounter() {
       });
 
     const formData = new FormData();
-    formData.append("counter", file);
+    formData.append("icon", file);
     formData.append("title", title);
     formData.append("description", description);
 
@@ -64,7 +64,7 @@ export default function AddNewCounter() {
             </p>
             <div className="sm:flex items-center gap-4">
               <ImageUploading
-                value={mainLogos}
+                defaultValue={mainLogos}
                 onChange={(icn) => setMainLogos(icn)}
                 dataURLKey="data_url"
               >
@@ -112,7 +112,7 @@ export default function AddNewCounter() {
             <input
               type="text"
               name="title"
-              value={title}
+              defaultValue={title}
               required
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -123,7 +123,7 @@ export default function AddNewCounter() {
             <textarea
               name="description"
               rows="5"
-              value={description}
+              defaultValue={description}
               required
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>

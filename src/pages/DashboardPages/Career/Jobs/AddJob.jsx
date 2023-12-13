@@ -24,7 +24,7 @@ export default function AddJob() {
         setTitle("");
         setDescription("");
         setJobType("");
-        
+
         Swal.fire({
           icon: "success",
           title: "Success",
@@ -52,9 +52,9 @@ export default function AddJob() {
           <input
             type="text"
             name="title"
-            defaultValue=""
+            defaultdefaultValue=""
             required
-            value={title}
+            defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -64,9 +64,9 @@ export default function AddJob() {
           <textarea
             name="description"
             rows="3"
-            defaultValue=""
+            defaultdefaultValue=""
             required
-            value={description}
+            defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
@@ -76,13 +76,13 @@ export default function AddJob() {
           <select
             name="jobType"
             required
-            value={jobType}
+            defaultValue={jobType}
             onChange={(e) => setJobType(e.target.value)}
           >
-            <option value="">Select job type</option>
-            <option value="remote">Remote</option>
-            <option value="onsite">Onsite</option>
-            <option value="hybrid">Hybrid</option>
+            <option defaultValue="">Select job type</option>
+            <option defaultValue="remote">Remote</option>
+            <option defaultValue="onsite">Onsite</option>
+            <option defaultValue="hybrid">Hybrid</option>
           </select>
         </div>
 

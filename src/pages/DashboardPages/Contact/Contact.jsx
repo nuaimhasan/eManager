@@ -84,7 +84,7 @@ export default function Contact() {
               <input
                 type="text"
                 name="title"
-                value={title}
+                defaultValue={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -93,7 +93,7 @@ export default function Contact() {
               <input
                 type="text"
                 name="description"
-                value={description}
+                defaultValue={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
@@ -106,7 +106,7 @@ export default function Contact() {
                 <input
                   type="text"
                   name="phone"
-                  value={phone}
+                  defaultValue={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
@@ -116,7 +116,7 @@ export default function Contact() {
                 <input
                   type="text"
                   name="whatsapp"
-                  value={whatsapp}
+                  defaultValue={whatsapp}
                   onChange={(e) => setWhatsapp(e.target.value)}
                 />
               </div>
@@ -127,7 +127,7 @@ export default function Contact() {
               <input
                 type="email"
                 name="email"
-                value={email}
+                defaultValue={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -137,7 +137,7 @@ export default function Contact() {
               <textarea
                 name="address"
                 rows="5"
-                value={address}
+                defaultValue={address}
                 onChange={(e) => setAddress(e.target.value)}
               ></textarea>
             </div>
@@ -148,7 +148,7 @@ export default function Contact() {
                 <input
                   type="text"
                   name="facebook"
-                  value={facebookLink}
+                  defaultValue={facebookLink}
                   onChange={(e) => setFacebookLink(e.target.value)}
                 />
               </div>
@@ -158,7 +158,7 @@ export default function Contact() {
                 <input
                   type="text"
                   name="instagram"
-                  value={instagramLink}
+                  defaultValue={instagramLink}
                   onChange={(e) => setInstagramLink(e.target.value)}
                 />
               </div>
@@ -168,7 +168,7 @@ export default function Contact() {
                 <input
                   type="text"
                   name="youtube"
-                  value={youtubeLink}
+                  defaultValue={youtubeLink}
                   onChange={(e) => setYoutubeLink(e.target.value)}
                 />
               </div>
@@ -178,7 +178,7 @@ export default function Contact() {
                 <input
                   type="text"
                   name="linkedin"
-                  value={linkedinLink}
+                  defaultValue={linkedinLink}
                   onChange={(e) => setLinkedinLink(e.target.value)}
                 />
               </div>

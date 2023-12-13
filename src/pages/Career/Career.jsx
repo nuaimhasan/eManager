@@ -1,10 +1,10 @@
-import { BiDownArrowAlt, BiSolidBriefcase } from "react-icons/bi";
-
+import "./Career.css";
 import { Link } from "react-router-dom";
+import { BiDownArrowAlt, BiSolidBriefcase } from "react-icons/bi";
 import { useGetBenefitsQuery } from "../../redux/api/benefitsApi";
 import { useGetCareerBannerQuery } from "../../redux/api/careerBannerApi";
 import { useGetJobsQuery } from "../../redux/api/jobsApi";
-import "./Career.css";
+import parse from "html-react-parser";
 
 export default function Career() {
   window.scroll(0, 0);
@@ -22,6 +22,7 @@ export default function Career() {
   const jobs = jobData?.data;
   const benefits = benefitData?.data;
   const careerBanner = careerBanners?.data[0];
+  const details = benefits?.description && parse(careerBanner?.description);
 
   return (
     <section>
@@ -111,15 +112,15 @@ export default function Career() {
               <div key={benefit.id}>
                 <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
                   <img
-                    src={`http://localhost:5000/benefit/${benefit?.image}`}
+                    src={`${import.meta.env.VITE_SERVER_IMG}/benefit/${
+                      benefit?.image
+                    }`}
                     alt=""
                     className="w-6 h-7"
                   />
                 </div>
                 <h3 className="text-lg font-medium mt-2">{benefit?.title}</h3>
-                <p className="text-neutral-content text-sm">
-                  {benefit?.description}
-                </p>
+                <p className="text-neutral-content text-sm">{details}</p>
               </div>
             ))}
           </div>

@@ -11,7 +11,7 @@ export const serviceSectionApi = baseApi.injectEndpoints({
       providesTags: ["serviceSection"],
     }),
     updateServiceSectionById: builder.mutation({
-      query: ({id, body}) => ({
+      query: ({ id, body }) => ({
         url: `${URL}/${id}`,
         method: "PATCH",
         body,

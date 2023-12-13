@@ -60,9 +60,9 @@ export default function ServiceSection() {
           <input
             type="text"
             name="title"
-            defaultValue=""
+            defaultdefaultValue=""
             required
-            value={title}
+            defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -72,9 +72,9 @@ export default function ServiceSection() {
           <textarea
             name="description"
             rows="3"
-            defaultValue=""
+            defaultdefaultValue=""
             required
-            value={description}
+            defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>

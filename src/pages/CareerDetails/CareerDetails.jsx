@@ -60,7 +60,6 @@ export default function CareerDetails() {
     Object.keys(form).forEach((key) => {
       formData.append(key, form[key]);
     });
-    
 
     try {
       const res = await addJobApplyForm(formData).unwrap();
@@ -107,12 +106,7 @@ export default function CareerDetails() {
           <form action="" className="career_form">
             <div className="form_control">
               <label htmlFor="">Name for Position</label>
-              <input
-                type="text"
-                name=""
-                disabled
-                value={job?.title}
-              />
+              <input type="text" name="" disabled defaultValue={job?.title} />
             </div>
 
             <div className="form_control ">
@@ -122,14 +116,14 @@ export default function CareerDetails() {
                   type="text"
                   name="firstName"
                   placeholder="First Name"
-                  value={form.firstName}
+                  defaultValue={form.firstName}
                   onChange={handleChange}
                 />
                 <input
                   type="text"
                   name="lastName"
                   placeholder="Last Name"
-                  value={form.lastName}
+                  defaultValue={form.lastName}
                   onChange={handleChange}
                 />
               </div>
@@ -142,7 +136,7 @@ export default function CareerDetails() {
                   type="email"
                   name="email"
                   placeholder="example@gmail.com"
-                  value={form.email}
+                  defaultValue={form.email}
                   onChange={handleChange}
                 />
               </div>
@@ -152,7 +146,7 @@ export default function CareerDetails() {
                   type="text"
                   name="phone"
                   placeholder="+880"
-                  value={form.phone}
+                  defaultValue={form.phone}
                   onChange={handleChange}
                 />
               </div>
@@ -164,7 +158,7 @@ export default function CareerDetails() {
                 name="address"
                 rows="3"
                 placeholder="state, city"
-                value={form.address}
+                defaultValue={form.address}
                 onChange={handleChange}
               ></textarea>
             </div>
@@ -175,7 +169,7 @@ export default function CareerDetails() {
                 type="text"
                 name="linkedin"
                 placeholder="https://"
-                value={form.linkedin}
+                defaultValue={form.linkedin}
                 onChange={handleChange}
               />
             </div>
@@ -186,7 +180,7 @@ export default function CareerDetails() {
                 type="text"
                 name="facebook"
                 placeholder="https://"
-                value={form.facebook}
+                defaultValue={form.facebook}
                 onChange={handleChange}
               />
             </div>
@@ -198,7 +192,7 @@ export default function CareerDetails() {
                   type="text"
                   name="yearsOfExperience"
                   placeholder="0"
-                  value={form.yearsOfExperience}
+                  defaultValue={form.yearsOfExperience}
                   onChange={handleChange}
                 />
               </div>
@@ -208,7 +202,7 @@ export default function CareerDetails() {
                   type="text"
                   name="expectedSalary"
                   placeholder="0000"
-                  value={form.expectedSalary}
+                  defaultValue={form.expectedSalary}
                   onChange={handleChange}
                 />
               </div>
@@ -220,7 +214,7 @@ export default function CareerDetails() {
                 name="coverLetter"
                 rows="4"
                 placeholder="Type here..."
-                value={form.coverLetter}
+                defaultValue={form.coverLetter}
                 onChange={handleChange}
               ></textarea>
             </div>

@@ -33,7 +33,9 @@ export default function Header() {
               className="min-w-[200px]"
             >
               <img
-                src={`http://localhost:5000/logos/${logo?.filename}`}
+                src={`${import.meta.env.VITE_SERVER_IMG}/logos/${
+                  logo?.filename
+                }`}
                 alt="emanager logo"
                 className="w-40 lg:w-44"
               />

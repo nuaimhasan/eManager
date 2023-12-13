@@ -45,6 +45,7 @@ import AddBenefit from "../pages/DashboardPages/Career/Benefits/AddBenefit";
 import EditBenefit from "../pages/DashboardPages/Career/Benefits/EditBenefit";
 import ApplicantsList from "../pages/DashboardPages/Career/Applicants/ApplicantsList";
 import Login from "../pages/Login/Login";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -91,7 +92,11 @@ export const routes = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <DashboardLayout />,
+    element: (
+      <AdminRoute>
+        <DashboardLayout />
+      </AdminRoute>
+    ),
     children: [
       {
         path: "/admin",

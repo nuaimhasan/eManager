@@ -63,7 +63,7 @@ export default function AddService() {
                 <input
                   type="number"
                   name="order"
-                  value={order}
+                  defaultValue={order}
                   onChange={(e) => setOrder(e.target.value)}
                 />
               </div>
@@ -72,7 +72,7 @@ export default function AddService() {
                 <p className="mb-1">Icon</p>
                 <div>
                   <ImageUploading
-                    value={icons}
+                    defaultValue={icons}
                     onChange={(icn) => setIcons(icn)}
                     dataURLKey="data_url"
                   >
@@ -119,7 +119,7 @@ export default function AddService() {
                 <p className="mb-1">Image</p>
                 <div>
                   <ImageUploading
-                    value={images}
+                    defaultValue={images}
                     onChange={(icn) => setImages(icn)}
                     dataURLKey="data_url"
                   >
@@ -179,7 +179,7 @@ export default function AddService() {
                 <input
                   type="text"
                   name="serviceTitle"
-                  value={title}
+                  defaultValue={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
@@ -187,8 +187,8 @@ export default function AddService() {
                 <p className="mb-1">Description</p>
                 <JoditEditor
                   ref={editor}
-                  value={description}
-                  // value={
+                  defaultValue={description}
+                  // defaultValue={
                   //   data?.data?.description?.length > 0
                   //     ? data?.data?.description
                   //     : details

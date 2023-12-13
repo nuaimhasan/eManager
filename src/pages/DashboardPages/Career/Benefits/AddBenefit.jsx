@@ -59,7 +59,7 @@ export default function AddBenefit() {
                 type="text"
                 name="title"
                 required
-                value={title}
+                defaultValue={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -67,7 +67,7 @@ export default function AddBenefit() {
               <p className="mb-1">Icon</p>
               <div>
                 <ImageUploading
-                  value={images}
+                  defaultValue={images}
                   onChange={(icn) => setImages(icn)}
                   dataURLKey="data_url"
                 >
@@ -117,7 +117,7 @@ export default function AddBenefit() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
-                value={description}
+                defaultValue={description}
                 onBlur={(text) => setDescription(text)}
               />
             </div>

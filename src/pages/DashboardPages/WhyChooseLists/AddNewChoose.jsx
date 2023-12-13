@@ -15,11 +15,12 @@ export default function AddNewChoose() {
     e.preventDefault();
     const file = mainLogos[0]?.file;
 
-    if(!file || !title || !description) return swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Please fill all the fields!",
-    });
+    if (!file || !title || !description)
+      return swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill all the fields!",
+      });
 
     const formData = new FormData();
     formData.append("whyChoose", file);
@@ -44,7 +45,7 @@ export default function AddNewChoose() {
       swal.fire({
         icon: "error",
         title: "Oops...",
-        text: 'Something went wrong!',
+        text: "Something went wrong!",
       });
     }
   };
@@ -63,7 +64,7 @@ export default function AddNewChoose() {
             </p>
             <div className="sm:flex items-center gap-4">
               <ImageUploading
-                value={mainLogos}
+                defaultValue={mainLogos}
                 onChange={(icn) => setMainLogos(icn)}
                 dataURLKey="data_url"
               >
@@ -111,7 +112,7 @@ export default function AddNewChoose() {
             <input
               type="text"
               name="title"
-              value={title}
+              defaultValue={title}
               required
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -122,7 +123,7 @@ export default function AddNewChoose() {
             <textarea
               name="description"
               rows="5"
-              value={description}
+              defaultValue={description}
               required
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>

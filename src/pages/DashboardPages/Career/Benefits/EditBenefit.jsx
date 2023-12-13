@@ -4,7 +4,10 @@ import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useGetBenefitByIdQuery, useUpdateBenefitMutation } from "../../../../redux/api/benefitsApi";
+import {
+  useGetBenefitByIdQuery,
+  useUpdateBenefitMutation,
+} from "../../../../redux/api/benefitsApi";
 
 export default function EditBenefit() {
   const { id } = useParams();
@@ -69,7 +72,7 @@ export default function EditBenefit() {
               <input
                 type="text"
                 name="title"
-                value={title}
+                defaultValue={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -77,7 +80,7 @@ export default function EditBenefit() {
               <p className="mb-1">Icon</p>
               <div>
                 <ImageUploading
-                  value={images}
+                  defaultValue={images}
                   onChange={(icn) => setImages(icn)}
                   dataURLKey="data_url"
                 >
@@ -127,7 +130,7 @@ export default function EditBenefit() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
-                value={description}
+                defaultValue={description}
                 onBlur={(text) => setDescription(text)}
               />
             </div>

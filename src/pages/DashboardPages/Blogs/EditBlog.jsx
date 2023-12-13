@@ -71,7 +71,7 @@ export default function EditBlog() {
               <input
                 type="text"
                 name="title"
-                value={title}
+                defaultValue={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -79,7 +79,7 @@ export default function EditBlog() {
               <p className="mb-1">Image</p>
               <div>
                 <ImageUploading
-                  value={images}
+                  defaultValue={images}
                   onChange={(icn) => setImages(icn)}
                   dataURLKey="data_url"
                 >
@@ -139,8 +139,8 @@ export default function EditBlog() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
-                value={description}
-                // value={
+                defaultValue={description}
+                // defaultValue={
                 //   data?.data?.description?.length > 0
                 //     ? data?.data?.description
                 //     : details

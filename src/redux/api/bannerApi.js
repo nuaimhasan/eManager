@@ -11,10 +11,10 @@ export const bannerApi = baseApi.injectEndpoints({
       providesTags: ["banner"],
     }),
     updateBannerById: builder.mutation({
-      query: ({id,body}) => ({
+      query: ({ id, banner }) => ({
         url: `${URL}/${id}`,
         method: "PATCH",
-        body,
+        body: banner,
       }),
       invalidatesTags: ["banner"],
     }),

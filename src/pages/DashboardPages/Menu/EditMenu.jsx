@@ -66,7 +66,7 @@ export default function EditMenu() {
             <input
               type="text"
               name="title"
-              value={menuName}
+              defaultValue={menuName}
               onChange={(e) => setMenuName(e.target.value)}
             />
           </div>
@@ -76,7 +76,7 @@ export default function EditMenu() {
             <input
               type="number"
               name="order"
-              value={menuOrder}
+              defaultValue={menuOrder}
               onChange={(e) => setMenuOrder(e.target.value)}
             />
           </div>

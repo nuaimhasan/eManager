@@ -76,7 +76,7 @@ export default function EditChoose() {
             </p>
             <div className="sm:flex items-center gap-4">
               <ImageUploading
-                value={mainLogos}
+                defaultValue={mainLogos}
                 onChange={(icn) => setMainLogos(icn)}
                 dataURLKey="data_url"
               >
@@ -124,7 +124,7 @@ export default function EditChoose() {
             <input
               type="text"
               name="title"
-              value={title}
+              defaultValue={title}
               required
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -134,7 +134,7 @@ export default function EditChoose() {
             <p className="mb-1">Description</p>
             <textarea
               name="description"
-              value={description}
+              defaultValue={description}
               required
               rows={5}
               onChange={(e) => setDescription(e.target.value)}
