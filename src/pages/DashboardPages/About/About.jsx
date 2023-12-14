@@ -3,17 +3,21 @@ import { useEffect, useRef, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
+import Spinner from "../../../components/Spinner/Spinner";
 import {
+  useCreateAboutUsMutation,
   useGetAboutUsQuery,
   useUpdateAboutUsMutation,
 } from "../../../redux/api/aboutUsApi";
-import Spinner from "../../../components/Spinner/Spinner";
 
 export default function About() {
   const editor = useRef(null);
 
   const { data, isLoading } = useGetAboutUsQuery();
-  const [updateAboutUs] = useUpdateAboutUsMutation();
+  const [updateAboutUs, { isLoading: updateLoading }] =
+    useUpdateAboutUsMutation();
+  const [createAboutUs, { isLoading: createLoading }] =
+    useCreateAboutUsMutation();
 
   const [image, setImage] = useState([]);
   const [title, setTitle] = useState("");
@@ -30,14 +34,15 @@ export default function About() {
     }
   }, [data, isLoading]);
 
-  console.log(data?.data[0]?.description);
+  // console.log(data?.data[0]);
 
   if (isLoading) return <Spinner />;
 
+  const id = data?.data[0]?.id;
+  // console.log(id);
+
   const updateAboutUsHandler = async (e) => {
     e.preventDefault();
-
-    const id = data?.data[0]?.id;
 
     const img = image[0]?.file;
 
@@ -45,30 +50,35 @@ export default function About() {
     formData.append("title", title);
     formData.append("tagline", tagline);
     formData.append("description", description);
+
+    if (!profile || !img)
+      return Swal.fire("", "Please upload profile and image", "error");
+
     if (profile) formData.append("profileDoc", profile);
     if (img) formData.append("image", img);
 
-    try {
-      const res = await updateAboutUs({ id, formData }).unwrap();
-
-      if (res.success) {
-        setProfile("");
-        setImage([]);
-
-        Swal.fire({
-          icon: "success",
-          title: "About Us Updated Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+    if (id) {
+      try {
+        const res = await updateAboutUs({ id, formData }).unwrap();
+        if (res?.success) {
+          setImage([]);
+          setProfile("");
+          Swal.fire("", res.data?.message, "success");
+        }
+      } catch (error) {
+        Swal.fire("", error?.data?.error, "error");
       }
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
+    } else {
+      try {
+        const res = await createAboutUs(formData).unwrap();
+        if (res?.success) {
+          setImage([]);
+          setProfile("");
+          Swal.fire("", res.data?.message, "success");
+        }
+      } catch (error) {
+        Swal.fire("", error?.data?.error, "error");
+      }
     }
   };
 
@@ -95,7 +105,7 @@ export default function About() {
               <p className="mb-1">Tagline</p>
               <input
                 type="text"
-                name="title"
+                name="tagline"
                 defaultValue={tagline}
                 onChange={(e) => setTagline(e.target.value)}
               />
@@ -191,20 +201,33 @@ export default function About() {
         </div>
 
         <div className="mt-6">
-          {/* <button
-            disabled={updateLoading && "disabled"}
-            className="gradient-primary-btn"
-          >
-            {updateLoading ? "Loading" : "Save"}
-          </button> */}
           <button
-            onClick={updateAboutUsHandler}
+            disabled={(updateLoading || createLoading) && "disabled"}
             className="gradient-primary-btn"
+            onClick={updateAboutUsHandler}
           >
-            Save About
+            {updateLoading || createLoading
+              ? "Loading.."
+              : id
+              ? "Update About"
+              : "Create About"}
           </button>
         </div>
       </form>
     </section>
   );
 }
+
+// {
+//   "_id": {
+//     "$oid": "6579363c248ffbc5cae7b1a7"
+//   },
+//   "title": "Empowering Efficiency, Unleashing Potential",
+//   "tagline": "Empowering Digital Success with eManager",
+//   "description": "<p>eManager is a leading digital solutions company, specializing in website and app development, software development, and total digital marketing strategies. We are committed to helping businesses establish a strong online presence and achieve their digital goals.</p><p>Our team of skilled professionals excels in creating visually appealing and user-friendly websites, as well as developing robust mobile applications. We leverage the latest technologies and industry best practices to deliver high-quality, customized solutions.</p><p>In addition to development services, our expertise extends to software solutions that streamline business operations and drive productivity. From CRM systems to enterprise applications, we provide tailored software solutions to meet specific business needs.</p><p>eManager's comprehensive digital marketing strategies encompass various aspects such as search engine optimization (SEO), social media marketing, content creation, and paid advertising. Our data-driven approach ensures increased brand visibility, audience engagement, and conversions.</p><p>At eManager, we prioritize client satisfaction through open communication, collaboration, and timely project delivery. Partner with us to harness the power of technology and elevate your business in the digital landscape. Let eManager be your trusted digital solutions partner for success.</p>",
+//   "profileDoc": "1702446157603-emanagerbd-profile.pdf",
+//   "image": "1702446013645-1702178307738-about2.png",
+//   "updatedAt": {
+//     "$date": "2023-12-13T05:42:37.875Z"
+//   }
+// }

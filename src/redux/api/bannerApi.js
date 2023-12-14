@@ -18,7 +18,15 @@ export const bannerApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["banner"],
     }),
+    addBanner: builder.mutation({
+      query: (banner) => ({
+        url: `${URL}/add`,
+        method: "POST",
+        body: banner,
+      }),
+      invalidatesTags: ["banner"],
+    }),
   }),
 });
 
-export const { useGetBannerQuery, useUpdateBannerByIdMutation } = bannerApi;
+export const { useGetBannerQuery, useUpdateBannerByIdMutation, useAddBannerMutation } = bannerApi;

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
+  useAddBannerMutation,
   useGetBannerQuery,
   useUpdateBannerByIdMutation,
 } from "../../../redux/api/bannerApi";
@@ -19,11 +20,22 @@ export default function Banner() {
     },
   ] = useUpdateBannerByIdMutation();
 
-  const [edit, setEdit] = useState(false);
+  const [
+    addBanner,
+    {
+      isLoading: addLoading,
+      isError: addIsError,
+      error: addError,
+      isSuccess: addSuccess,
+    },
+  ] = useAddBannerMutation();
 
-  const handleEditBanner = async (e) => {
+  const id = data?.data[0]?.id;
+  // console.log(id);
+  // console.log(data?.data[0]);
+
+  const handleAddUpdateBanner = async (e) => {
     e.preventDefault();
-    const id = data?.data[0]?.id;
 
     const title = e.target.title.value;
     const description = e.target.description.value;
@@ -33,24 +45,30 @@ export default function Banner() {
       description,
     };
 
-    await updateBannerById({ id, banner });
+    if (id) {
+      await updateBannerById({ id, banner });
+    } else {
+      await addBanner(banner);
+    }
   };
 
   useEffect(() => {
-    if (updateIsError) {
-      return swal.fire(
+    if (updateIsError || addIsError) {
+      swal.fire(
         "",
-        updateError?.data?.error
-          ? updateError?.data?.error
+        updateError?.data?.error || addError?.data?.error
+          ? updateError?.data?.error || addError?.data?.error
           : "Something went wrong",
         "error"
       );
+      return;
     }
 
-    if (isSuccess) {
-      swal.fire("", "update success", "success");
+    if (isSuccess || addSuccess) {
+      swal.fire("", "Banner updated successfully", "success");
+      return;
     }
-  }, [updateIsError, updateError, isSuccess]);
+  }, [updateIsError, updateError, isSuccess, addIsError, addError, addSuccess]);
 
   let content = null;
 
@@ -64,14 +82,13 @@ export default function Banner() {
 
   if (!isLoading && !isError && data?.success) {
     content = (
-      <form onSubmit={handleEditBanner} className="p-4">
+      <form onSubmit={handleAddUpdateBanner} className="p-4">
         <div>
           <p className="font-medium mb-1">Title*</p>
           <input
             type="text"
             name="title"
             defaultValue={data?.data[0]?.title}
-            disabled={!edit && "disabled"}
             required
           />
         </div>
@@ -81,35 +98,23 @@ export default function Banner() {
             name="description"
             rows="3"
             defaultValue={data?.data[0]?.description}
-            disabled={!edit && "disabled"}
             required
           ></textarea>
         </div>
 
         <div className="mt-4">
-          {edit ? (
-            <div className="flex gap-2">
-              <button
-                disabled={updateLoading && "disabled"}
-                className="gradient-primary-btn"
-              >
-                {updateLoading ? "Loading..." : "Update Banner"}
-              </button>
-              <div
-                onClick={() => setEdit(false)}
-                className="bg-primary cursor-pointer w-max px-6 rounded flex justify-center items-center"
-              >
-                Cancel
-              </div>
-            </div>
-          ) : (
-            <div
-              onClick={() => setEdit(true)}
-              className="gradient-primary-btn cursor-pointer w-max"
+          <div className="flex gap-2">
+            <button
+              disabled={(updateLoading || addLoading) && "disabled"}
+              className="gradient-primary-btn"
             >
-              Edit Banner
-            </div>
-          )}
+              {updateLoading || addLoading
+                ? "Loading..."
+                : id
+                ? "Update Banner"
+                : "Add Banner"}
+            </button>
+          </div>
         </div>
       </form>
     );

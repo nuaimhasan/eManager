@@ -44,7 +44,7 @@ export default function Contact() {
       youtubeLink,
       linkedinLink,
     };
-    console.log(data);
+    // console.log(data);
 
     if (!id) {
       try {
