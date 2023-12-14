@@ -10,6 +10,7 @@ export default function AddService() {
   const [images, setImages] = useState([]);
   const [icons, setIcons] = useState([]);
   const [description, setDescription] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
   const [order, setOrder] = useState(0);
   const [title, setTitle] = useState("");
 
@@ -21,22 +22,26 @@ export default function AddService() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
+    formData.append("shortDescription", shortDescription);
     formData.append("order", order);
     formData.append("image", images[0].file);
     formData.append("icon", icons[0].file);
 
     try {
       const res = await addService(formData).unwrap();
-      if (res.success) {
+      // console.log(res);
+      if (res?.success) {
+        setDescription("");
+        setShortDescription("");
+        setTitle("");
+        setOrder(0);
+        setImages([]);
+        setIcons([]);
+
         Swal.fire({
           icon: "success",
           title: "Service Added Successfully",
         });
-        setImages([]);
-        setIcons([]);
-        setDescription("");
-        setOrder(0);
-        setTitle("");
       }
     } catch (error) {
       console.log(error);
@@ -182,6 +187,16 @@ export default function AddService() {
                   defaultValue={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
+              </div>
+              <div className="">
+                <p className="font-medium mb-1">Short Description*</p>
+                <textarea
+                  name="shortDescription"
+                  rows="3"
+                  defaultValue={shortDescription}
+                  onChange={(e) => setShortDescription(e.target.value)}
+                  required
+                ></textarea>
               </div>
               <div>
                 <p className="mb-1">Description</p>

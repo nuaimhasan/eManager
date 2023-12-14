@@ -15,7 +15,8 @@ export default function EditService() {
   const [images, setImages] = useState([]);
   const [icons, setIcons] = useState([]);
   const [description, setDescription] = useState("");
-  const [order, setOrder] = useState(0);
+  const [shortDescription, setShortDescription] = useState("");
+  const [order, setOrder] = useState();
   const [title, setTitle] = useState("");
 
   const { data, isLoading } = useGetServiceByIdQuery(slug);
@@ -26,10 +27,13 @@ export default function EditService() {
       setOrder(data.data.order);
       setTitle(data.data.title);
       setDescription(data.data.description);
+      setShortDescription(data.data.shortDescription);
     }
   }, [data, isLoading]);
 
   if (isLoading) return <h1>Loading...</h1>;
+
+  // console.log(data?.data);
 
   const updateServiceHandler = async (e) => {
     e.preventDefault();
@@ -37,6 +41,7 @@ export default function EditService() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
+    formData.append("shortDescription", shortDescription);
     formData.append("order", order);
     if (images.length > 0) {
       formData.append("image", images[0].file);
@@ -195,11 +200,21 @@ export default function EditService() {
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
+              <div className="">
+                <p className="font-medium mb-1">Short Description*</p>
+                <textarea
+                  name="shortDescription"
+                  rows="3"
+                  defaultValue={shortDescription}
+                  onChange={(e) => setShortDescription(e.target.value)}
+                  required
+                ></textarea>
+              </div>
               <div>
                 <p className="mb-1">Description</p>
                 <JoditEditor
                   ref={editor}
-                  defaultValue={description}
+                  value={description}
                   // defaultValue={
                   //   data?.data?.description?.length > 0
                   //     ? data?.data?.description

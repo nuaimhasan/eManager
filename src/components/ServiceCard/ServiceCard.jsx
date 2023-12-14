@@ -13,7 +13,7 @@ export default function ServiceCard({ service }) {
         {service?.title}
       </h2>
       <div className="text-neutral-content text-[15px]">
-        {service?.description?.slice(0, 80)}...
+        {service?.shortDescription?.slice(0, 100)}...
       </div>
 
       <button>
