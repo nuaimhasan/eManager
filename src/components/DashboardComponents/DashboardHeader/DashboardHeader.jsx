@@ -1,11 +1,11 @@
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function DashboardHeader({ setSidebar }) {
-  const { loggedUser } = useSelector((state) => state.user);
+  // const { loggedUser } = useSelector((state) => state.user);
 
-  console.log(loggedUser);
+  // console.log(loggedUser);
 
   return (
     <header className="py-3 px-6 bg-base-100 text-neutral shadow">
