@@ -18,8 +18,16 @@ export const careerBannerApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["careerBanner"],
     }),
+    addCareerBanner: builder.mutation({
+      query: (body) => ({
+        url: `${URL}/add`,
+        method: "POST",
+        body: body, 
+      }),
+      invalidatesTags: ["careerBanner"],
+    }),
   }),
 });
 
-export const { useGetCareerBannerQuery, useUpdateCareerBannerByIdMutation } =
+export const { useGetCareerBannerQuery, useUpdateCareerBannerByIdMutation, useAddCareerBannerMutation } =
   careerBannerApi;

@@ -17,7 +17,15 @@ export const logoApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["logo"],
     }),
+    addLogo : builder.mutation({
+      query: (formData) => ({
+        url: `logo/add`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ["logo"],
+    }),
   }),
 });
 
-export const { useGetLogosQuery, useUpdateLogoByIdMutation } = logoApi;
+export const { useGetLogosQuery, useUpdateLogoByIdMutation, useAddLogoMutation } = logoApi;

@@ -2,7 +2,9 @@ import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
+import Spinner from "../../../components/Spinner/Spinner";
 import {
+  useAddLogoMutation,
   useGetLogosQuery,
   useUpdateLogoByIdMutation,
 } from "../../../redux/api/logoApi";
@@ -11,11 +13,18 @@ export default function Logo() {
   const { data, isLoading } = useGetLogosQuery();
 
   const [mainLogos, setMainLogos] = useState([]);
-  const [updateLogoById] = useUpdateLogoByIdMutation();
+  const [updateLogoById, { isLoading: updateLogoByIdLoading }] =
+    useUpdateLogoByIdMutation();
+  const [addLogo, { isLoading: addLogoLoading }] = useAddLogoMutation();
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   const id = data?.data[0]?.id;
 
-  console.log(data?.data[0]?.filename);
+  // console.log(id);
+  // console.log(data?.data[0]);
 
   const handleUpdateMainLogo = async () => {
     let logo = mainLogos[0]?.file;
@@ -27,25 +36,22 @@ export default function Logo() {
     const formData = new FormData();
     formData.append("logo", logo);
 
-    try {
-      const res = await updateLogoById({ id, formData });
-      setMainLogos([]);
-      if (res?.data?.success) {
-        Swal.fire({
-          title: "Success!",
-          text: res?.data?.message,
-          icon: "success",
-          confirmButtonText: "Ok",
-        });
+    if (id) {
+      try {
+        await updateLogoById({ id, formData }).unwrap();
+        Swal.fire("", "Logo Updated Successfully", "success");
+        setMainLogos([]);
+      } catch (error) {
+        Swal.fire("", `${error?.data?.error}`, "error");
       }
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-        title: "Error!",
-        text: error?.data?.message,
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
+    } else {
+      const res = await addLogo(formData).unwrap();
+      if (res?.success) {
+        setMainLogos([]);
+        Swal.fire("", "Logo Added Successfully", "success");
+      } else {
+        Swal.fire("", `${res?.error?.data?.error}`, "error");
+      }
     }
   };
 
@@ -114,11 +120,15 @@ export default function Logo() {
 
           <div className="flex justify-end mt-6 border-t p-4">
             <button
-              disabled={isLoading && "disabled"}
+              disabled={(updateLogoByIdLoading || addLogoLoading) && "disabled"}
               onClick={handleUpdateMainLogo}
               className="gradient-primary-btn"
             >
-              {isLoading ? "Loading" : "Update Logo"}
+              {updateLogoByIdLoading || addLogoLoading
+                ? "Loading..."
+                : id
+                ? "Update"
+                : "Add"}
             </button>
           </div>
         </div>

@@ -18,7 +18,15 @@ export const blogSectionApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["blogSection"],
     }),
+    addBlogSection: builder.mutation({
+      query: (body) => ({
+        url: `${URL}/add`,
+        method: "POST",
+        body: body,
+      }),
+      invalidatesTags: ["blogSection"],
+    }),
   }),
 });
 
-export const { useGetBlogSectionQuery, useUpdateBlogSectionByIdMutation } = blogSectionApi;
+export const { useGetBlogSectionQuery, useUpdateBlogSectionByIdMutation,useAddBlogSectionMutation } = blogSectionApi;

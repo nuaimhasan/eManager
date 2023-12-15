@@ -1,34 +1,30 @@
-import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import Spinner from "../../../components/Spinner/Spinner";
 import {
+  useAddBlogSectionMutation,
   useGetBlogSectionQuery,
   useUpdateBlogSectionByIdMutation,
 } from "../../../redux/api/blogSectionApi";
 
 export default function BlogSection() {
   const { data, isLoading } = useGetBlogSectionQuery();
-  const [updateBlogSectionById] = useUpdateBlogSectionByIdMutation();
-
-  const [title, setTitle] = useState("");
-  const [subtitle, setSubtitle] = useState("");
-  const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    if (data && !isLoading) {
-      setTitle(data.data[0].title);
-      setSubtitle(data.data[0].subtitle);
-      setDescription(data.data[0].description);
-    }
-  }, [data, isLoading]);
+  const [updateBlogSectionById, { isLoading: updateIsLoading }] =
+    useUpdateBlogSectionByIdMutation();
+  const [addBlogSection, { isLoading: addIsLoading }] =
+    useAddBlogSectionMutation();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
+
+  const id = data?.data[0]?.id;
+  const blogsection = data?.data[0];
 
   const updateBlogSectionHandler = async (e) => {
     e.preventDefault();
-
-    const id = data?.data[0].id;
+    const title = e.target.title.value;
+    const subtitle = e.target.subTitle.value;
+    const description = e.target.description.value;
 
     const body = {
       title,
@@ -36,25 +32,45 @@ export default function BlogSection() {
       description,
     };
 
-    try {
-      const res = await updateBlogSectionById({
-        id,
-        body,
-      }).unwrap();
+    if (id) {
+      try {
+        const res = await updateBlogSectionById({
+          id,
+          body,
+        }).unwrap();
 
-      if (res.success) {
+        if (res.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Blog Section Updated Successfully",
+          });
+        }
+      } catch (error) {
+        // console.log(error);
         Swal.fire({
-          icon: "success",
-          title: "Blog Section Updated Successfully",
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
         });
       }
-    } catch (error) {
-      // console.log(error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
+    } else {
+      try {
+        const res = await addBlogSection(body).unwrap();
+
+        if (res.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Blog Section Added Successfully",
+          });
+        }
+      } catch (error) {
+        // console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
     }
   };
 
@@ -64,16 +80,17 @@ export default function BlogSection() {
         <h3 className="font-medium text-neutral">Blog Section Seting</h3>
       </div>
 
-      <form className="flex flex-col gap-3 p-4 md:w-1/2">
+      <form
+        className="flex flex-col gap-3 p-4 md:w-1/2"
+        onSubmit={updateBlogSectionHandler}
+      >
         <div>
           <p className="mb-1">Title</p>
           <input
             type="text"
             name="title"
-            defaultdefaultValue=""
             required
-            defaultValue={title}
-            onChange={(e) => setTitle(e.target.value)}
+            defaultValue={blogsection?.title}
           />
         </div>
 
@@ -82,10 +99,8 @@ export default function BlogSection() {
           <input
             type="text"
             name="subTitle"
-            defaultdefaultValue=""
             required
-            defaultValue={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
+            defaultValue={blogsection?.subtitle}
           />
         </div>
 
@@ -94,19 +109,23 @@ export default function BlogSection() {
           <textarea
             name="description"
             rows="3"
-            defaultdefaultValue=""
             required
-            defaultValue={description}
-            onChange={(e) => setDescription(e.target.value)}
+            defaultValue={blogsection?.description}
           ></textarea>
         </div>
 
         <div>
           <button
-            onClick={updateBlogSectionHandler}
+            disabled={(updateIsLoading || addIsLoading) && "disabled"}
             className="gradient-primary-btn"
           >
-            Update
+            {updateIsLoading || addIsLoading ? (
+              "Loading..."
+            ) : id ? (
+              "Update"
+            ) : (
+              "Add"
+            )}
           </button>
         </div>
       </form>

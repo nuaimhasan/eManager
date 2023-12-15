@@ -1,36 +1,41 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import swal from "sweetalert2";
 import {
+  useAddCareerBannerMutation,
   useGetCareerBannerQuery,
   useUpdateCareerBannerByIdMutation,
 } from "../../../redux/api/careerBannerApi";
 
 export default function CareerBanner() {
   const { data, isLoading } = useGetCareerBannerQuery();
-  const [updateCareerBannerById] = useUpdateCareerBannerByIdMutation();
+  const [updateCareerBannerById, { isLoading: updateLoading }] =
+    useUpdateCareerBannerByIdMutation();
+  const [addCareerBanner, { isLoading: addLoading }] =
+    useAddCareerBannerMutation();
 
   const [edit, setEdit] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    if (data && !isLoading) {
-      setTitle(data?.data[0]?.title);
-      setDescription(data?.data[0]?.description);
-    }
-  }, [data, isLoading]);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+  const id = data?.data[0]?.id;
+  const careerBanner = data?.data[0];
+  // console.log(id, careerBanner);
+
   const handleEditBanner = async (e) => {
     e.preventDefault();
-    const id = data?.data[0]?.id;
+    const title = e.target.title.value;
+    const description = e.target.description.value;
 
     if (title === "" || description === "") {
-      return alert("dont empty");
+      return swal.fire({
+        title: "",
+        text: "Please fill all the fields",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
     }
 
     const body = {
@@ -38,22 +43,55 @@ export default function CareerBanner() {
       description,
     };
 
-    const res = await updateCareerBannerById({ id, body });
-    if (res?.data?.success === true) {
-      swal.fire({
-        title: "Success",
-        text: res?.data?.message,
-        icon: "success",
-        confirmButtonText: "Ok",
-      });
-      setEdit(false);
+    if (id) {
+      try {
+        const res = await updateCareerBannerById({ id, body }).unwrap();
+        if (res?.success) {
+          setEdit(false);
+          return swal.fire({
+            title: "",
+            text: "Banner updated successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      } catch (error) {
+        swal.fire({
+          title: "",
+          text: error.data.error,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      }
     } else {
-      swal.fire({
-        title: "Error",
-        text: res?.data?.message,
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
+      try {
+        const res = await addCareerBanner(body);
+        console.log(res);
+        if (res?.success) {
+          setEdit(false);
+          return swal.fire({
+            title: "",
+            text: "Banner added successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        } else {
+          return swal.fire({
+            title: "",
+            text: res?.error?.data?.error,
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        swal.fire({
+          title: "",
+          text: error.data.error,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      }
     }
   };
 
@@ -69,10 +107,9 @@ export default function CareerBanner() {
           <input
             type="text"
             name="title"
-            defaultValue={title}
+            defaultValue={careerBanner?.title}
             disabled={!edit && "disabled"}
             required
-            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="mt-3">
@@ -80,17 +117,22 @@ export default function CareerBanner() {
           <textarea
             name="description"
             rows="3"
-            defaultValue={description}
+            defaultValue={careerBanner?.description}
             disabled={!edit && "disabled"}
             required
-            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
 
         <div className="mt-4">
           {edit ? (
             <div className="flex gap-2">
-              <button className="gradient-primary-btn">Update Banner</button>
+              <button className="gradient-primary-btn">
+                {updateLoading || addLoading
+                  ? "Loading..."
+                  : id
+                  ? "Update"
+                  : "Add"}
+              </button>
               <div
                 onClick={() => setEdit(false)}
                 className="bg-primary cursor-pointer w-max px-6 rounded flex justify-center items-center"
@@ -103,7 +145,7 @@ export default function CareerBanner() {
               onClick={() => setEdit(true)}
               className="gradient-primary-btn cursor-pointer w-max"
             >
-              Edit Banner
+              Edit
             </div>
           )}
         </div>

@@ -34,11 +34,10 @@ export default function About() {
     }
   }, [data, isLoading]);
 
-  // console.log(data?.data[0]);
-
   if (isLoading) return <Spinner />;
 
   const id = data?.data[0]?.id;
+  console.log(data?.data[0]);
   // console.log(id);
 
   const updateAboutUsHandler = async (e) => {
@@ -121,6 +120,11 @@ export default function About() {
                 accept="application/pdf"
                 onChange={(e) => setProfile(e.target.files[0])}
               />
+              {data?.data[0]?.profileDoc && (
+                <p className="text-neutral-content">
+                  {data?.data[0]?.profileDoc}
+                </p>
+              )}
             </div>
 
             <div>
