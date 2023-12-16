@@ -4,7 +4,7 @@ export const jobApplyFormApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addJobApplyForm: builder.mutation({
       query: (formData) => ({
-        url: `jobapplyform/add`,
+        url: `jobApplyForm/add`,
         method: "POST",
         body: formData,
       }),
@@ -12,21 +12,21 @@ export const jobApplyFormApi = baseApi.injectEndpoints({
     }),
     getJobApplyFormById: builder.query({
       query: (id) => ({
-        url: `jobapplyform/${id}`,
+        url: `jobApplyForm/${id}`,
         method: "GET",
       }),
       providesTags: ["jobapplyform"],
     }),
     getJobApplyForms: builder.query({
       query: () => ({
-        url: `jobapplyform`,
+        url: `jobApplyForm`,
         method: "GET",
       }),
       providesTags: ["jobapplyform"],
     }),
     deleteJobApplyForm: builder.mutation({
       query: (id) => ({
-        url: `jobapplyform/${id}`,
+        url: `jobApplyForm/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["jobapplyform"],

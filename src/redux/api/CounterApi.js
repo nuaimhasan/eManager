@@ -4,7 +4,7 @@ export const counterApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createCounter: builder.mutation({
       query: (formData) => ({
-        url: `counters/add`,
+        url: `counter/add`,
         method: "POST",
         body: formData,
       }),
@@ -12,7 +12,7 @@ export const counterApi = baseApi.injectEndpoints({
     }),
     updateCounter: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `counters/${id}`,
+        url: `counter/${id}`,
         method: "PATCH",
         body: formData,
       }),
@@ -20,14 +20,14 @@ export const counterApi = baseApi.injectEndpoints({
     }),
     getAllCounter: builder.query({
       query: () => ({
-        url: `counters`,
+        url: `counter/all-counters`,
         method: "GET",
       }),
       providesTags: ["counter"],
     }),
     getCounterById: builder.query({
       query: (id) => ({
-        url: `counters/${id}`,
+        url: `counter/${id}`,
         method: "GET",
       }),
       providesTags: ["counter"],

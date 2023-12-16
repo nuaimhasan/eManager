@@ -11,13 +11,11 @@ export default function Contact() {
   const { data, isLoading } = useGetContactUsQuery();
   const [addContactUs, { isLoading: addContactLoading }] =
     useAddContactUsMutation();
-  // console.log(data.data[0]);
 
   if (isLoading) return <div>Loading...</div>;
 
-  const id = data?.data[0]?.id;
+  const id = data?.data[0]?._id;
   const contactUs = data?.data[0];
-  // console.log(data?.data[0]);
 
   const handleUpdateContact = async (e) => {
     e.preventDefault();
@@ -44,18 +42,17 @@ export default function Contact() {
       youtubeLink,
       linkedinLink,
     };
-    // console.log(data);
 
     if (!id) {
       try {
         const res = await addContactUs(data).unwrap();
-        // console.log("add", res);
+
         if (res?.success) {
           e.target.reset();
           Swal.fire("", "Contact Us has been added successfully!", "success");
         }
       } catch (error) {
-        Swal.fire("", `${error.data.error}`, "error");
+        Swal.fire("", error.data.error, "error");
       }
     } else {
       try {
@@ -64,8 +61,7 @@ export default function Contact() {
           Swal.fire("", "Contact Us has been updated successfully!", "success");
         }
       } catch (error) {
-        // console.log(error);
-        Swal.fire("", `${error.data.error}`, "error");
+        Swal.fire("", error.data.error, "error");
       }
     }
   };

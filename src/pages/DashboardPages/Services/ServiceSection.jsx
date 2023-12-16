@@ -24,7 +24,7 @@ export default function ServiceSection() {
   const updateServiceSectionHandler = async (e) => {
     e.preventDefault();
 
-    const id = data?.data[0]?.id;
+    const id = data?.data[0]?._id;
 
     const body = {
       title,
@@ -36,14 +36,15 @@ export default function ServiceSection() {
       if (res.success) {
         Swal.fire({
           icon: "success",
-          title: "Service Section Updated Successfully",
+          title: "",
+          text: "Service Section Updated Successfully",
         });
       }
     } catch (error) {
-      // console.log(error);
       Swal.fire({
         icon: "error",
-        title: "Something went wrong",
+        title: "",
+        text: "Something went wrong",
       });
     }
   };
@@ -60,7 +61,6 @@ export default function ServiceSection() {
           <input
             type="text"
             name="title"
-            defaultdefaultValue=""
             required
             defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -72,7 +72,6 @@ export default function ServiceSection() {
           <textarea
             name="description"
             rows="3"
-            defaultdefaultValue=""
             required
             defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}

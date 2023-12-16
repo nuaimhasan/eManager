@@ -8,11 +8,11 @@ export default function AdminRoute({ children }) {
   const location = useLocation();
   const token = localStorage.getItem("eManager_jwt");
 
-  if (!loggedUser?.success || !token) {
+  if (!token) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  if (loggedUser?.success && token) {
+  if (token) {
     return children;
   }
 

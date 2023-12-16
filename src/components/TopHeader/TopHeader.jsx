@@ -6,9 +6,8 @@ import { AiOutlineYoutube } from "react-icons/ai";
 import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
 
 export default function TopHeader() {
+  const { data } = useGetContactUsQuery();
 
-  const {data} = useGetContactUsQuery();
-  
   const contactUs = data?.data[0];
   // console.log(contactUs);
 

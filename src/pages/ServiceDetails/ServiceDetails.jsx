@@ -1,5 +1,5 @@
 import parse from "html-react-parser";
-import { GiCheckMark } from "react-icons/gi";
+// import { GiCheckMark } from "react-icons/gi";
 import { Link, useParams } from "react-router-dom";
 import { useGetServiceBySlugQuery } from "../../redux/api/serviceApi";
 import "./ServiceDetails.css";
@@ -24,7 +24,7 @@ export default function ServiceDetails() {
         <div className="py-6 lg:py-14">
           <div className="grid lg:grid-cols-5 gap-6 items-center">
             <div className="lg:col-span-3">
-              <h2 className="text-2xl md:text-4xl font-semibold text-neutral">
+              <h2 className="text-2xl md:text-4xl font-semibold text-secondary">
                 {service?.title}
               </h2>
 
@@ -41,7 +41,7 @@ export default function ServiceDetails() {
 
             <div className="lg:col-span-2 ">
               <img
-                src={`${import.meta.env.VITE_SERVER_IMG}/service/image/${
+                src={`${import.meta.env.VITE_BACKEND_URL}/services/${
                   service?.image
                 }`}
                 alt=""
@@ -53,7 +53,7 @@ export default function ServiceDetails() {
       </div>
 
       {/* Technologies */}
-      <section className="py-10 bg-secondary text-base-100">
+      {/* <section className="py-10 bg-secondary text-base-100">
         <div className="container">
           <h2 className="text-center text-2xl md:text-3xl">
             Our Web Development <br /> Technologies
@@ -169,10 +169,10 @@ export default function ServiceDetails() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Pricing */}
-      <section className="py-10 bg-gray-50">
+      {/* <section className="py-10 bg-gray-50">
         <div className="container">
           <h2 className="text-center text-2xl md:text-3xl">Our Pricing Plan</h2>
           <div className="mt-10">
@@ -358,7 +358,7 @@ export default function ServiceDetails() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </section>
   );
 }

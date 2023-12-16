@@ -3,13 +3,15 @@ import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import swal from "sweetalert2";
 import { useCreateWhyChooseMutation } from "../../../redux/api/WhyChooseApi";
+import { useNavigate } from "react-router-dom";
 
 export default function AddNewChoose() {
   const [mainLogos, setMainLogos] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
 
-  const [createWhyChoose] = useCreateWhyChooseMutation();
+  const [createWhyChoose, { isLoading }] = useCreateWhyChooseMutation();
 
   const creteNewChoose = async (e) => {
     e.preventDefault();
@@ -28,23 +30,27 @@ export default function AddNewChoose() {
     formData.append("description", description);
 
     try {
-      await createWhyChoose(formData).unwrap();
+      const res = await createWhyChoose(formData).unwrap();
 
-      setMainLogos([]);
-      setTitle("");
-      setDescription("");
+      if (res?.success) {
+        setMainLogos([]);
+        setTitle("");
+        setDescription("");
 
-      swal.fire({
-        icon: "success",
-        title: "New Why Choose Added Successfully",
-        showConfirmButton: false,
-        timer: 2000,
-      });
+        swal.fire({
+          icon: "success",
+          title: "",
+          text: "New Why Choose Added Successfully",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
+        navigate("/admin/why-choose");
+      }
     } catch (error) {
-      // console.log(error);
       swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }
@@ -132,10 +138,11 @@ export default function AddNewChoose() {
           <div className="mt-5">
             <button
               onClick={creteNewChoose}
+              disabled={isLoading && "disabled"}
               type="submit"
               className="gradient-primary-btn"
             >
-              Add Choose
+              {isLoading ? "Loading..." : "Add Choose"}
             </button>
           </div>
         </form>

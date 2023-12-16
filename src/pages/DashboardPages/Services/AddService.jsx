@@ -1,9 +1,10 @@
 import JoditEditor from "jodit-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
 import { useAddServiceMutation } from "../../../redux/api/serviceApi";
+import { useNavigate } from "react-router-dom";
 
 export default function AddService() {
   const editor = useRef(null);
@@ -11,10 +12,12 @@ export default function AddService() {
   const [icons, setIcons] = useState([]);
   const [description, setDescription] = useState("");
   const [shortDescription, setShortDescription] = useState("");
-  const [order, setOrder] = useState(0);
+  const [order, setOrder] = useState(1);
   const [title, setTitle] = useState("");
 
-  const [addService] = useAddServiceMutation();
+  const navigate = useNavigate();
+
+  const [addService, { isSuccess, isLoading }] = useAddServiceMutation();
 
   const addServiceHandler = async (e) => {
     e.preventDefault();
@@ -28,30 +31,34 @@ export default function AddService() {
     formData.append("icon", icons[0].file);
 
     try {
-      const res = await addService(formData).unwrap();
-      // console.log(res);
-      if (res?.success) {
-        setDescription("");
-        setShortDescription("");
-        setTitle("");
-        setOrder(0);
-        setImages([]);
-        setIcons([]);
-
-        Swal.fire({
-          icon: "success",
-          title: "Service Added Successfully",
-        });
-      }
+      await addService(formData).unwrap();
     } catch (error) {
-      console.log(error);
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setDescription("");
+      setShortDescription("");
+      setTitle("");
+      setOrder(1);
+      setImages([]);
+      setIcons([]);
+
+      Swal.fire({
+        icon: "success",
+        title: "",
+        text: "Service Added Successfully",
+      });
+
+      navigate("/admin/services/all-services");
+    }
+  }, [isSuccess, navigate]);
 
   return (
     <section>
@@ -60,7 +67,7 @@ export default function AddService() {
       </div>
 
       <div className="bg-base-100">
-        <form className="p-4">
+        <form onSubmit={addServiceHandler} className="p-4">
           <div className="text-neutral-content grid sm:grid-cols-2 md:grid-cols-3 gap-4 items-start">
             <div className="flex flex-col gap-3">
               <div>
@@ -164,16 +171,6 @@ export default function AddService() {
                       </div>
                     )}
                   </ImageUploading>
-
-                  {/* {data?.data?.image && (
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/images/about/${
-                      data?.data?.image
-                    }`}
-                    alt=""
-                    className="w-32 mt-4"
-                  />
-                )} */}
                 </div>
               </div>
             </div>
@@ -189,7 +186,7 @@ export default function AddService() {
                 />
               </div>
               <div className="">
-                <p className="font-medium mb-1">Short Description*</p>
+                <p className="mb-1">Short Description</p>
                 <textarea
                   name="shortDescription"
                   rows="3"
@@ -202,12 +199,7 @@ export default function AddService() {
                 <p className="mb-1">Description</p>
                 <JoditEditor
                   ref={editor}
-                  defaultValue={description}
-                  // defaultValue={
-                  //   data?.data?.description?.length > 0
-                  //     ? data?.data?.description
-                  //     : details
-                  // }
+                  value={description}
                   onBlur={(text) => setDescription(text)}
                 />
               </div>
@@ -215,17 +207,11 @@ export default function AddService() {
           </div>
 
           <div className="mt-6">
-            {/* <button
-            disabled={updateLoading && "disabled"}
-            className="gradient-primary-btn"
-          >
-            {updateLoading ? "Loading" : "Save"}
-          </button> */}
             <button
+              disabled={isLoading && "disabled"}
               className="gradient-primary-btn"
-              onClick={addServiceHandler}
             >
-              Add Service
+              {isLoading ? "Loading" : "Add Service"}
             </button>
           </div>
         </form>

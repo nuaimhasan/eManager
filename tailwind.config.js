@@ -6,7 +6,7 @@ export default {
         primary: "#fbc31c",
         secondary: "#0e4677",
         neutral: "#333",
-        "neutral-content": "#666",
+        "neutral-content": "#777",
         "base-100": "#fff",
       },
     },

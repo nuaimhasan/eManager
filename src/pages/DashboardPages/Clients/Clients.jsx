@@ -12,7 +12,7 @@ export default function Clients() {
 
   if (isLoading) return <div>Loading...</div>;
 
-  const clients = data.data;
+  const clients = data?.data;
 
   const deleteClientHandler = async (id) => {
     try {
@@ -63,7 +63,7 @@ export default function Clients() {
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`${import.meta.env.VITE_SERVER_IMG}/clients/${
+                    src={`${import.meta.env.VITE_BACKEND_URL}/clients/${
                       client?.image
                     }`}
                     alt={client.logo}

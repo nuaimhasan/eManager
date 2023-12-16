@@ -2,7 +2,7 @@ import JoditEditor from "jodit-react";
 import { useEffect, useRef, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   useGetServiceByIdQuery,
@@ -18,22 +18,21 @@ export default function EditService() {
   const [shortDescription, setShortDescription] = useState("");
   const [order, setOrder] = useState();
   const [title, setTitle] = useState("");
+  const navigate = useNavigate();
 
   const { data, isLoading } = useGetServiceByIdQuery(slug);
   const [updateServiceById] = useUpdateServiceByIdMutation();
 
   useEffect(() => {
     if (data?.data && !isLoading) {
-      setOrder(data.data.order);
-      setTitle(data.data.title);
-      setDescription(data.data.description);
-      setShortDescription(data.data.shortDescription);
+      setOrder(data?.data?.order);
+      setTitle(data?.data?.title);
+      setDescription(data?.data?.description);
+      setShortDescription(data?.data?.shortDescription);
     }
   }, [data, isLoading]);
 
   if (isLoading) return <h1>Loading...</h1>;
-
-  // console.log(data?.data);
 
   const updateServiceHandler = async (e) => {
     e.preventDefault();
@@ -44,10 +43,10 @@ export default function EditService() {
     formData.append("shortDescription", shortDescription);
     formData.append("order", order);
     if (images.length > 0) {
-      formData.append("image", images[0].file);
+      formData.append("image", images[0]?.file);
     }
     if (icons.length > 0) {
-      formData.append("icon", icons[0].file);
+      formData.append("icon", icons[0]?.file);
     }
 
     try {
@@ -56,10 +55,13 @@ export default function EditService() {
       if (res.success) {
         Swal.fire({
           icon: "success",
-          title: "Service Updated Successfully",
+          title: "",
+          text: "Service Updated Successfully",
         });
         setImages([]);
         setIcons([]);
+
+        navigate("/admin/services/all-services");
       }
     } catch (error) {
       console.log(error);

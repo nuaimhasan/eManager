@@ -4,7 +4,7 @@ export const serviceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addService: builder.mutation({
       query: (formData) => ({
-        url: `services/add`,
+        url: `service/add`,
         method: "POST",
         body: formData,
       }),
@@ -12,7 +12,7 @@ export const serviceApi = baseApi.injectEndpoints({
     }),
     updateServiceById: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `services/${id}`,
+        url: `service/${id}`,
         method: "PATCH",
         body: formData,
       }),
@@ -20,28 +20,28 @@ export const serviceApi = baseApi.injectEndpoints({
     }),
     getServiceById: builder.query({
       query: (id) => ({
-        url: `services/${id}`,
+        url: `service/${id}`,
         method: "GET",
       }),
       providesTags: ["service"],
     }),
     getAllServices: builder.query({
       query: () => ({
-        url: `services`,
+        url: `service/all-services`,
         method: "GET",
       }),
       providesTags: ["service"],
     }),
     deleteServiceById: builder.mutation({
       query: (id) => ({
-        url: `services/${id}`,
+        url: `service/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["service"],
     }),
     getServiceBySlug: builder.query({
       query: (slug) => ({
-        url: `services/slug/${slug}`,
+        url: `service/slug/${slug}`,
         method: "GET",
       }),
       providesTags: ["service"],
@@ -55,5 +55,5 @@ export const {
   useGetServiceByIdQuery,
   useGetAllServicesQuery,
   useDeleteServiceByIdMutation,
-  useGetServiceBySlugQuery
+  useGetServiceBySlugQuery,
 } = serviceApi;

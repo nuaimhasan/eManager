@@ -17,7 +17,7 @@ export default function BlogSection() {
     return <Spinner />;
   }
 
-  const id = data?.data[0]?.id;
+  const id = data?.data[0]?._id;
   const blogsection = data?.data[0];
 
   const updateBlogSectionHandler = async (e) => {
@@ -42,14 +42,14 @@ export default function BlogSection() {
         if (res.success) {
           Swal.fire({
             icon: "success",
-            title: "Blog Section Updated Successfully",
+            title: "",
+            text: "Blog Section Updated Successfully",
           });
         }
       } catch (error) {
-        // console.log(error);
         Swal.fire({
           icon: "error",
-          title: "Oops...",
+          title: "",
           text: "Something went wrong!",
         });
       }
@@ -64,10 +64,9 @@ export default function BlogSection() {
           });
         }
       } catch (error) {
-        // console.log(error);
         Swal.fire({
           icon: "error",
-          title: "Oops...",
+          title: "",
           text: "Something went wrong!",
         });
       }
@@ -99,7 +98,6 @@ export default function BlogSection() {
           <input
             type="text"
             name="subTitle"
-            required
             defaultValue={blogsection?.subtitle}
           />
         </div>
@@ -119,13 +117,11 @@ export default function BlogSection() {
             disabled={(updateIsLoading || addIsLoading) && "disabled"}
             className="gradient-primary-btn"
           >
-            {updateIsLoading || addIsLoading ? (
-              "Loading..."
-            ) : id ? (
-              "Update"
-            ) : (
-              "Add"
-            )}
+            {updateIsLoading || addIsLoading
+              ? "Loading..."
+              : id
+              ? "Update"
+              : "Add"}
           </button>
         </div>
       </form>

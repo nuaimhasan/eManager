@@ -3,10 +3,12 @@ import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
 import { useAddClientMutation } from "../../../redux/api/clientApi";
+import { useNavigate } from "react-router-dom";
 
 export default function AddClient() {
   const [logos, setLogos] = useState([]);
-  const [order, setOrder] = useState(0);
+  const [order, setOrder] = useState(1);
+  const navigate = useNavigate();
 
   const [addClient] = useAddClientMutation();
 
@@ -25,19 +27,20 @@ export default function AddClient() {
 
     try {
       const res = await addClient(formData).unwrap();
-      if (res.success) {
-        setOrder(0);
+      if (res?.success) {
+        setOrder(1);
         setLogos([]);
 
         Swal.fire({
-          title: "Success!",
-          text: res.message,
+          title: "",
+          text: "Client add success",
           icon: "success",
           confirmButtonText: "Ok",
         });
+
+        navigate("/admin/clients/all-clients");
       }
     } catch (error) {
-      console.log(error);
       Swal.fire({
         title: "Error!",
         text: "Something went wrong",

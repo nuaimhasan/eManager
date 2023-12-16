@@ -4,7 +4,7 @@ export const aboutUsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createAboutUs: builder.mutation({
       query: (formData) => ({
-        url: `aboutus/add`,
+        url: `about/add`,
         method: "POST",
         body: formData,
       }),
@@ -12,7 +12,7 @@ export const aboutUsApi = baseApi.injectEndpoints({
     }),
     updateAboutUs: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `aboutus/${id}`,
+        url: `about/${id}`,
         method: "PATCH",
         body: formData,
       }),
@@ -20,7 +20,7 @@ export const aboutUsApi = baseApi.injectEndpoints({
     }),
     getAboutUs: builder.query({
       query: () => ({
-        url: `aboutus`,
+        url: `about`,
         method: "GET",
       }),
       providesTags: ["aboutUs"],

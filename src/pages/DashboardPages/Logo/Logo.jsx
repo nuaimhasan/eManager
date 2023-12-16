@@ -108,7 +108,7 @@ export default function Logo() {
 
               {data?.data && mainLogos?.length >= 0 && (
                 <img
-                  src={`${import.meta.env.VITE_SERVER_IMG}/logos/${
+                  src={`${import.meta.env.VITE_BACKEND_URL}/logos/${
                     data?.data[0]?.filename
                   }`}
                   alt=""

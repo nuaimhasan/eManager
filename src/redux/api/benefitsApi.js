@@ -4,7 +4,7 @@ export const benefitsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addBenefit: builder.mutation({
       query: (formData) => ({
-        url: `benefits/add`,
+        url: `jobBenefit/add`,
         method: "POST",
         body: formData,
       }),
@@ -12,7 +12,7 @@ export const benefitsApi = baseApi.injectEndpoints({
     }),
     updateBenefit: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `benefits/${id}`,
+        url: `jobBenefit/${id}`,
         method: "PATCH",
         body: formData,
       }),
@@ -20,21 +20,21 @@ export const benefitsApi = baseApi.injectEndpoints({
     }),
     getBenefitById: builder.query({
       query: (id) => ({
-        url: `benefits/${id}`,
+        url: `jobBenefit/${id}`,
         method: "GET",
       }),
       providesTags: ["benefits"],
     }),
     getBenefits: builder.query({
       query: () => ({
-        url: `benefits`,
+        url: `jobBenefit`,
         method: "GET",
       }),
       providesTags: ["benefits"],
     }),
     deleteBenefit: builder.mutation({
       query: (id) => ({
-        url: `benefits/${id}`,
+        url: `jobBenefit/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["benefits"],

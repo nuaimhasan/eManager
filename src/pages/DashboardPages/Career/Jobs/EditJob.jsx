@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   useGetJobByIdQuery,
@@ -8,13 +8,13 @@ import {
 
 export default function EditJob() {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [jobType, setJobType] = useState("");
 
-  const [updateJob] = useUpdateJobMutation();
   const { data, isLoading } = useGetJobByIdQuery(id);
+  const [updateJob, { isLoading: updateLoading }] = useUpdateJobMutation();
 
   useEffect(() => {
     if (data?.data && !isLoading) {
@@ -42,14 +42,15 @@ export default function EditJob() {
 
         Swal.fire({
           icon: "success",
-          title: "Success",
-          text: res.message,
+          title: "",
+          text: "Update Success",
         });
+        navigate("/admin/career/jobs");
       }
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }
@@ -67,7 +68,6 @@ export default function EditJob() {
           <input
             type="text"
             name="title"
-            defaultdefaultValue=""
             required
             defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -79,7 +79,6 @@ export default function EditJob() {
           <textarea
             name="description"
             rows="3"
-            defaultdefaultValue=""
             required
             defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -102,8 +101,12 @@ export default function EditJob() {
         </div>
 
         <div>
-          <button className="gradient-primary-btn" onClick={updateJobHandler}>
-            Update
+          <button
+            disabled={updateLoading && "disabled"}
+            className="gradient-primary-btn"
+            onClick={updateJobHandler}
+          >
+            {updateLoading ? "Loading..." : "Update"}
           </button>
         </div>
       </form>

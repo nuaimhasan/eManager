@@ -20,9 +20,8 @@ export default function CareerBanner() {
     return <div>Loading...</div>;
   }
 
-  const id = data?.data[0]?.id;
+  const id = data?.data[0]?._id;
   const careerBanner = data?.data[0];
-  // console.log(id, careerBanner);
 
   const handleEditBanner = async (e) => {
     e.preventDefault();
@@ -66,7 +65,7 @@ export default function CareerBanner() {
     } else {
       try {
         const res = await addCareerBanner(body);
-        console.log(res);
+
         if (res?.success) {
           setEdit(false);
           return swal.fire({
@@ -78,16 +77,15 @@ export default function CareerBanner() {
         } else {
           return swal.fire({
             title: "",
-            text: res?.error?.data?.error,
+            text: "Something went wrong",
             icon: "error",
             confirmButtonText: "Ok",
           });
         }
       } catch (error) {
-        console.log(error);
         swal.fire({
           title: "",
-          text: error.data.error,
+          text: error?.data?.error,
           icon: "error",
           confirmButtonText: "Ok",
         });

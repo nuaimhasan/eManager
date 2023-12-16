@@ -4,14 +4,16 @@ import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
 import { useAddBlogMutation } from "../../../redux/api/blogApi";
+import { useNavigate } from "react-router-dom";
 
 export default function AddBlog() {
   const editor = useRef(null);
   const [images, setImages] = useState([]);
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
+  const navigate = useNavigate();
 
-  const [addBlog] = useAddBlogMutation();
+  const [addBlog, { isLoading }] = useAddBlogMutation();
 
   const handleAddBlog = async (e) => {
     e.preventDefault();
@@ -19,26 +21,35 @@ export default function AddBlog() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("blog", images[0]?.file);
+    if (!images[0]?.file) {
+      return Swal.fire({
+        icon: "error",
+        title: "",
+        text: "Please provide blog image",
+      });
+    }
+    formData.append("image", images[0]?.file);
 
     try {
       const res = await addBlog(formData).unwrap();
-      if (res.success) {
+      if (res?.success) {
         setTitle("");
         setDescription("");
         setImages([]);
 
         Swal.fire({
           icon: "success",
-          title: "Success",
-          text: res.message,
+          title: "",
+          text: "Blog add Success",
         });
+
+        navigate("/admin/blogs/all-blogs");
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }
@@ -50,7 +61,7 @@ export default function AddBlog() {
         <h3 className="font-medium text-neutral">Add Blogs</h3>
       </div>
 
-      <form className="p-4">
+      <form onSubmit={handleAddBlog} className="p-4">
         <div className="text-neutral-content grid sm:grid-cols-2 md:grid-cols-3 gap-4 items-start">
           <div className="flex flex-col gap-3">
             <div>
@@ -107,16 +118,6 @@ export default function AddBlog() {
                     </div>
                   )}
                 </ImageUploading>
-
-                {/* {data?.data?.image && (
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/images/about/${
-                    data?.data?.image
-                  }`}
-                  alt=""
-                  className="w-32 mt-4"
-                />
-              )} */}
               </div>
             </div>
           </div>
@@ -127,12 +128,7 @@ export default function AddBlog() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
-                defaultValue={description}
-                // defaultValue={
-                //   data?.data?.description?.length > 0
-                //     ? data?.data?.description
-                //     : details
-                // }
+                value={description}
                 onBlur={(text) => setDescription(text)}
               />
             </div>
@@ -140,14 +136,11 @@ export default function AddBlog() {
         </div>
 
         <div className="mt-6">
-          {/* <button
-          disabled={updateLoading && "disabled"}
-          className="gradient-primary-btn"
-        >
-          {updateLoading ? "Loading" : "Save"}
-        </button> */}
-          <button onClick={handleAddBlog} className="gradient-primary-btn">
-            Save Blog
+          <button
+            disabled={isLoading && "disabled"}
+            className="gradient-primary-btn"
+          >
+            {isLoading ? "Loading" : "Add Blog"}
           </button>
         </div>
       </form>

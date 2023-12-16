@@ -12,7 +12,7 @@ import {
 export default function EditBlog() {
   const { id } = useParams();
   const { data, isLoading } = useGetBlogByIdQuery(id);
-  const [updateBlog] = useUpdateBlogMutation();
+  const [updateBlog, { isLoading: updateLoading }] = useUpdateBlogMutation();
 
   const editor = useRef(null);
   const [images, setImages] = useState([]);
@@ -48,7 +48,6 @@ export default function EditBlog() {
         });
       }
     } catch (error) {
-      // console.log(error);
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -63,7 +62,7 @@ export default function EditBlog() {
         <h3 className="font-medium text-neutral">Update Blog</h3>
       </div>
 
-      <form className="p-4">
+      <form onSubmit={updateBlogHandler} className="p-4">
         <div className="text-neutral-content grid sm:grid-cols-2 md:grid-cols-3 gap-4 items-start">
           <div className="flex flex-col gap-3">
             <div>
@@ -120,15 +119,15 @@ export default function EditBlog() {
                   )}
                 </ImageUploading>
 
-                {/* {data?.data?.image && (
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/images/about/${
-                    data?.data?.image
-                  }`}
-                  alt=""
-                  className="w-32 mt-4"
-                />
-              )} */}
+                {data?.data?.image && (
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/blogs/${
+                      data?.data?.image
+                    }`}
+                    alt=""
+                    className="w-32 mt-4"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -139,12 +138,7 @@ export default function EditBlog() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
-                defaultValue={description}
-                // defaultValue={
-                //   data?.data?.description?.length > 0
-                //     ? data?.data?.description
-                //     : details
-                // }
+                value={description}
                 onBlur={(text) => setDescription(text)}
               />
             </div>
@@ -152,14 +146,11 @@ export default function EditBlog() {
         </div>
 
         <div className="mt-6">
-          {/* <button
-          disabled={updateLoading && "disabled"}
-          className="gradient-primary-btn"
-        >
-          {updateLoading ? "Loading" : "Save"}
-        </button> */}
-          <button className="gradient-primary-btn" onClick={updateBlogHandler}>
-            Save Blog
+          <button
+            disabled={updateLoading && "disabled"}
+            className="gradient-primary-btn"
+          >
+            {updateLoading ? "Loading" : "Update Blog"}
           </button>
         </div>
       </form>

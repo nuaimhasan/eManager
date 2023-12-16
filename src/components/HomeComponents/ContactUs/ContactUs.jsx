@@ -4,7 +4,6 @@ import { MdEmail } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useSendMessageMutation } from "../../../redux/api/sendMessageApi";
 import { useGetContactUsQuery } from "../../../redux/api/contactUsApi";
-import { HiBuildingOffice2 } from "react-icons/hi2";
 
 export default function ContactUs() {
   const [sendMessage] = useSendMessageMutation();
@@ -93,13 +92,7 @@ export default function ContactUs() {
               </div>
               <div className="flex gap-1 items-center">
                 <p>
-                  <FaLocationDot />
-                </p>
-                <p>80, Shahjalal Complex, Circular Road, Malibagh Dhaka</p>
-              </div>
-              <div className="flex gap-1 items-center">
-                <p>
-                  <HiBuildingOffice2 className="text-lg" />
+                  <FaLocationDot className="text-lg" />
                 </p>
                 <p>{contactus?.address}</p>
               </div>

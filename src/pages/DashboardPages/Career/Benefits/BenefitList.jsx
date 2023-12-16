@@ -14,24 +14,26 @@ export default function BenefitList() {
   if (isLoading) return <h1>Loading...</h1>;
 
   const benefits = data?.data;
-  // console.log(blogs);
 
   const handleDelete = async (id) => {
-    try {
-      const res = await deleteBenefit(id).unwrap();
-      if (res.success) {
+    const isConfirm = window.confirm("are you sure delete this?");
+    if (isConfirm) {
+      try {
+        const res = await deleteBenefit(id).unwrap();
+        if (res.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: res.message,
+          });
+        }
+      } catch (error) {
         Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: res.message,
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
         });
       }
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
     }
   };
 
@@ -55,11 +57,11 @@ export default function BenefitList() {
           </thead>
           <tbody>
             {benefits?.map((benefit, index) => (
-              <tr key={benefit.id}>
+              <tr key={benefit?._id}>
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`${import.meta.env.VITE_SERVER_IMG}/benefit/${
+                    src={`${import.meta.env.VITE_BACKEND_URL}/benefit/${
                       benefit?.image
                     }`}
                     alt=""
@@ -69,10 +71,10 @@ export default function BenefitList() {
                 <td>{benefit?.title}</td>
                 <td>
                   <div className="flex items-center gap-2">
-                    <Link to={`/admin/benefit/edit-benefit/${benefit.id}`}>
+                    <Link to={`/admin/benefit/edit-benefit/${benefit._id}`}>
                       <FaRegEdit className="text-[17px] hover:text-secondary" />
                     </Link>
-                    <button onClick={() => handleDelete(benefit?.id)}>
+                    <button onClick={() => handleDelete(benefit?._id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />
                     </button>
                   </div>

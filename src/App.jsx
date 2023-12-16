@@ -9,7 +9,7 @@ export default function App() {
 
   setTimeout(() => {
     setLoading(false);
-  }, 1500);
+  }, 2000);
 
   const authChecked = useAuthCheck();
   if (!authChecked) {

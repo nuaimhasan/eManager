@@ -50,7 +50,11 @@ export default function Hero() {
             </p>
 
             <div className="mt-6">
-              <Link to="" className="gradient-primary-btn">
+              <Link
+                to="https://api.whatsapp.com/send?phone=01906198022"
+                target="_blank"
+                className="gradient-primary-btn"
+              >
                 Let&apos;s discuss your project
               </Link>
             </div>

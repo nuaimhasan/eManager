@@ -4,7 +4,7 @@ export const serviceBannerApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addServiceBanner: builder.mutation({
       query: (formData) => ({
-        url: `servicebanner/add`,
+        url: `serviceBanner/add`,
         method: "POST",
         body: formData,
       }),
@@ -12,7 +12,7 @@ export const serviceBannerApi = baseApi.injectEndpoints({
     }),
     updateServiceBanner: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `servicebanner/${id}`,
+        url: `serviceBanner/${id}`,
         method: "PATCH",
         body: formData,
       }),
@@ -20,7 +20,7 @@ export const serviceBannerApi = baseApi.injectEndpoints({
     }),
     getServiceBanner: builder.query({
       query: () => ({
-        url: `servicebanner`,
+        url: `serviceBanner`,
         method: "GET",
       }),
       providesTags: ["serviceBanner"],
@@ -31,5 +31,5 @@ export const serviceBannerApi = baseApi.injectEndpoints({
 export const {
   useAddServiceBannerMutation,
   useUpdateServiceBannerMutation,
-  useGetServiceBannerQuery
+  useGetServiceBannerQuery,
 } = serviceBannerApi;

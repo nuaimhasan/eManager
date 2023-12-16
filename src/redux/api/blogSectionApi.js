@@ -1,5 +1,5 @@
 import { baseApi } from "./baseApi";
-const URL = "blogsection";
+const URL = "blogSection";
 
 export const blogSectionApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -11,7 +11,7 @@ export const blogSectionApi = baseApi.injectEndpoints({
       providesTags: ["blogSection"],
     }),
     updateBlogSectionById: builder.mutation({
-      query: ({id, body}) => ({
+      query: ({ id, body }) => ({
         url: `${URL}/${id}`,
         method: "PATCH",
         body,
@@ -29,4 +29,8 @@ export const blogSectionApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetBlogSectionQuery, useUpdateBlogSectionByIdMutation,useAddBlogSectionMutation } = blogSectionApi;
+export const {
+  useGetBlogSectionQuery,
+  useUpdateBlogSectionByIdMutation,
+  useAddBlogSectionMutation,
+} = blogSectionApi;

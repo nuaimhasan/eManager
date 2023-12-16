@@ -9,16 +9,16 @@ export default function Blogs() {
   const { data: blogData } = useGetBlogsQuery();
 
   const blogs = blogData?.data;
-
   const blogSection = data?.data[0];
+
   return (
     <section className="py-10 lg:py-20 bg-base-100" id="blogs">
       <div className="container">
-        <div className="text-center ">
+        <div className="text-center md:w-1/2 mx-auto">
           <h3 className="text-lg text-neutral-content">
             {blogSection?.subtitle}
           </h3>
-          <h2 className="text-4xl font-bold text-neutral">
+          <h2 className="text-4xl font-bold text-secondary">
             {blogSection?.title}
           </h2>
           <p className="text-sm text-neutral-content mt-3">

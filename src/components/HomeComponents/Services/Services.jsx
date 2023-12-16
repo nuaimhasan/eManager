@@ -16,7 +16,7 @@ export default function Services() {
   const services = serviceData?.data;
 
   return (
-    <section className="py-10 lg:py-20 bg-base-100" id="services">
+    <section className="py-10 lg:py-14 bg-base-100" id="services">
       <div className="container">
         <div className="text-center">
           <h2 className="text-2xl md:text-4xl font-medium text-secondary">

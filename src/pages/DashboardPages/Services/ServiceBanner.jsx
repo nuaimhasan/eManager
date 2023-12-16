@@ -29,7 +29,7 @@ export default function ServiceBanner() {
   const updateHandler = async (e) => {
     e.preventDefault();
 
-    const id = data?.data[0]?.id;
+    const id = data?.data[0]?._id;
 
     const formData = new FormData();
     formData.append("title", title);
@@ -43,14 +43,14 @@ export default function ServiceBanner() {
         setImages([]);
         Swal.fire({
           icon: "success",
-          title: "Service Banner Updated Successfully",
+          title: "",
+          text: "Service Banner Updated Successfully",
         });
       }
     } catch (error) {
-      // console.log(error);
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }

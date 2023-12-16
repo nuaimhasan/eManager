@@ -13,7 +13,7 @@ export default function CounterArea() {
             <div key={counter?.id} className="counter_card">
               <div className="icon">
                 <img
-                  src={`${import.meta.env.VITE_SERVER_IMG}/counter/${
+                  src={`${import.meta.env.VITE_BACKEND_URL}/counter/${
                     counter?.icon
                   }`}
                   alt="icon"

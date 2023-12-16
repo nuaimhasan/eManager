@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-export default function BlogCard({blog}) {
+export default function BlogCard({ blog }) {
   // console.log(blog);
   return (
     <div className="blog_card">
       <img
-        src={`${import.meta.env.VITE_SERVER_IMG}/blogs/${blog?.image}`}
+        src={`${import.meta.env.VITE_BACKEND_URL}/blogs/${blog?.image}`}
         alt=""
         className="w-full h-48 rounded-t"
       />

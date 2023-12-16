@@ -118,7 +118,7 @@ export default function EditCounter() {
 
               {data?.success && (
                 <img
-                  src={`${import.meta.env.VITE_SERVER_IMG}/counter/${
+                  src={`${import.meta.env.VITE_BACKEND_URL}/counter/${
                     data?.data?.icon
                   }`}
                   alt=""

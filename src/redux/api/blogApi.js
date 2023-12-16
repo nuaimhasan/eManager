@@ -4,7 +4,7 @@ export const blogApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addBlog: builder.mutation({
       query: (formData) => ({
-        url: `blogs/add`,
+        url: `blog/add`,
         method: "POST",
         body: formData,
       }),
@@ -12,7 +12,7 @@ export const blogApi = baseApi.injectEndpoints({
     }),
     updateBlog: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `blogs/${id}`,
+        url: `blog/${id}`,
         method: "PATCH",
         body: formData,
       }),
@@ -20,21 +20,21 @@ export const blogApi = baseApi.injectEndpoints({
     }),
     getBlogById: builder.query({
       query: (id) => ({
-        url: `blogs/${id}`,
+        url: `blog/${id}`,
         method: "GET",
       }),
       providesTags: ["blog"],
     }),
     getBlogs: builder.query({
       query: () => ({
-        url: `blogs`,
+        url: `blog/all-blogs`,
         method: "GET",
       }),
       providesTags: ["blog"],
     }),
     deleteBlog: builder.mutation({
       query: (id) => ({
-        url: `blogs/${id}`,
+        url: `blog/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["blog"],

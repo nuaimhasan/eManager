@@ -4,7 +4,7 @@ export const whyChooseApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createWhyChoose: builder.mutation({
       query: (formData) => ({
-        url: `whychoose/add`,
+        url: `whyChoose/add`,
         method: "POST",
         body: formData,
       }),
@@ -12,7 +12,7 @@ export const whyChooseApi = baseApi.injectEndpoints({
     }),
     updateWhyChoose: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `whychoose/${id}`,
+        url: `whyChoose/${id}`,
         method: "PATCH",
         body: formData,
       }),
@@ -20,21 +20,21 @@ export const whyChooseApi = baseApi.injectEndpoints({
     }),
     getAllWhyChoose: builder.query({
       query: () => ({
-        url: `whychoose`,
+        url: `whyChoose`,
         method: "GET",
       }),
       providesTags: ["whyChoose"],
     }),
     getWhyChooseById: builder.query({
       query: (id) => ({
-        url: `whychoose/${id}`,
+        url: `whyChoose/${id}`,
         method: "GET",
       }),
       providesTags: ["whyChoose"],
     }),
-    deleteWhyChoose : builder.mutation({
+    deleteWhyChoose: builder.mutation({
       query: (id) => ({
-        url: `whychoose/${id}`,
+        url: `whyChoose/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["whyChoose"],
@@ -47,5 +47,5 @@ export const {
   useGetAllWhyChooseQuery,
   useGetWhyChooseByIdQuery,
   useUpdateWhyChooseMutation,
-  useDeleteWhyChooseMutation
+  useDeleteWhyChooseMutation,
 } = whyChooseApi;

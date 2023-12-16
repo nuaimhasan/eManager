@@ -1,5 +1,5 @@
 import { baseApi } from "./baseApi";
-const URL = "servicesection";
+const URL = "serviceSection";
 
 export const serviceSectionApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

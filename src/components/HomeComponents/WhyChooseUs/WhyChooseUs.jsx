@@ -22,7 +22,7 @@ export default function WhyChooseUs() {
               <div key={list?.id} className="text-center">
                 <p className="flex justify-center text-4xl ">
                   <img
-                    src={`${import.meta.env.VITE_SERVER_IMG}/whychoose/${
+                    src={`${import.meta.env.VITE_BACKEND_URL}/whychoose/${
                       list?.icon
                     }`}
                     alt="icon"

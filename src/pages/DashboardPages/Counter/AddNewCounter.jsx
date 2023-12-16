@@ -3,13 +3,14 @@ import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import swal from "sweetalert2";
 import { useCreateCounterMutation } from "../../../redux/api/CounterApi";
+import { useNavigate } from "react-router-dom";
 
 export default function AddNewCounter() {
   const [mainLogos, setMainLogos] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
-  const [createCounter] = useCreateCounterMutation();
+  const navigate = useNavigate();
+  const [createCounter, { isLoading }] = useCreateCounterMutation();
 
   const creteNewCounter = async (e) => {
     e.preventDefault();
@@ -28,23 +29,26 @@ export default function AddNewCounter() {
     formData.append("description", description);
 
     try {
-      await createCounter(formData).unwrap();
+      const res = await createCounter(formData).unwrap();
 
-      setMainLogos([]);
-      setTitle("");
-      setDescription("");
+      if (res?.success) {
+        setMainLogos([]);
+        setTitle("");
+        setDescription("");
 
-      swal.fire({
-        icon: "success",
-        title: "Counter Added Successfully",
-        showConfirmButton: false,
-        timer: 2000,
-      });
+        swal.fire({
+          icon: "success",
+          title: "",
+          text: "Counter Added Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/admin/counter");
+      }
     } catch (error) {
-      console.log(error);
       swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }
@@ -134,8 +138,9 @@ export default function AddNewCounter() {
               onClick={creteNewCounter}
               type="submit"
               className="gradient-primary-btn"
+              disabled={isLoading && "disabled"}
             >
-              Add Counter
+              {isLoading ? "Loading..." : "Add Counter"}
             </button>
           </div>
         </form>

@@ -59,7 +59,7 @@ export default function BlogsList() {
                 <td>{blog.createdAt ? blog.createdAt.split("T")[0] : ""}</td>
                 <td>
                   <img
-                    src={`${import.meta.env.VITE_SERVER_IMG}/blogs/${
+                    src={`${import.meta.env.VITE_BACKEND_URL}/blogs/${
                       blog?.image
                     }`}
                     alt=""

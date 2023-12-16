@@ -4,8 +4,7 @@ import { Autoplay } from "swiper/modules";
 import { useGetClientsQuery } from "../../../redux/api/clientApi";
 
 export default function Clients() {
-
-  const {data} = useGetClientsQuery();
+  const { data } = useGetClientsQuery();
 
   const clients = data?.data;
 
@@ -48,7 +47,7 @@ export default function Clients() {
               <SwiperSlide key={client?.id}>
                 <div className="shadow w-full h-20 rounded flex justify-center items-center">
                   <img
-                    src={`${import.meta.env.VITE_SERVER_IMG}/clients/${
+                    src={`${import.meta.env.VITE_BACKEND_URL}/clients/${
                       client?.image
                     }`}
                     alt=""

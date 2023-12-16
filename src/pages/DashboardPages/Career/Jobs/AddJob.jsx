@@ -1,13 +1,15 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { useAddJobMutation } from "../../../../redux/api/jobsApi";
+import { useNavigate } from "react-router-dom";
 
 export default function AddJob() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [jobType, setJobType] = useState("");
+  const navigate = useNavigate();
 
-  const [addJob] = useAddJobMutation();
+  const [addJob, { isLoading }] = useAddJobMutation();
 
   const addJobHandler = async (e) => {
     e.preventDefault();
@@ -30,6 +32,8 @@ export default function AddJob() {
           title: "Success",
           text: res.message,
         });
+
+        navigate("/admin/career/jobs");
       }
     } catch (error) {
       Swal.fire({
@@ -52,7 +56,6 @@ export default function AddJob() {
           <input
             type="text"
             name="title"
-            defaultdefaultValue=""
             required
             defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -64,7 +67,6 @@ export default function AddJob() {
           <textarea
             name="description"
             rows="3"
-            defaultdefaultValue=""
             required
             defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -87,8 +89,12 @@ export default function AddJob() {
         </div>
 
         <div>
-          <button className="gradient-primary-btn" onClick={addJobHandler}>
-            Add Job
+          <button
+            disabled={isLoading && "disabled"}
+            className="gradient-primary-btn"
+            onClick={addJobHandler}
+          >
+            {isLoading ? "Loading..." : "Add Job"}
           </button>
         </div>
       </form>

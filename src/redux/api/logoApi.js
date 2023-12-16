@@ -9,15 +9,7 @@ export const logoApi = baseApi.injectEndpoints({
       }),
       providesTags: ["logo"],
     }),
-    updateLogoById: builder.mutation({
-      query: ({ id, formData }) => ({
-        url: `logo/${id}`,
-        method: "PATCH",
-        body: formData,
-      }),
-      invalidatesTags: ["logo"],
-    }),
-    addLogo : builder.mutation({
+    addLogo: builder.mutation({
       query: (formData) => ({
         url: `logo/add`,
         method: "POST",
@@ -25,7 +17,19 @@ export const logoApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["logo"],
     }),
+    updateLogoById: builder.mutation({
+      query: ({ id, formData }) => ({
+        url: `logo/update/${id}`,
+        method: "PATCH",
+        body: formData,
+      }),
+      invalidatesTags: ["logo"],
+    }),
   }),
 });
 
-export const { useGetLogosQuery, useUpdateLogoByIdMutation, useAddLogoMutation } = logoApi;
+export const {
+  useGetLogosQuery,
+  useUpdateLogoByIdMutation,
+  useAddLogoMutation,
+} = logoApi;

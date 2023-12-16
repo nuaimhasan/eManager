@@ -1,11 +1,11 @@
 import { baseApi } from "./baseApi";
-const URL = "jobs";
+const URL = "job";
 
 export const jobsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getJobs: builder.query({
       query: () => ({
-        url: `${URL}`,
+        url: `${URL}/all-jobs`,
         method: "GET",
       }),
       providesTags: ["jobs"],

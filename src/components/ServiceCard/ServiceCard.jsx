@@ -1,12 +1,11 @@
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-// import parse from "html-react-parser";
 
 export default function ServiceCard({ service }) {
   return (
     <Link to={`/service/${service?.slug}`} className="service_card">
       <img
-        src={`${import.meta.env.VITE_SERVER_IMG}/service/icon/${service?.icon}`}
+        src={`${import.meta.env.VITE_BACKEND_URL}/services/${service?.icon}`}
         alt=""
       />
       <h2 className="text-neutral text-xl font-medium mb-2 mt-5">

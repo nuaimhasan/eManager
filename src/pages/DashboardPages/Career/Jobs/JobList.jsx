@@ -17,21 +17,24 @@ export default function JobsList() {
   // console.log(blogs);
 
   const handleDelete = async (id) => {
-    try {
-      const res = await deleteJob(id).unwrap();
-      if (res.success) {
+    const isConfirm = window.confirm("are you sure delete this?");
+    if (isConfirm) {
+      try {
+        const res = await deleteJob(id).unwrap();
+        if (res.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: res.message,
+          });
+        }
+      } catch (error) {
         Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: res.message,
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
         });
       }
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
     }
   };
 

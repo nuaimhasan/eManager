@@ -1,5 +1,5 @@
 import { baseApi } from "./baseApi";
-const URL = "careerbanner";
+const URL = "careerBanner";
 
 export const careerBannerApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -22,12 +22,15 @@ export const careerBannerApi = baseApi.injectEndpoints({
       query: (body) => ({
         url: `${URL}/add`,
         method: "POST",
-        body: body, 
+        body: body,
       }),
       invalidatesTags: ["careerBanner"],
     }),
   }),
 });
 
-export const { useGetCareerBannerQuery, useUpdateCareerBannerByIdMutation, useAddCareerBannerMutation } =
-  careerBannerApi;
+export const {
+  useGetCareerBannerQuery,
+  useUpdateCareerBannerByIdMutation,
+  useAddCareerBannerMutation,
+} = careerBannerApi;

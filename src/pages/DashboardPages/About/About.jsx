@@ -36,9 +36,7 @@ export default function About() {
 
   if (isLoading) return <Spinner />;
 
-  const id = data?.data[0]?.id;
-  console.log(data?.data[0]);
-  // console.log(id);
+  const id = data?.data[0]?._id;
 
   const updateAboutUsHandler = async (e) => {
     e.preventDefault();
@@ -50,8 +48,11 @@ export default function About() {
     formData.append("tagline", tagline);
     formData.append("description", description);
 
-    if (!profile || !img)
-      return Swal.fire("", "Please upload profile and image", "error");
+    if (!id) {
+      if (!profile || !img) {
+        return Swal.fire("", "Please upload profile and image", "error");
+      }
+    }
 
     if (profile) formData.append("profileDoc", profile);
     if (img) formData.append("image", img);
@@ -62,7 +63,7 @@ export default function About() {
         if (res?.success) {
           setImage([]);
           setProfile("");
-          Swal.fire("", res.data?.message, "success");
+          Swal.fire("", "update success", "success");
         }
       } catch (error) {
         Swal.fire("", error?.data?.error, "error");
@@ -73,7 +74,7 @@ export default function About() {
         if (res?.success) {
           setImage([]);
           setProfile("");
-          Swal.fire("", res.data?.message, "success");
+          Swal.fire("", "About add success", "success");
         }
       } catch (error) {
         Swal.fire("", error?.data?.error, "error");
@@ -175,7 +176,7 @@ export default function About() {
 
                   {data?.success && (
                     <img
-                      src={`${import.meta.env.VITE_SERVER_IMG}/aboutus/image/${
+                      src={`${import.meta.env.VITE_BACKEND_URL}/aboutus/${
                         data?.data[0]?.image
                       }`}
                       alt=""
@@ -210,28 +211,10 @@ export default function About() {
             className="gradient-primary-btn"
             onClick={updateAboutUsHandler}
           >
-            {updateLoading || createLoading
-              ? "Loading.."
-              : id
-              ? "Update About"
-              : "Create About"}
+            {updateLoading || createLoading ? "Loading.." : "Update About"}
           </button>
         </div>
       </form>
     </section>
   );
 }
-
-// {
-//   "_id": {
-//     "$oid": "6579363c248ffbc5cae7b1a7"
-//   },
-//   "title": "Empowering Efficiency, Unleashing Potential",
-//   "tagline": "Empowering Digital Success with eManager",
-//   "description": "<p>eManager is a leading digital solutions company, specializing in website and app development, software development, and total digital marketing strategies. We are committed to helping businesses establish a strong online presence and achieve their digital goals.</p><p>Our team of skilled professionals excels in creating visually appealing and user-friendly websites, as well as developing robust mobile applications. We leverage the latest technologies and industry best practices to deliver high-quality, customized solutions.</p><p>In addition to development services, our expertise extends to software solutions that streamline business operations and drive productivity. From CRM systems to enterprise applications, we provide tailored software solutions to meet specific business needs.</p><p>eManager's comprehensive digital marketing strategies encompass various aspects such as search engine optimization (SEO), social media marketing, content creation, and paid advertising. Our data-driven approach ensures increased brand visibility, audience engagement, and conversions.</p><p>At eManager, we prioritize client satisfaction through open communication, collaboration, and timely project delivery. Partner with us to harness the power of technology and elevate your business in the digital landscape. Let eManager be your trusted digital solutions partner for success.</p>",
-//   "profileDoc": "1702446157603-emanagerbd-profile.pdf",
-//   "image": "1702446013645-1702178307738-about2.png",
-//   "updatedAt": {
-//     "$date": "2023-12-13T05:42:37.875Z"
-//   }
-// }

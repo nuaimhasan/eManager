@@ -65,7 +65,7 @@ export default function CounterLists() {
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`${import.meta.env.VITE_SERVER_IMG}/counter/${
+                    src={`${import.meta.env.VITE_BACKEND_URL}/counter/${
                       item?.icon
                     }`}
                     alt="icon"

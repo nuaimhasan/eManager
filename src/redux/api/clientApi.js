@@ -4,7 +4,7 @@ export const clientApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addClient: builder.mutation({
       query: (formData) => ({
-        url: `clients/add`,
+        url: `client/add`,
         method: "POST",
         body: formData,
       }),
@@ -12,14 +12,14 @@ export const clientApi = baseApi.injectEndpoints({
     }),
     getClients: builder.query({
       query: () => ({
-        url: `clients`,
+        url: `client/all-clients`,
         method: "GET",
       }),
       providesTags: ["client"],
     }),
     deleteClient: builder.mutation({
       query: (id) => ({
-        url: `clients/${id}`,
+        url: `client/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["client"],

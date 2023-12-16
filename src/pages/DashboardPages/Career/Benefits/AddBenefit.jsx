@@ -1,17 +1,16 @@
-import JoditEditor from "jodit-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
 import { useAddBenefitMutation } from "../../../../redux/api/benefitsApi";
+import { useNavigate } from "react-router-dom";
 
 export default function AddBenefit() {
-  const editor = useRef(null);
   const [images, setImages] = useState([]);
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
-
-  const [addBenefit] = useAddBenefitMutation();
+  const navigate = useNavigate();
+  const [addBenefit, { isLoading }] = useAddBenefitMutation();
 
   const handleAddBenefit = async (e) => {
     e.preventDefault();
@@ -23,22 +22,23 @@ export default function AddBenefit() {
 
     try {
       const res = await addBenefit(formData).unwrap();
-      if (res.success) {
+      if (res?.success) {
         setTitle("");
         setDescription("");
         setImages([]);
 
         Swal.fire({
           icon: "success",
-          title: "Success",
-          text: res.message,
+          title: "",
+          text: "Benefit add success",
         });
+        navigate("/admin/career/benefits");
       }
     } catch (error) {
       console.log(error);
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }
@@ -115,18 +115,22 @@ export default function AddBenefit() {
             <p className="border-b p-3">Description</p>
 
             <div className="p-4 about_details">
-              <JoditEditor
-                ref={editor}
+              <textarea
+                rows="4"
                 defaultValue={description}
-                onBlur={(text) => setDescription(text)}
-              />
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
             </div>
           </div>
         </div>
 
         <div className="mt-6">
-          <button onClick={handleAddBenefit} className="gradient-primary-btn">
-            Save Benefit
+          <button
+            disabled={isLoading && "disabled"}
+            onClick={handleAddBenefit}
+            className="gradient-primary-btn"
+          >
+            {isLoading ? "Loading..." : "Add Benefit"}
           </button>
         </div>
       </form>

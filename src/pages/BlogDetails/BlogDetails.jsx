@@ -15,7 +15,7 @@ export default function BlogDetails() {
     <section className="pb-10">
       <div className="container">
         <img
-          src={`${import.meta.env.VITE_SERVER_IMG}/blogs/${blog?.image}`}
+          src={`${import.meta.env.VITE_BACKEND_URL}/blogs/${blog?.image}`}
           alt=""
           className="w-full h-96"
         />

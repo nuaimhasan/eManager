@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAddJobApplyFormMutation } from "../../redux/api/jobApplyFormApi";
 import { useGetJobByIdQuery } from "../../redux/api/jobsApi";
 import "./CareerDetails.css";
 
 export default function CareerDetails() {
-  window.scroll(0, 0);
+  // window.scroll(0, 0);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     firstName: "",
@@ -81,15 +82,17 @@ export default function CareerDetails() {
 
         Swal.fire({
           icon: "success",
-          title: "Success",
-          text: res.message,
+          title: "",
+          text: "Apply success",
         });
+
+        navigate("/career");
       }
     } catch (error) {
       console.log(error);
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong",
       });
     }
@@ -230,6 +233,7 @@ export default function CareerDetails() {
                 id="file_input"
                 type="file"
                 name="file"
+                accept="application/pdf"
                 onChange={(e) =>
                   setForm({
                     ...form,

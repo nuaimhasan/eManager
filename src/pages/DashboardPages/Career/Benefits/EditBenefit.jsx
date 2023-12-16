@@ -1,8 +1,7 @@
-import JoditEditor from "jodit-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   useGetBenefitByIdQuery,
@@ -11,14 +10,14 @@ import {
 
 export default function EditBenefit() {
   const { id } = useParams();
-
-  const { data, isLoading } = useGetBenefitByIdQuery(id);
-  const [updateBenefit] = useUpdateBenefitMutation();
-
-  const editor = useRef(null);
+  const navigate = useNavigate();
   const [images, setImages] = useState([]);
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
+
+  const { data, isLoading } = useGetBenefitByIdQuery(id);
+  const [updateBenefit, { isLoading: updateLoading }] =
+    useUpdateBenefitMutation();
 
   useEffect(() => {
     if (data?.data && !isLoading) {
@@ -39,20 +38,21 @@ export default function EditBenefit() {
 
     try {
       const res = await updateBenefit({ id, formData }).unwrap();
-      if (res.success) {
+      if (res?.success) {
         setImages([]);
 
         Swal.fire({
           icon: "success",
-          title: "Success",
-          text: res.message,
+          title: "",
+          text: "Update benefit success",
         });
+
+        navigate("/admin/career/benefits");
       }
     } catch (error) {
-      // console.log(error);
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }
@@ -120,6 +120,16 @@ export default function EditBenefit() {
                     </div>
                   )}
                 </ImageUploading>
+
+                {data?.data?.image && (
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/benefit/${
+                      data?.data?.image
+                    }`}
+                    alt=""
+                    className="w-32 mt-4"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -128,18 +138,22 @@ export default function EditBenefit() {
             <p className="border-b p-3">Description</p>
 
             <div className="p-4 about_details">
-              <JoditEditor
-                ref={editor}
+              <textarea
+                rows="4"
                 defaultValue={description}
-                onBlur={(text) => setDescription(text)}
-              />
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
             </div>
           </div>
         </div>
 
         <div className="mt-6">
-          <button className="gradient-primary-btn" onClick={updateBlogHandler}>
-            Update
+          <button
+            disabled={updateLoading && "disabled"}
+            className="gradient-primary-btn"
+            onClick={updateBlogHandler}
+          >
+            {updateLoading ? "Loading..." : "Update"}
           </button>
         </div>
       </form>

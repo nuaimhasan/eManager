@@ -6,30 +6,36 @@ import {
   useDeleteServiceByIdMutation,
   useGetAllServicesQuery,
 } from "../../../redux/api/serviceApi";
+import Spinner from "../../../components/Spinner/Spinner";
 
 export default function ServicesList() {
   const { data, isLoading } = useGetAllServicesQuery();
   const [deleteServiceById] = useDeleteServiceByIdMutation();
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Spinner />;
 
-  const services = data.data;
+  const services = data?.data;
 
   const handleDelete = async (id) => {
-    try {
-      const res = await deleteServiceById(id).unwrap();
+    const isConfirm = window.confirm("are you sure delete this service?");
+    if (isConfirm) {
+      try {
+        const res = await deleteServiceById(id).unwrap();
 
-      if (res.success) {
+        if (res.success) {
+          Swal.fire({
+            icon: "success",
+            title: "",
+            text: "Service Deleted Successfully",
+          });
+        }
+      } catch (error) {
         Swal.fire({
-          icon: "success",
-          title: "Service Deleted Successfully",
+          icon: "error",
+          title: "",
+          text: "Something went wrong",
         });
       }
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Something went wrong",
-      });
     }
   };
 
@@ -60,11 +66,11 @@ export default function ServicesList() {
           </thead>
           <tbody>
             {services?.map((service, index) => (
-              <tr key={service._id}>
+              <tr key={service?._id}>
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    src={`${import.meta.env.VITE_SERVER_IMG}/service/icon/${
+                    src={`${import.meta.env.VITE_BACKEND_URL}/services/${
                       service?.icon
                     }`}
                     alt="icon"
@@ -74,7 +80,7 @@ export default function ServicesList() {
                 <td>{service.title}</td>
                 <td>
                   <img
-                    src={`${import.meta.env.VITE_SERVER_IMG}/service/image/${
+                    src={`${import.meta.env.VITE_BACKEND_URL}/services/${
                       service?.image
                     }`}
                     alt="icon"
@@ -83,10 +89,10 @@ export default function ServicesList() {
                 </td>
                 <td>
                   <div className="flex items-center gap-2">
-                    <Link to={`/admin/services/edit/${service._id}`}>
+                    <Link to={`/admin/services/edit/${service?._id}`}>
                       <FaRegEdit className="text-[17px] hover:text-secondary" />
                     </Link>
-                    <button onClick={() => handleDelete(service.id)}>
+                    <button onClick={() => handleDelete(service?.id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />
                     </button>
                   </div>

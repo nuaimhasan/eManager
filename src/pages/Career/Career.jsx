@@ -20,9 +20,8 @@ export default function Career() {
   }
 
   const jobs = jobData?.data;
-  const benefits = benefitData?.data;
   const careerBanner = careerBanners?.data[0];
-  const details = benefits?.description && parse(careerBanner?.description);
+  const benefits = benefitData?.data;
 
   return (
     <section>
@@ -112,7 +111,7 @@ export default function Career() {
               <div key={benefit.id}>
                 <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
                   <img
-                    src={`${import.meta.env.VITE_SERVER_IMG}/benefit/${
+                    src={`${import.meta.env.VITE_BACKEND_URL}/benefit/${
                       benefit?.image
                     }`}
                     alt=""
@@ -120,7 +119,9 @@ export default function Career() {
                   />
                 </div>
                 <h3 className="text-lg font-medium mt-2">{benefit?.title}</h3>
-                <p className="text-neutral-content text-sm">{details}</p>
+                <p className="text-neutral-content text-sm">
+                  {parse(benefit?.description)}
+                </p>
               </div>
             ))}
           </div>
