@@ -1,12 +1,12 @@
-// import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import { useAddAdministratorMutation } from "../../../redux/api/administratorApi";
 
 export default function AddAdministrator() {
-  // const navigate = useNavigate();
-  const [addAdministrator] = useAddAdministratorMutation();
+  const navigate = useNavigate();
+  const [addAdministrator, { isLoading, isError, error }] =
+    useAddAdministratorMutation();
 
   const handleAdd = async (e) => {
     e.preventDefault();
@@ -26,18 +26,17 @@ export default function AddAdministrator() {
 
     try {
       const res = await addAdministrator({ ...info }).unwrap();
-      // console.log(res);
 
-      if (res.success) {
+      if (res?.success) {
         Swal.fire({
           icon: "success",
-          title: "Success",
-          text: "Administrator added successfully",
+          title: "",
+          text: "Administrator add success",
         });
         form.reset();
+        navigate("/admin/administrator/all-administrator");
       }
     } catch (error) {
-      // console.log(error);
       Swal.fire({
         icon: "error",
         title: "Error",
@@ -75,15 +74,17 @@ export default function AddAdministrator() {
             </div>
           </div>
 
-          {/* {isError && (
+          {isError && (
             <p className="text-sm text-red-500">{error?.data?.message}</p>
-          )} */}
+          )}
 
           <div>
-            {/* <button disabled={isLoading && "disabled"} className="gradient-primary-btn">
+            <button
+              disabled={isLoading && "disabled"}
+              className="gradient-primary-btn"
+            >
               {isLoading ? "Loading..." : "Add Administrator"}
-            </button> */}
-            <button className="gradient-primary-btn">Add Administrator</button>
+            </button>
           </div>
         </form>
       </div>

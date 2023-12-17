@@ -4,37 +4,35 @@ import {
   useDeleteAdminMutation,
   useGetAdminsQuery,
 } from "../../../redux/api/administratorApi";
-// import Spinner from "../../../components/Spinner/Spinner";
-// import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function Administrator() {
   const { data, isLoading } = useGetAdminsQuery();
   const [deleteAdmin] = useDeleteAdminMutation();
-
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
-
   const admins = data?.data;
 
   const handleDelete = async (id) => {
-    try {
-      const res = await deleteAdmin(id).unwrap();
-      if (res.success) {
+    const isConfirm = window.confirm("are you sure delete this admin?");
+    if (isConfirm) {
+      try {
+        const res = await deleteAdmin(id).unwrap();
+        if (res?.success) {
+          Swal.fire({
+            icon: "success",
+            title: "",
+            text: "Deleted success",
+          });
+        }
+      } catch (error) {
         Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Admin deleted successfully",
+          icon: "error",
+          title: "",
+          text: error?.message,
         });
       }
-    } catch (error) {
-      // console.log(error);
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: `${error?.message}`,
-      });
     }
   };
 
