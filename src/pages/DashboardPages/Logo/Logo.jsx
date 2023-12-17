@@ -21,10 +21,7 @@ export default function Logo() {
     return <Spinner />;
   }
 
-  const id = data?.data[0]?.id;
-
-  // console.log(id);
-  // console.log(data?.data[0]);
+  const id = data?.data[0]?._id;
 
   const handleUpdateMainLogo = async () => {
     let logo = mainLogos[0]?.file;
@@ -106,10 +103,10 @@ export default function Logo() {
                 )}
               </ImageUploading>
 
-              {data?.data && mainLogos?.length >= 0 && (
+              {data?.data[0]?.logo && (
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/logos/${
-                    data?.data[0]?.filename
+                  src={`${import.meta.env.VITE_BACKEND_URL}/logo/${
+                    data?.data[0]?.logo
                   }`}
                   alt=""
                   className="w-32 mt-4"

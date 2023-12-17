@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   useGetWhyChooseByIdQuery,
   useUpdateWhyChooseMutation,
@@ -13,10 +13,11 @@ export default function EditChoose() {
   const [mainLogos, setMainLogos] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading } = useGetWhyChooseByIdQuery(id);
-  const [updateWhyChoose] = useUpdateWhyChooseMutation();
+  const [updateWhyChoose, { isLoading: updateLoading }] =
+    useUpdateWhyChooseMutation();
 
   useEffect(() => {
     if (!isLoading && data) {
@@ -41,23 +42,21 @@ export default function EditChoose() {
     }
 
     try {
-      await updateWhyChoose({ id, formData });
-
-      setMainLogos([]);
-
-      swal.fire({
-        title: "Success!",
-        text: "Why Choose Updated Successfully!",
-        icon: "success",
-        confirmButtonText: "Ok",
-      });
+      const res = await updateWhyChoose({ id, formData });
+      if (res?.data?.success) {
+        setMainLogos([]);
+        swal.fire({
+          title: "",
+          text: "Why Choose Updated Successfully!",
+          icon: "success",
+        });
+        navigate("/admin/why-choose");
+      }
     } catch (error) {
-      // console.log(error);
       swal.fire({
-        title: "Error!",
+        title: "",
         text: "Something went wrong!",
         icon: "error",
-        confirmButtonText: "Ok",
       });
     }
   };
@@ -72,7 +71,7 @@ export default function EditChoose() {
         <form className="md:w-1/2">
           <div>
             <p className="text-neutral-content mb-1">
-              Icon <small>(100px/100px)</small>
+              Icon <small>(120px/80px)</small>
             </p>
             <div className="sm:flex items-center gap-4">
               <ImageUploading
@@ -116,6 +115,15 @@ export default function EditChoose() {
                   </div>
                 )}
               </ImageUploading>
+              {data?.data?.icon && (
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/whychoose/${
+                    data?.data?.icon
+                  }`}
+                  alt=""
+                  className="w-10 mt-4"
+                />
+              )}
             </div>
           </div>
 
@@ -146,8 +154,9 @@ export default function EditChoose() {
               onClick={handleUpdate}
               type="submit"
               className="gradient-primary-btn"
+              disabled={updateLoading && "disabled"}
             >
-              Edit Choose
+              {updateLoading ? "Loading..." : "Update"}
             </button>
           </div>
         </form>

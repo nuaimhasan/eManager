@@ -21,7 +21,8 @@ export default function EditService() {
   const navigate = useNavigate();
 
   const { data, isLoading } = useGetServiceByIdQuery(slug);
-  const [updateServiceById] = useUpdateServiceByIdMutation();
+  const [updateServiceById, { isLoading: updateLoading }] =
+    useUpdateServiceByIdMutation();
 
   useEffect(() => {
     if (data?.data && !isLoading) {
@@ -131,6 +132,15 @@ export default function EditService() {
                       </div>
                     )}
                   </ImageUploading>
+                  {data?.data?.icon && (
+                    <img
+                      src={`${import.meta.env.VITE_BACKEND_URL}/services/${
+                        data?.data?.icon
+                      }`}
+                      alt=""
+                      className="w-10 mt-4"
+                    />
+                  )}
                 </div>
               </div>
 
@@ -179,15 +189,15 @@ export default function EditService() {
                     )}
                   </ImageUploading>
 
-                  {/* {data?.data?.image && (
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/images/about/${
-                      data?.data?.image
-                    }`}
-                    alt=""
-                    className="w-32 mt-4"
-                  />
-                )} */}
+                  {data?.data?.image && (
+                    <img
+                      src={`${import.meta.env.VITE_BACKEND_URL}/services/${
+                        data?.data?.image
+                      }`}
+                      alt=""
+                      className="w-32 mt-4"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -217,11 +227,6 @@ export default function EditService() {
                 <JoditEditor
                   ref={editor}
                   value={description}
-                  // defaultValue={
-                  //   data?.data?.description?.length > 0
-                  //     ? data?.data?.description
-                  //     : details
-                  // }
                   onBlur={(text) => setDescription(text)}
                 />
               </div>
@@ -229,17 +234,12 @@ export default function EditService() {
           </div>
 
           <div className="mt-6">
-            {/* <button
-            disabled={updateLoading && "disabled"}
-            className="gradient-primary-btn"
-          >
-            {updateLoading ? "Loading" : "Save"}
-          </button> */}
             <button
+              disabled={updateLoading && "disabled"}
               className="gradient-primary-btn"
               onClick={updateServiceHandler}
             >
-              Update Service
+              {updateLoading ? "Loading" : "Update Service"}
             </button>
           </div>
         </form>

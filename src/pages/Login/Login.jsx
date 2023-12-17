@@ -6,7 +6,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [login, { isLoading }] = useLoginMutation();
-
   const { loggedUser } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
@@ -44,7 +43,7 @@ const Login = () => {
 
   return (
     <section className="flex items-center justify-center w-full min-h-screen bg-gray-100">
-      <div className="bg-base-100 rounded shadow lg:w-1/4 py-5">
+      <div className="bg-base-100 rounded shadow lg:w-[500px] py-5">
         <div className="p-4 border-b">
           <h3 className="font-medium text-neutral text-center uppercase">
             Admin Login

@@ -1,12 +1,13 @@
 import "./Blogs.css";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import { useGetBlogsQuery } from "../../redux/api/blogApi";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function Blogs() {
   window.scroll(0, 0);
 
   const { data, isLoading } = useGetBlogsQuery();
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner />;
   const blogs = data?.data;
 
   return (

@@ -34,7 +34,7 @@ export const counterApi = baseApi.injectEndpoints({
     }),
     deleteCounter: builder.mutation({
       query: (id) => ({
-        url: `counters/${id}`,
+        url: `counter/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["counter"],

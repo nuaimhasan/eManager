@@ -5,6 +5,7 @@ import { useGetBenefitsQuery } from "../../redux/api/benefitsApi";
 import { useGetCareerBannerQuery } from "../../redux/api/careerBannerApi";
 import { useGetJobsQuery } from "../../redux/api/jobsApi";
 import parse from "html-react-parser";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function Career() {
   window.scroll(0, 0);
@@ -16,7 +17,7 @@ export default function Career() {
     useGetBenefitsQuery();
 
   if (isCareerBannersLoading || isJobDataLoading || isBenefitDataLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   const jobs = jobData?.data;

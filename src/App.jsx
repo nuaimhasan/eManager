@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import { routes } from "./Routes/Routes";
-import Spinner from "./components/Spinner/Spinner";
 import useAuthCheck from "./hook/useAuthCheck";
+import Loader from "./components/Loader/Loader";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -13,16 +13,12 @@ export default function App() {
 
   const authChecked = useAuthCheck();
   if (!authChecked) {
-    return <Spinner />;
+    return <Loader />;
   }
 
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <RouterProvider router={routes}></RouterProvider>
-      )}
+      {loading ? <Loader /> : <RouterProvider router={routes}></RouterProvider>}
     </>
   );
 }

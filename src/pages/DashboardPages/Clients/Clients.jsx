@@ -15,24 +15,24 @@ export default function Clients() {
   const clients = data?.data;
 
   const deleteClientHandler = async (id) => {
-    try {
-      const res = await deleteClient(id).unwrap();
-      if (res.success) {
+    const isConfirm = window.confirm("Are you sure delete this client?");
+    if (isConfirm) {
+      try {
+        const res = await deleteClient(id).unwrap();
+        if (res?.success) {
+          Swal.fire({
+            title: "Success!",
+            text: "Client Deleted Successfully",
+            icon: "success",
+          });
+        }
+      } catch (error) {
         Swal.fire({
-          title: "Success!",
-          text: "Client Deleted Successfully",
-          icon: "success",
-          confirmButtonText: "Ok",
+          title: "",
+          text: "Something went wrong",
+          icon: "error",
         });
       }
-    } catch (error) {
-      // console.log(error);
-      Swal.fire({
-        title: "Error!",
-        text: "Something went wrong",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
     }
   };
 
@@ -53,26 +53,24 @@ export default function Clients() {
             <tr>
               <th>Sl</th>
               <th>Logo</th>
-              <th>Order</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {clients?.map((client, index) => (
-              <tr key={client.id}>
+              <tr key={client?._id}>
                 <td>{index + 1}</td>
                 <td>
                   <img
                     src={`${import.meta.env.VITE_BACKEND_URL}/clients/${
                       client?.image
                     }`}
-                    alt={client.logo}
+                    alt={client?.logo}
                     className="w-20"
                   />
                 </td>
-                <td>{client.order}</td>
                 <td>
-                  <button onClick={() => deleteClientHandler(client.id)}>
+                  <button onClick={() => deleteClientHandler(client?._id)}>
                     <AiOutlineDelete className="text-lg hover:text-red-500" />
                   </button>
                 </td>

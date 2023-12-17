@@ -15,25 +15,25 @@ export default function CounterLists() {
   if (isLoading) return <div>Loading...</div>;
   const counters = data?.data;
 
-  // console.log(chooseLists);
   const handleDelete = async (id) => {
-    try {
-      await deleteCounter(id);
-
-      swal.fire({
-        title: "Success!",
-        text: "Deleted Successfully!",
-        icon: "success",
-        confirmButtonText: "Ok",
-      });
-    } catch (error) {
-      // console.log(error);
-      swal.fire({
-        title: "Error!",
-        text: "Something went wrong!",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
+    const isConfirm = window.confirm("are you sure delete this item?");
+    if (isConfirm) {
+      try {
+        const res = await deleteCounter(id);
+        if (res?.data?.success) {
+          swal.fire({
+            title: "",
+            text: "Deleted Successfull",
+            icon: "success",
+          });
+        }
+      } catch (error) {
+        swal.fire({
+          title: "",
+          text: "Something went wrong!",
+          icon: "error",
+        });
+      }
     }
   };
 
@@ -61,7 +61,7 @@ export default function CounterLists() {
           </thead>
           <tbody>
             {counters?.map((item, index) => (
-              <tr key={item.id}>
+              <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td>
                   <img
@@ -72,14 +72,14 @@ export default function CounterLists() {
                     className="w-10"
                   />
                 </td>
-                <td>{item.title}</td>
-                <td>{item.description}</td>
+                <td>{item?.title}</td>
+                <td>{item?.description}</td>
                 <td>
                   <div className="flex items-center gap-2">
-                    <Link to={`/admin/counter/edit/${item.id}`}>
+                    <Link to={`/admin/counter/edit/${item._id}`}>
                       <FaRegEdit className="text-[17px] hover:text-secondary" />
                     </Link>
-                    <button onClick={() => handleDelete(item?.id)}>
+                    <button onClick={() => handleDelete(item?._id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />
                     </button>
                   </div>

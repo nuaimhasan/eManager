@@ -10,7 +10,7 @@ export default function AddClient() {
   const [order, setOrder] = useState(1);
   const navigate = useNavigate();
 
-  const [addClient] = useAddClientMutation();
+  const [addClient, { isLoading }] = useAddClientMutation();
 
   const handleAddClient = async (e) => {
     e.preventDefault();
@@ -99,7 +99,7 @@ export default function AddClient() {
             </ImageUploading>
           </div>
         </div>
-        <div className="mt-4 px-4">
+        {/* <div className="mt-4 px-4">
           <p className="mb-1">Order</p>
           <input
             type="number"
@@ -107,11 +107,15 @@ export default function AddClient() {
             defaultValue={order}
             onChange={(e) => setOrder(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <div className="flex justify-end mt-6 border-t p-4">
-          <button onClick={handleAddClient} className="gradient-primary-btn">
-            Add Client
+          <button
+            disabled={isLoading && "disabled"}
+            onClick={handleAddClient}
+            className="gradient-primary-btn"
+          >
+            {isLoading ? "Loading..." : "Add Client"}
           </button>
         </div>
       </form>

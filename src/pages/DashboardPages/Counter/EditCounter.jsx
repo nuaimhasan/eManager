@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import swal from "sweetalert2";
 import {
@@ -13,10 +13,11 @@ export default function EditCounter() {
   const [mainLogos, setMainLogos] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading } = useGetCounterByIdQuery(id);
-  const [updateCounter] = useUpdateCounterMutation();
+  const [updateCounter, { isLoading: updateLoading }] =
+    useUpdateCounterMutation();
 
   useEffect(() => {
     if (!isLoading && data) {
@@ -41,22 +42,21 @@ export default function EditCounter() {
     }
 
     try {
-      await updateCounter({ id, formData });
-
-      setMainLogos([]);
-
-      swal.fire({
-        title: "Success!",
-        text: "Why Choose Updated Successfully!",
-        icon: "success",
-        confirmButtonText: "Ok",
-      });
+      const res = await updateCounter({ id, formData });
+      if (res?.data?.success) {
+        setMainLogos([]);
+        swal.fire({
+          title: "",
+          text: "Why Choose Updated Successfully!",
+          icon: "success",
+        });
+        navigate("/admin/counter");
+      }
     } catch (error) {
       swal.fire({
-        title: "Error!",
+        title: "",
         text: "Something went wrong!",
         icon: "error",
-        confirmButtonText: "Ok",
       });
     }
   };
@@ -155,8 +155,9 @@ export default function EditCounter() {
               onClick={handleUpdate}
               type="submit"
               className="gradient-primary-btn"
+              disabled={updateLoading && "disabled"}
             >
-              Edit Choose
+              {updateLoading ? "Loading..." : "Update Counter"}
             </button>
           </div>
         </form>

@@ -15,7 +15,6 @@ export default function WhyChooseLists() {
   if (isLoading) return <div>Loading...</div>;
   const chooseLists = data?.data;
 
-  // console.log(chooseLists);
   const handleDelete = async (id) => {
     try {
       await deleteWhyChoose(id);
@@ -61,7 +60,7 @@ export default function WhyChooseLists() {
           </thead>
           <tbody>
             {chooseLists?.map((item, index) => (
-              <tr key={item.id}>
+              <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td>
                   <img
@@ -76,10 +75,10 @@ export default function WhyChooseLists() {
                 <td>{item.description}</td>
                 <td>
                   <div className="flex items-center gap-2">
-                    <Link to={`/admin/why-choose/edit/${item.id}`}>
+                    <Link to={`/admin/why-choose/edit/${item._id}`}>
                       <FaRegEdit className="text-[17px] hover:text-secondary" />
                     </Link>
-                    <button onClick={() => handleDelete(item?.id)}>
+                    <button onClick={() => handleDelete(item?._id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />
                     </button>
                   </div>

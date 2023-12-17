@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
 import { useSendMessageMutation } from "../../redux/api/sendMessageApi";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function ContactUs() {
   window.scroll(0, 0);
@@ -12,7 +13,7 @@ export default function ContactUs() {
   const { data, isLoading } = useGetContactUsQuery();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   const contactus = data?.data[0];

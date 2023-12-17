@@ -1,15 +1,20 @@
 import parse from "html-react-parser";
 import { useGetAboutUsQuery } from "../../redux/api/aboutUsApi";
+import Spinner from "../Spinner/Spinner";
 
 export default function AboutComponent() {
-  const { data } = useGetAboutUsQuery();
+  const { data, isLoading } = useGetAboutUsQuery();
   const aboutUs = data?.data[0];
   const details = aboutUs && parse(aboutUs?.description);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <div className="container">
       <div className="grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <h3 className="section_text">About Us</h3>
           <h2 className="text-2xl text-neutral">
             {aboutUs?.title}:{" "}
             <span className="text-secondary">{aboutUs?.tagline}</span>
@@ -20,9 +25,18 @@ export default function AboutComponent() {
           </div>
 
           <div className="mt-4">
-            <button className="gradient-primary-btn text-sm">
-              Company Profile
-            </button>
+            <a
+              href={`${import.meta.env.VITE_BACKEND_URL}/aboutus/${
+                aboutUs?.profileDoc
+              }`}
+              download="eManager-profile"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <button className="gradient-primary-btn text-sm">
+                Company Profile
+              </button>
+            </a>
           </div>
         </div>
 

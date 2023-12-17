@@ -9,7 +9,7 @@ export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const { pathname } = useLocation();
 
-  const { data } = useGetLogosQuery();
+  const { data, isLoading } = useGetLogosQuery();
   // const {data: menuData} = useGetMenusQuery();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function Header() {
     });
   }, []);
 
-  const logo = data?.data[0];
+  let logo = data?.data[0]?.logo;
 
   return (
     <>
@@ -32,11 +32,19 @@ export default function Header() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="min-w-[200px]"
             >
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/logo/${logo?.logo}`}
-                alt="emanager logo"
-                className="w-40 lg:w-44"
-              />
+              {isLoading ? (
+                <img
+                  src="/images/logo/logo.png"
+                  alt="emanager logo"
+                  className="w-40 lg:w-44"
+                />
+              ) : (
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/logo/${logo}`}
+                  alt="emanager logo"
+                  className="w-40 lg:w-44"
+                />
+              )}
             </Link>
 
             <nav className="menu_wrap flex items-center gap-4">
@@ -90,7 +98,7 @@ export default function Header() {
                   <NavLink to="/career">Career</NavLink>
                 </li>
                 <Link
-                  to="https://api.whatsapp.com/send?phone=01906198022"
+                  to="https://api.whatsapp.com/send?phone=8801906198022"
                   target="_blank"
                   className="gradient-primary-btn flex items-center gap-1 text-sm"
                 >

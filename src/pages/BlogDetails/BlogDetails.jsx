@@ -1,15 +1,19 @@
 import parse from "html-react-parser";
 import { useParams } from "react-router-dom";
 import { useGetBlogByIdQuery } from "../../redux/api/blogApi";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function BlogDetails() {
   window.scroll(0, 0);
-
   const { id } = useParams();
 
-  const { data } = useGetBlogByIdQuery(id);
+  const { data, isLoading } = useGetBlogByIdQuery(id);
   const blog = data?.data;
   const details = blog?.description && parse(blog?.description);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <section className="pb-10">

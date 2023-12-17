@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useAddJobApplyFormMutation } from "../../redux/api/jobApplyFormApi";
 import { useGetJobByIdQuery } from "../../redux/api/jobsApi";
 import "./CareerDetails.css";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function CareerDetails() {
   // window.scroll(0, 0);
@@ -28,7 +29,7 @@ export default function CareerDetails() {
   const [addJobApplyForm] = useAddJobApplyFormMutation();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   const job = data?.data;

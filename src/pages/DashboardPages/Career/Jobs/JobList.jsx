@@ -10,28 +10,26 @@ import {
 export default function JobsList() {
   const { data, isLoading } = useGetJobsQuery();
   const [deleteJob] = useDeleteJobMutation();
-
   if (isLoading) return <h1>Loading...</h1>;
 
   const jobs = data?.data;
-  // console.log(blogs);
 
   const handleDelete = async (id) => {
     const isConfirm = window.confirm("are you sure delete this?");
     if (isConfirm) {
       try {
         const res = await deleteJob(id).unwrap();
-        if (res.success) {
+        if (res?.success) {
           Swal.fire({
             icon: "success",
-            title: "Success",
-            text: res.message,
+            title: "",
+            text: "Delete success",
           });
         }
       } catch (error) {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
+          title: "",
           text: "Something went wrong!",
         });
       }
@@ -59,7 +57,7 @@ export default function JobsList() {
           </thead>
           <tbody>
             {jobs?.map((job, index) => (
-              <tr key={job.id}>
+              <tr key={job._id}>
                 <td>{index + 1}</td>
                 <td>{job.createdAt ? job.createdAt.split("T")[0] : ""}</td>
 
@@ -68,10 +66,10 @@ export default function JobsList() {
                 <td>{job?.title}</td>
                 <td>
                   <div className="flex items-center gap-2">
-                    <Link to={`/admin/jobs/edit-job/${job.id}`}>
+                    <Link to={`/admin/jobs/edit-job/${job._id}`}>
                       <FaRegEdit className="text-[17px] hover:text-secondary" />
                     </Link>
-                    <button onClick={() => handleDelete(job?.id)}>
+                    <button onClick={() => handleDelete(job?._id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />
                     </button>
                   </div>

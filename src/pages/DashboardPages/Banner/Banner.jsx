@@ -30,7 +30,7 @@ export default function Banner() {
     },
   ] = useAddBannerMutation();
 
-  const id = data?.data[0]?.id;
+  const id = data?.data[0]?._id;
 
   const handleAddUpdateBanner = async (e) => {
     e.preventDefault();
