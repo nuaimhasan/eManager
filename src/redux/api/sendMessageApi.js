@@ -4,7 +4,7 @@ export const sendMessageApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     sendMessage: builder.mutation({
       query: (data) => ({
-        url: `/message/add`,
+        url: `contactEmail/add`,
         method: "POST",
         body: data,
       }),
@@ -12,4 +12,4 @@ export const sendMessageApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {useSendMessageMutation} = sendMessageApi;
+export const { useSendMessageMutation } = sendMessageApi;

@@ -6,8 +6,8 @@ import { useSendMessageMutation } from "../../../redux/api/sendMessageApi";
 import { useGetContactUsQuery } from "../../../redux/api/contactUsApi";
 
 export default function ContactUs() {
-  const [sendMessage] = useSendMessageMutation();
   const { data, isLoading } = useGetContactUsQuery();
+  const [sendMessage, { isLoading: mailLoading }] = useSendMessageMutation();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -18,19 +18,19 @@ export default function ContactUs() {
   const sendMessasgeHandler = async (e) => {
     e.preventDefault();
 
-    const name = e.target.name.value;
-    const phone = e.target.phone.value;
-    const subject = e.target.subject.value;
-    const message = e.target.message.value;
-    const email = e.target.email.value;
+    const form = e.target;
+    const name = form.name.value;
+    const phone = form.phone.value;
+    const subject = form.subject.value;
+    const message = form.message.value;
+    const email = form.email.value;
 
     if (!name || !phone || !subject || !message || !email) {
-      Swal.fire({
+      return Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Please fill up all the fields!",
       });
-      return;
     }
 
     const data = {
@@ -43,17 +43,21 @@ export default function ContactUs() {
 
     try {
       const res = await sendMessage(data).unwrap();
-      if (res.success) {
+      console.log(res);
+
+      if (res?.success) {
         Swal.fire({
           icon: "success",
-          title: "Message Sent",
-          text: "We will contact you soon",
+          title: "",
+          text: "Thank you for contact us, We will contact you soon",
         });
+
+        form.reset();
       }
     } catch (err) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }
@@ -149,8 +153,12 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <button type="submit" className="gradient-primary-btn">
-                  Send Message
+                <button
+                  disabled={mailLoading && "disabled"}
+                  type="submit"
+                  className="gradient-primary-btn"
+                >
+                  {mailLoading ? "Loading..." : "Send Message"}
                 </button>
               </div>
             </form>
