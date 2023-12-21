@@ -1,76 +1,45 @@
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
-import swal from "sweetalert2";
-import { useCreateCounterMutation } from "../../../redux/api/CounterApi";
-import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-export default function AddNewCounter() {
-  const [mainLogos, setMainLogos] = useState([]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const navigate = useNavigate();
+export default function AddTeamMember() {
+  const [images, setImages] = useState([]);
+  const [name, setName] = useState("");
+  const [designation, setDesignation] = useState("");
 
-  const [createCounter, { isLoading }] = useCreateCounterMutation();
-
-  const creteNewCounter = async (e) => {
+  const handleAddTeam = async (e) => {
     e.preventDefault();
-    const file = mainLogos[0]?.file;
+    const file = images[0]?.file;
 
-    if (!file || !title || !description)
-      return swal.fire({
+    if (!file || !name || !designation)
+      return Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Please fill all the fields!",
       });
 
     const formData = new FormData();
     formData.append("icon", file);
-    formData.append("title", title);
-    formData.append("description", description);
-
-    try {
-      const res = await createCounter(formData).unwrap();
-
-      if (res?.success) {
-        setMainLogos([]);
-        setTitle("");
-        setDescription("");
-
-        swal.fire({
-          icon: "success",
-          title: "",
-          text: "Counter Added Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/admin/counter");
-      }
-    } catch (error) {
-      swal.fire({
-        icon: "error",
-        title: "",
-        text: "Something went wrong!",
-      });
-    }
+    formData.append("name", name);
+    formData.append("designation", designation);
   };
-
   return (
     <section>
       <div className="p-4 border-b bg-base-100 rounded">
-        <h1 className="font-medium text-neutral">Add New Counter</h1>
+        <h1 className="font-medium text-neutral">Add New Team Member</h1>
       </div>
 
       <div className="bg-base-100 rounded mt-2 p-3">
         <form className="md:w-1/2">
           <div>
             <p className="text-neutral-content mb-1">
-              Icon <small>(100px/100px)</small>
+              Image <small>(120px/120px)</small>
             </p>
             <div className="sm:flex items-center gap-4">
               <ImageUploading
-                defaultValue={mainLogos}
-                onChange={(icn) => setMainLogos(icn)}
+                defaultValue={images}
+                onChange={(img) => setImages(img)}
                 dataURLKey="data_url"
               >
                 {({ onImageUpload, onImageRemove, dragProps }) => (
@@ -89,8 +58,8 @@ export default function AddNewCounter() {
                       <p className="text-neutral-content">or Drop here</p>
                     </div>
 
-                    <div className={`${mainLogos?.length > 0 && "mt-4"} `}>
-                      {mainLogos?.map((img, index) => (
+                    <div className={`${images?.length > 0 && "mt-4"} `}>
+                      {images?.map((img, index) => (
                         <div key={index} className="image-item relative">
                           <img
                             src={img["data_url"]}
@@ -113,36 +82,36 @@ export default function AddNewCounter() {
           </div>
 
           <div className="mt-4">
-            <p className="mb-1">Title</p>
+            <p className="mb-1">Name</p>
             <input
               type="text"
-              name="title"
-              defaultValue={title}
+              name="name"
+              defaultValue={name}
               required
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
           <div className="mt-4">
-            <p className="mb-1">Description</p>
+            <p className="mb-1">Designation</p>
             <textarea
-              name="description"
+              name="designation"
               rows="5"
-              defaultValue={description}
+              defaultValue={designation}
               required
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setDesignation(e.target.value)}
             ></textarea>
           </div>
 
           <div className="mt-5">
-            <button
-              onClick={creteNewCounter}
+            {/* <button
+              onClick={handleAddTeam}
               type="submit"
               className="gradient-primary-btn"
               disabled={isLoading && "disabled"}
             >
-              {isLoading ? "Loading..." : "Add Counter"}
-            </button>
+              {isLoading ? "Loading..." : "Add Team"}
+            </button> */}
           </div>
         </form>
       </div>

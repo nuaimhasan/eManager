@@ -46,6 +46,10 @@ import EditBenefit from "../pages/DashboardPages/Career/Benefits/EditBenefit";
 import ApplicantsList from "../pages/DashboardPages/Career/Applicants/ApplicantsList";
 import Login from "../pages/Login/Login";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import OurTeamPage from "../pages/OurTeamPage/OurTeamPage";
+import AllTeams from "../pages/DashboardPages/Teams/AllTeams";
+import AddTeamMember from "../pages/DashboardPages/Teams/AddTeamMember";
+import EditTeam from "../pages/DashboardPages/Teams/EditTeam";
 
 export const routes = createBrowserRouter([
   {
@@ -87,6 +91,10 @@ export const routes = createBrowserRouter([
       {
         path: "/career/:id",
         element: <CareerDetails />,
+      },
+      {
+        path: "/our-team",
+        element: <OurTeamPage />,
       },
     ],
   },
@@ -165,6 +173,18 @@ export const routes = createBrowserRouter([
       {
         path: "/admin/clients/add-client",
         element: <AddClient />,
+      },
+      {
+        path: "/admin/teams/all-teams",
+        element: <AllTeams />,
+      },
+      {
+        path: "/admin/teams/add-team",
+        element: <AddTeamMember />,
+      },
+      {
+        path: "/admin/teams/edit-team/:id",
+        element: <EditTeam />,
       },
       {
         path: "/admin/why-choose",

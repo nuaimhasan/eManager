@@ -9,10 +9,10 @@ export default function Clients() {
   const clients = data?.data;
 
   return (
-    <section className="py-10 lg:py-16 bg-base-100" id="clients">
+    <section className="py-10 bg-secondary" id="clients">
       <div className="container">
         <div className="text-center">
-          <h2 className="text-2xl md:text-3xl font-medium text-neutral">
+          <h2 className="text-xl md:text-2xl font-medium text-base-100">
             Our Valued Clients
           </h2>
         </div>
@@ -44,14 +44,14 @@ export default function Clients() {
             modules={[Autoplay]}
           >
             {clients?.map((client) => (
-              <SwiperSlide key={client?.id}>
-                <div className="shadow w-full h-20 rounded flex justify-center items-center">
+              <SwiperSlide key={client?._id}>
+                <div className="shadow w-full h-16 rounded flex justify-center items-center bg-gray-300">
                   <img
                     src={`${import.meta.env.VITE_BACKEND_URL}/clients/${
                       client?.image
                     }`}
                     alt=""
-                    className="w-[70%] h-1/2"
+                    className="w-[70%] h-[60%]"
                   />
                 </div>
               </SwiperSlide>

@@ -86,6 +86,13 @@ export default function Header() {
                 </li>
                 <li>
                   {pathname === "/" ? (
+                    <a href="#our-team">Our Team</a>
+                  ) : (
+                    <NavLink to="/our-team">Our Team</NavLink>
+                  )}
+                </li>
+                <li>
+                  {pathname === "/" ? (
                     <a href="#blogs">Blogs</a>
                   ) : (
                     <NavLink to="/blogs">Blogs</NavLink>

@@ -7,6 +7,7 @@ import CounterArea from "../../components/HomeComponents/CounterArea/CounterArea
 import Hero from "../../components/HomeComponents/Hero/Hero";
 import Services from "../../components/HomeComponents/Services/Services";
 import WhyChooseUs from "../../components/HomeComponents/WhyChooseUs/WhyChooseUs";
+import OurTeam from "../../components/OurTeam/OurTeam";
 
 export default function Home() {
   window.scroll(0, 0);
@@ -16,10 +17,11 @@ export default function Home() {
       <Services />
       <About />
       <WhyChooseUs />
-      <Blogs />
       <ContactUs />
       <CounterArea />
+      <Blogs />
       <Clients />
+      <OurTeam />
     </div>
   );
 }

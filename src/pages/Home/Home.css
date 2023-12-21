@@ -9,6 +9,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  text-align: center;
 }
 
 .counter_card .icon img {
@@ -20,7 +22,28 @@
 }
 
 .counter_card h1 {
-  font-size: 25px;
   font-weight: 600;
   margin-top: 5px;
+}
+
+/* ----------------------- */
+.team_card {
+  padding: 50px 20px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 8px 26px -4px rgba(88, 88, 88, 0.188),
+    0 8px 9px -10px rgba(28, 27, 27, 0.097);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.team_card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }

@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
-import { MdOutlineDashboard, MdMonitor } from "react-icons/md";
-import { RiAdminFill } from "react-icons/ri";
+import {
+  MdOutlineDashboard,
+  MdMonitor,
+  MdHomeRepairService,
+} from "react-icons/md";
+import { RiAdminFill, RiTeamFill } from "react-icons/ri";
+import { FaRegHandshake, FaBlogger, FaUsers } from "react-icons/fa";
 import { BsCart4 } from "react-icons/bs";
+import { TbBrandDaysCounter } from "react-icons/tb";
 import SidebarItems from "./SidebarItems";
 
 const adminSidebarItems = [
@@ -33,7 +39,7 @@ const adminSidebarItems = [
     ],
   },
   {
-    icon: <RiAdminFill />,
+    icon: <FaBlogger />,
     title: "Blogs",
     subMenu: [
       {
@@ -47,17 +53,7 @@ const adminSidebarItems = [
     ],
   },
   {
-    icon: <RiAdminFill />,
-    title: "Clients",
-    subMenu: [
-      {
-        title: "All Clients",
-        path: "/admin/clients/all-clients",
-      },
-    ],
-  },
-  {
-    icon: <RiAdminFill />,
+    icon: <FaRegHandshake />,
     title: "Why Choose",
     subMenu: [
       {
@@ -67,7 +63,7 @@ const adminSidebarItems = [
     ],
   },
   {
-    icon: <RiAdminFill />,
+    icon: <TbBrandDaysCounter />,
     title: "Counter Area",
     subMenu: [
       {
@@ -77,7 +73,7 @@ const adminSidebarItems = [
     ],
   },
   {
-    icon: <RiAdminFill />,
+    icon: <MdHomeRepairService />,
     title: "Career",
     subMenu: [
       {
@@ -95,6 +91,26 @@ const adminSidebarItems = [
       {
         title: "Applicants List",
         path: "/admin/career/all-applicants",
+      },
+    ],
+  },
+  {
+    icon: <FaUsers />,
+    title: "Clients",
+    subMenu: [
+      {
+        title: "All Clients",
+        path: "/admin/clients/all-clients",
+      },
+    ],
+  },
+  {
+    icon: <RiTeamFill />,
+    title: "Teams",
+    subMenu: [
+      {
+        title: "All Teams",
+        path: "/admin/teams/all-teams",
       },
     ],
   },

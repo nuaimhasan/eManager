@@ -16,7 +16,7 @@ export default function AboutComponent() {
       <div className="grid lg:grid-cols-2 gap-10 items-center">
         <div>
           <h2 className="text-xl sm:text-3xl text-neutral">
-            {aboutUs?.title}:{" "}
+            {aboutUs?.title}{" "}
             <span className="text-secondary">{aboutUs?.tagline}</span>
           </h2>
 

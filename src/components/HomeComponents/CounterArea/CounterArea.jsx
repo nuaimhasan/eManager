@@ -19,8 +19,8 @@ export default function CounterArea() {
                   alt="icon"
                 />
               </div>
-              <h1>{counter?.title}</h1>
-              <h2>{counter?.description}</h2>
+              <h1 className="text-xl sm:text-2xl">{counter?.title}</h1>
+              <h2 className="text-sm sm:text-base">{counter?.description}</h2>
             </div>
           ))}
         </div>

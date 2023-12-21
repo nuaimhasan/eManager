@@ -7,9 +7,8 @@ import { useGetAllServicesQuery } from "../../redux/api/serviceApi";
 import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
 
 export default function Footer() {
-
-  const {data: serviceData} = useGetAllServicesQuery();
-  const {data: contactUsData} = useGetContactUsQuery();
+  const { data: serviceData } = useGetAllServicesQuery();
+  const { data: contactUsData } = useGetContactUsQuery();
 
   const services = serviceData?.data;
   const contactUs = contactUsData?.data[0];
@@ -43,7 +42,7 @@ export default function Footer() {
               Popular Services
             </h2>
             <ul className="text-sm flex flex-col gap-1">
-              {services?.slice(0, 5).map((service) => (
+              {services?.slice(0, 8).map((service) => (
                 <li key={service?.id}>
                   <Link
                     to={`/service/${service?.slug}`}
@@ -68,13 +67,13 @@ export default function Footer() {
               </li>
 
               <li>
-                <Link to="/about-us" className="hover:underline">
+                <Link to="/contact-us" className="hover:underline">
                   Contact Us
                 </Link>
               </li>
 
               <li>
-                <Link to="/about-us" className="hover:underline">
+                <Link to="/career" className="hover:underline">
                   Career
                 </Link>
               </li>
@@ -84,6 +83,13 @@ export default function Footer() {
                   Privacy Policy
                 </Link>
               </li>
+
+              <li>
+                <Link to="/" className="hover:underline">
+                  Return Policy
+                </Link>
+              </li>
+
               <li>
                 <Link to="/" className="hover:underline">
                   Terms & Conditions
@@ -123,7 +129,10 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to={contactUs?.whatsapp} target="_blank">
+              <Link
+                to={`https://api.whatsapp.com/send?phone=${contactUs?.whatsapp}`}
+                target="_blank"
+              >
                 <IoLogoWhatsapp className="text-xl hover:-mt-2 duration-300" />
               </Link>
             </li>
