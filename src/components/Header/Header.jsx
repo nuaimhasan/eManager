@@ -102,6 +102,9 @@ export default function Header() {
                   <a href="#clients">Clients</a>
                 </li>
                 <li>
+                  <NavLink to="/campaigns">Campaigns</NavLink>
+                </li>
+                <li>
                   <NavLink to="/career">Career</NavLink>
                 </li>
                 <Link

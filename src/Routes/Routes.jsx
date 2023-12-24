@@ -50,6 +50,8 @@ import OurTeamPage from "../pages/OurTeamPage/OurTeamPage";
 import AllTeams from "../pages/DashboardPages/Teams/AllTeams";
 import AddTeamMember from "../pages/DashboardPages/Teams/AddTeamMember";
 import EditTeam from "../pages/DashboardPages/Teams/EditTeam";
+import Campaigns from "../pages/Campaigns/Campaigns";
+import CampaignDetails from "../pages/CampaignDetails/CampaignDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -83,6 +85,14 @@ export const routes = createBrowserRouter([
       {
         path: "/blogs/:id",
         element: <BlogDetails />,
+      },
+      {
+        path: "/campaigns",
+        element: <Campaigns />,
+      },
+      {
+        path: "/campaigns/:id",
+        element: <CampaignDetails />,
       },
       {
         path: "/career",
