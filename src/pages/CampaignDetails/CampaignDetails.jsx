@@ -9,8 +9,8 @@ const CampaignDetails = () => {
             Campaign Checkout
           </p>
 
-          <div className="lg:flex gap-10">
-            <div className="lg:w-[70%] h-full mb-10 lg:mb-0">
+          <div className="md:flex items-start justify-center gap-10">
+            <div className="lg:w-[40%] md:w-[60%] h-full mb-10 lg:mb-0">
               <div className="shadow-lg p-7">
                 <p className="text-lg font-semibold text-center">
                   Billing Details
@@ -81,7 +81,7 @@ const CampaignDetails = () => {
                 </form>
               </div>
             </div>
-            <div className="lg:w-[30%] h-full">
+            <div className="lg:w-[30%] md:w-[40%] h-full">
               <div className="price_card relative">
                 <div className="bg-gray-100 head text-secondary">
                   <h2 className="text-lg font-semibold">BASIC</h2>
