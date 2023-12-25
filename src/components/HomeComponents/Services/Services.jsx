@@ -2,6 +2,7 @@ import "./Services.css";
 import { useGetServiceSectionsQuery } from "../../../redux/api/serviceSectionApi";
 import { useGetAllServicesQuery } from "../../../redux/api/serviceApi";
 import ServiceCard from "../../ServiceCard/ServiceCard";
+import Spinner from "../../Spinner/Spinner";
 
 export default function Services() {
   const { data, isLoading } = useGetServiceSectionsQuery();
@@ -9,7 +10,7 @@ export default function Services() {
     useGetAllServicesQuery();
 
   if (isLoading || serviceDataLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   const serviceSection = data?.data[0];

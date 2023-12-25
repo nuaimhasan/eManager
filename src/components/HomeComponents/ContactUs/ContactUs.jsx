@@ -4,13 +4,14 @@ import { MdEmail } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useSendMessageMutation } from "../../../redux/api/sendMessageApi";
 import { useGetContactUsQuery } from "../../../redux/api/contactUsApi";
+import Spinner from "../../Spinner/Spinner";
 
 export default function ContactUs() {
   const { data, isLoading } = useGetContactUsQuery();
   const [sendMessage, { isLoading: mailLoading }] = useSendMessageMutation();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   const contactus = data?.data[0];
@@ -43,8 +44,6 @@ export default function ContactUs() {
 
     try {
       const res = await sendMessage(data).unwrap();
-      console.log(res);
-
       if (res?.success) {
         Swal.fire({
           icon: "success",

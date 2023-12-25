@@ -1,31 +1,58 @@
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
-import { useParams } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useNavigate, useParams } from "react-router-dom";
+import swal from "sweetalert2";
+import {
+  useGetTeamByIdQuery,
+  useUpdateTeamMutation,
+} from "../../../redux/api/teamApi";
+import Spinner from "../../../components/Spinner/Spinner";
 
 export default function EditTeam() {
   const { id } = useParams();
   const [images, setImages] = useState([]);
-  const [name, setName] = useState("");
-  const [designation, setDesignation] = useState("");
+  const { data, isLoading } = useGetTeamByIdQuery(id);
+  const [updateTeam, { isLoading: updateLoading }] = useUpdateTeamMutation();
+  const navigate = useNavigate();
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   const handleEditTeam = async (e) => {
     e.preventDefault();
     const file = images[0]?.file;
-
-    if (!file || !name || !designation)
-      return Swal.fire({
-        icon: "error",
-        title: "",
-        text: "Please fill all the fields!",
-      });
+    const order = e.target.order.value;
+    const name = e.target.name.value;
+    const designation = e.target.designation.value;
 
     const formData = new FormData();
-    formData.append("icon", file);
+    formData.append("order", order);
     formData.append("name", name);
     formData.append("designation", designation);
+    if (file) {
+      formData.append("image", file);
+    }
+
+    try {
+      const result = await updateTeam({ id, formData });
+      if (result?.data?.success) {
+        swal.fire({
+          title: "",
+          text: "Updated Successfully!",
+          icon: "success",
+        });
+        navigate("/admin/teams/all-teams");
+      }
+    } catch (error) {
+      swal.fire({
+        title: "",
+        text: "Something went wrong!",
+        icon: "error",
+      });
+    }
   };
+
   return (
     <section>
       <div className="p-4 border-b bg-base-100 rounded">
@@ -33,7 +60,7 @@ export default function EditTeam() {
       </div>
 
       <div className="bg-base-100 rounded mt-2 p-3">
-        <form className="md:w-1/2">
+        <form className="md:w-1/2" onSubmit={handleEditTeam}>
           <div>
             <p className="text-neutral-content mb-1">
               Image <small>(120px/120px)</small>
@@ -81,16 +108,26 @@ export default function EditTeam() {
                 )}
               </ImageUploading>
 
-              {/* {data?.success && (
+              {data?.data?.image && (
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/counter/${
-                    data?.data?.icon
+                  src={`${import.meta.env.VITE_BACKEND_URL}/team/${
+                    data?.data?.image
                   }`}
                   alt=""
-                  className="w-16"
+                  className="w-16 border rounded bg-gray-50"
                 />
-              )} */}
+              )}
             </div>
+          </div>
+
+          <div className="mt-4">
+            <p className="mb-1">Order</p>
+            <input
+              type="text"
+              name="order"
+              defaultValue={data?.data?.order}
+              required
+            />
           </div>
 
           <div className="mt-4">
@@ -98,9 +135,8 @@ export default function EditTeam() {
             <input
               type="text"
               name="name"
-              defaultValue={name}
+              defaultValue={data?.data?.name}
               required
-              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -108,22 +144,20 @@ export default function EditTeam() {
             <p className="mb-1">Designation</p>
             <textarea
               name="designation"
-              rows="5"
-              defaultValue={designation}
+              rows="2"
+              defaultValue={data?.data?.designation}
               required
-              onChange={(e) => setDesignation(e.target.value)}
             ></textarea>
           </div>
 
           <div className="mt-5">
-            {/* <button
-                onClick={handleEditTeam}
-                type="submit"
-                className="gradient-primary-btn"
-                disabled={isLoading && "disabled"}
-              >
-                {isLoading ? "Loading..." : "Edit Team"}
-              </button> */}
+            <button
+              type="submit"
+              className="gradient-primary-btn"
+              disabled={updateLoading && "disabled"}
+            >
+              {updateLoading ? "Loading..." : "Edit Team"}
+            </button>
           </div>
         </form>
       </div>

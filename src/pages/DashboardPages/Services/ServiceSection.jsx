@@ -4,10 +4,14 @@ import {
   useGetServiceSectionsQuery,
   useUpdateServiceSectionByIdMutation,
 } from "../../../redux/api/serviceSectionApi";
+import Spinner from "../../../components/Spinner/Spinner";
 
 export default function ServiceSection() {
   const { data, isLoading } = useGetServiceSectionsQuery();
-  const [updateServiceSectionById] = useUpdateServiceSectionByIdMutation();
+  const [updateServiceSectionById, { isLoading: updateLoading }] =
+    useUpdateServiceSectionByIdMutation();
+
+  console.log(data);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -19,7 +23,7 @@ export default function ServiceSection() {
     }
   }, [data, isLoading]);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Spinner />;
 
   const updateServiceSectionHandler = async (e) => {
     e.preventDefault();
@@ -82,8 +86,9 @@ export default function ServiceSection() {
           <button
             className="gradient-primary-btn"
             onClick={updateServiceSectionHandler}
+            disabled={updateLoading && "disabled"}
           >
-            Update
+            {updateLoading ? "Loading..." : "Update"}
           </button>
         </div>
       </form>

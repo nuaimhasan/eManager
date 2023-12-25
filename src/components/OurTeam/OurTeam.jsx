@@ -2,8 +2,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import { Autoplay, EffectCoverflow } from "swiper/modules";
+import { useGetAllteamsQuery } from "../../redux/api/teamApi";
+import Spinner from "../Spinner/Spinner";
+import { Link } from "react-router-dom";
 
 export default function OurTeam() {
+  const { data, isLoading } = useGetAllteamsQuery();
+  if (isLoading) return <Spinner />;
+
+  console.log(data?.data);
+
   return (
     <section className="py-10 lg:py-16 bg-base-100" id="our-team">
       <div className="container">
@@ -13,7 +21,7 @@ export default function OurTeam() {
           </h2>
         </div>
 
-        <div className="mt-10">
+        <div className="my-10">
           <Swiper
             effect={"coverflow"}
             grabCursor={true}
@@ -33,91 +41,29 @@ export default function OurTeam() {
             }}
             modules={[EffectCoverflow, Autoplay]}
           >
-            <SwiperSlide className="w-[90%] sm:w-[280px]">
-              <div className="team_card">
-                <img
-                  src="https://media.licdn.com/dms/image/D5603AQEIFcE9pxKiAg/profile-displayphoto-shrink_400_400/0/1667554978281?e=1703721600&v=beta&t=1TlnUtDArkKWBvQM_AO3Pq4PR0ttOLZwaZuv7NG8MGk"
-                  alt="team-image"
-                />
-                <h2 className="text-xl font-medium text-secondary">
-                  Nuaim Hasan Nasim
-                </h2>
-                <p className="text-neutral-content">MERN Stack Developer</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className="w-[90%] sm:w-[280px]">
-              <div className="team_card">
-                <img
-                  src="https://media.licdn.com/dms/image/D5603AQEIFcE9pxKiAg/profile-displayphoto-shrink_400_400/0/1667554978281?e=1703721600&v=beta&t=1TlnUtDArkKWBvQM_AO3Pq4PR0ttOLZwaZuv7NG8MGk"
-                  alt="team-image"
-                />
-                <h2 className="text-xl font-medium text-secondary">
-                  Nuaim Hasan Nasim
-                </h2>
-                <p className="text-neutral-content">MERN Stack Developer</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className="w-[90%] sm:w-[280px]">
-              <div className="team_card">
-                <img
-                  src="https://media.licdn.com/dms/image/D5603AQEIFcE9pxKiAg/profile-displayphoto-shrink_400_400/0/1667554978281?e=1703721600&v=beta&t=1TlnUtDArkKWBvQM_AO3Pq4PR0ttOLZwaZuv7NG8MGk"
-                  alt="team-image"
-                />
-                <h2 className="text-xl font-medium text-secondary">
-                  Nuaim Hasan Nasim
-                </h2>
-                <p className="text-neutral-content">MERN Stack Developer</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className="w-[90%] sm:w-[280px]">
-              <div className="team_card">
-                <img
-                  src="https://media.licdn.com/dms/image/D5603AQEIFcE9pxKiAg/profile-displayphoto-shrink_400_400/0/1667554978281?e=1703721600&v=beta&t=1TlnUtDArkKWBvQM_AO3Pq4PR0ttOLZwaZuv7NG8MGk"
-                  alt="team-image"
-                />
-                <h2 className="text-xl font-medium text-secondary">
-                  Nuaim Hasan Nasim
-                </h2>
-                <p className="text-neutral-content">MERN Stack Developer</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className="w-[90%] sm:w-[280px]">
-              <div className="team_card">
-                <img
-                  src="https://media.licdn.com/dms/image/D5603AQEIFcE9pxKiAg/profile-displayphoto-shrink_400_400/0/1667554978281?e=1703721600&v=beta&t=1TlnUtDArkKWBvQM_AO3Pq4PR0ttOLZwaZuv7NG8MGk"
-                  alt="team-image"
-                />
-                <h2 className="text-xl font-medium text-secondary">
-                  Nuaim Hasan Nasim
-                </h2>
-                <p className="text-neutral-content">MERN Stack Developer</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className="w-[90%] sm:w-[280px]">
-              <div className="team_card">
-                <img
-                  src="https://media.licdn.com/dms/image/D5603AQEIFcE9pxKiAg/profile-displayphoto-shrink_400_400/0/1667554978281?e=1703721600&v=beta&t=1TlnUtDArkKWBvQM_AO3Pq4PR0ttOLZwaZuv7NG8MGk"
-                  alt="team-image"
-                />
-                <h2 className="text-xl font-medium text-secondary">
-                  Nuaim Hasan Nasim
-                </h2>
-                <p className="text-neutral-content">MERN Stack Developer</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className="w-[90%] sm:w-[280px]">
-              <div className="team_card">
-                <img
-                  src="https://media.licdn.com/dms/image/D5603AQEIFcE9pxKiAg/profile-displayphoto-shrink_400_400/0/1667554978281?e=1703721600&v=beta&t=1TlnUtDArkKWBvQM_AO3Pq4PR0ttOLZwaZuv7NG8MGk"
-                  alt="team-image"
-                />
-                <h2 className="text-xl font-medium text-secondary">
-                  Nuaim Hasan Nasim
-                </h2>
-                <p className="text-neutral-content">MERN Stack Developer</p>
-              </div>
-            </SwiperSlide>
+            {data?.data?.map((team) => (
+              <SwiperSlide key={team?._id} className="w-[90%] sm:w-[280px]">
+                <div className="team_card">
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/team/${
+                      team?.image
+                    }`}
+                    alt="team-image"
+                  />
+                  <h2 className="text-xl font-medium text-secondary">
+                    {team?.name}
+                  </h2>
+                  <p className="text-neutral-content">{team?.designation}</p>
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
+        </div>
+
+        <div className="flex justify-center items-center">
+          <Link to="/our-team" className="gradient-primary-btn">
+            All Team
+          </Link>
         </div>
       </div>
     </section>

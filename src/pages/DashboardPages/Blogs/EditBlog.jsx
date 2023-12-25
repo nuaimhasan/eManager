@@ -8,6 +8,7 @@ import {
   useGetBlogByIdQuery,
   useUpdateBlogMutation,
 } from "../../../redux/api/blogApi";
+import Spinner from "../../../components/Spinner/Spinner";
 
 export default function EditBlog() {
   const { id } = useParams();
@@ -26,7 +27,7 @@ export default function EditBlog() {
     }
   }, [data, isLoading]);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Spinner />;
 
   const updateBlogHandler = async (e) => {
     e.preventDefault();

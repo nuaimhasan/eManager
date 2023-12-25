@@ -7,6 +7,7 @@ import {
   useGetBenefitByIdQuery,
   useUpdateBenefitMutation,
 } from "../../../../redux/api/benefitsApi";
+import Spinner from "../../../../components/Spinner/Spinner";
 
 export default function EditBenefit() {
   const { id } = useParams();
@@ -26,7 +27,7 @@ export default function EditBenefit() {
     }
   }, [data, isLoading]);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Spinner />;
 
   const updateBlogHandler = async (e) => {
     e.preventDefault();

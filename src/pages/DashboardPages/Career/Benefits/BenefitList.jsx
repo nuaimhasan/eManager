@@ -6,12 +6,13 @@ import {
   useDeleteBenefitMutation,
   useGetBenefitsQuery,
 } from "../../../../redux/api/benefitsApi";
+import Spinner from "../../../../components/Spinner/Spinner";
 
 export default function BenefitList() {
   const { data, isLoading } = useGetBenefitsQuery();
   const [deleteBenefit] = useDeleteBenefitMutation();
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Spinner />;
 
   const benefits = data?.data;
 

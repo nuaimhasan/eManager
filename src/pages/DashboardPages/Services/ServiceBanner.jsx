@@ -6,6 +6,7 @@ import {
   useGetServiceBannerQuery,
   useUpdateServiceBannerMutation,
 } from "../../../redux/api/serviceBannerApi";
+import Spinner from "../../../components/Spinner/Spinner";
 
 export default function ServiceBanner() {
   const [images, setImages] = useState([]);
@@ -14,7 +15,8 @@ export default function ServiceBanner() {
   const [description, setDescription] = useState("");
 
   const { data, isLoading } = useGetServiceBannerQuery();
-  const [updateServiceBanner] = useUpdateServiceBannerMutation();
+  const [updateServiceBanner, { isLoading: updateLoading }] =
+    useUpdateServiceBannerMutation();
 
   useEffect(() => {
     if (data?.data && !isLoading) {
@@ -24,7 +26,7 @@ export default function ServiceBanner() {
     }
   }, [data, isLoading]);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Spinner />;
 
   const updateHandler = async (e) => {
     e.preventDefault();
@@ -55,6 +57,8 @@ export default function ServiceBanner() {
       });
     }
   };
+
+  console.log(data?.data[0]?.image);
 
   return (
     <section className="bg-base-100 rounded shadow">
@@ -109,15 +113,15 @@ export default function ServiceBanner() {
                 )}
               </ImageUploading>
 
-              {/* {data?.data?.image && (
+              {data?.data[0]?.image && (
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/images/about/${
-                    data?.data?.image
+                  src={`${import.meta.env.VITE_BACKEND_URL}/serviceBanner/${
+                    data?.data[0]?.image
                   }`}
                   alt=""
-                  className="w-32 mt-4"
+                  className="w-40 mt-4"
                 />
-              )} */}
+              )}
             </div>
           </div>
 
@@ -155,14 +159,12 @@ export default function ServiceBanner() {
         </div>
 
         <div className="mt-6">
-          {/* <button
-          disabled={updateLoading && "disabled"}
-          className="gradient-primary-btn"
-        >
-          {updateLoading ? "Loading" : "Save"}
-        </button> */}
-          <button className="gradient-primary-btn" onClick={updateHandler}>
-            Save
+          <button
+            disabled={updateLoading && "disabled"}
+            className="gradient-primary-btn"
+            onClick={updateHandler}
+          >
+            {updateLoading ? "Loading" : "Save"}
           </button>
         </div>
       </form>

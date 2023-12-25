@@ -85,12 +85,7 @@ export default function BlogSection() {
       >
         <div>
           <p className="mb-1">Title</p>
-          <input
-            type="text"
-            name="title"
-            required
-            defaultValue={blogsection?.title}
-          />
+          <input type="text" name="title" defaultValue={blogsection?.title} />
         </div>
 
         <div>
@@ -107,7 +102,6 @@ export default function BlogSection() {
           <textarea
             name="description"
             rows="3"
-            required
             defaultValue={blogsection?.description}
           ></textarea>
         </div>

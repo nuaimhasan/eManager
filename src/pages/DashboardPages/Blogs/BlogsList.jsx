@@ -6,12 +6,13 @@ import {
   useDeleteBlogMutation,
   useGetBlogsQuery,
 } from "../../../redux/api/blogApi";
+import Spinner from "../../../components/Spinner/Spinner";
 
 export default function BlogsList() {
   const { data, isLoading } = useGetBlogsQuery();
   const [deleteBlog] = useDeleteBlogMutation();
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Spinner />;
 
   const blogs = data?.data;
   // console.log(blogs);

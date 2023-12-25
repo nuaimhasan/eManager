@@ -135,3 +135,7 @@ table tbody td {
 .jodit-status-bar {
   display: none !important;
 }
+
+.team_page .team_full_card:nth-child(even) {
+  flex-direction: row-reverse;
+}

@@ -5,12 +5,13 @@ import {
   useGetAdminsQuery,
 } from "../../../redux/api/administratorApi";
 import Swal from "sweetalert2";
+import Spinner from "../../../components/Spinner/Spinner";
 
 export default function Administrator() {
   const { data, isLoading } = useGetAdminsQuery();
   const [deleteAdmin] = useDeleteAdminMutation();
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
   const admins = data?.data;
 

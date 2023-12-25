@@ -1,8 +1,42 @@
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaUserEdit } from "react-icons/fa";
+import {
+  useDeleteTeamMutation,
+  useGetAllteamsQuery,
+} from "../../../redux/api/teamApi";
+import Spinner from "../../../components/Spinner/Spinner";
+import Swal from "sweetalert2";
 
 export default function AllTeams() {
+  const { data, isLoading } = useGetAllteamsQuery();
+  const [deleteTeam] = useDeleteTeamMutation();
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  const handleDeleteTeam = async (id) => {
+    const isConfirm = window.confirm("Are you sure delete this team member?");
+    if (isConfirm) {
+      try {
+        const result = await deleteTeam(id);
+        if (result?.data?.success)
+          Swal.fire({
+            title: "",
+            text: "Deleted Successfully!",
+            icon: "success",
+          });
+      } catch (error) {
+        Swal.fire({
+          title: "",
+          text: "Something went wrong!",
+          icon: "error",
+        });
+      }
+    }
+  };
+
   return (
     <section>
       <div className="flex justify-end mb-2">
@@ -22,26 +56,42 @@ export default function AllTeams() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>
-                <img src="" alt="" className="w-7 h-7 rounded-full" />
-              </td>
-              <td>
-                <div className="flex items-center gap-2">Name</div>
-              </td>
-              <td>MERN Stack Developer</td>
-              <td>
-                <div className="flex gap-1.5">
-                  <Link to="/admin/teams/edit-team/1">
-                    <FaUserEdit className="text-lg hover:text-secondary" />
-                  </Link>
-                  <button>
-                    <AiOutlineDelete className="text-lg hover:text-red-500" />
-                  </button>
-                </div>
-              </td>
-            </tr>
+            {data?.data?.map((team, i) => (
+              <tr key={team?._id}>
+                <td>{i + 1}</td>
+                <td>
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/team/${
+                      team?.image
+                    }`}
+                    alt=""
+                    className="w-7 h-7 rounded-full"
+                  />
+                </td>
+                <td>
+                  <div className="flex items-center gap-2">{team?.name}</div>
+                </td>
+                <td>{team?.designation}</td>
+                <td>
+                  <div className="flex gap-1.5">
+                    <Link to={`/admin/teams/edit-team/${team?._id}`}>
+                      <FaUserEdit className="text-lg hover:text-secondary" />
+                    </Link>
+                    <button onClick={() => handleDeleteTeam(team?._id)}>
+                      <AiOutlineDelete className="text-lg hover:text-red-500" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+
+            {data?.data?.length <= 0 && (
+              <tr>
+                <td colSpan="5" className="text-center">
+                  No Data Available
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

@@ -1,17 +1,21 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
-import { useDeleteJobApplyFormMutation, useGetJobApplyFormsQuery } from "../../../../redux/api/jobApplyFormApi";
+import {
+  useDeleteJobApplyFormMutation,
+  useGetJobApplyFormsQuery,
+} from "../../../../redux/api/jobApplyFormApi";
+import Spinner from "../../../../components/Spinner/Spinner";
 
 export default function ApplicantsList() {
   const { data, isLoading } = useGetJobApplyFormsQuery();
   const [deleteJobApplyForm] = useDeleteJobApplyFormMutation();
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
 
   const applicants = data?.data;
-//   console.log(applicants);
+  //   console.log(applicants);
 
   const handleDelete = async (id) => {
     try {

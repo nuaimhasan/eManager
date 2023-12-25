@@ -49,14 +49,14 @@ export default function ContactUs() {
       if (res.success) {
         Swal.fire({
           icon: "success",
-          title: "Message Sent",
-          text: "We will contact you soon",
+          title: "",
+          text: "Thank you for contact us, We will contact you soon",
         });
       }
     } catch (err) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "",
         text: "Something went wrong!",
       });
     }

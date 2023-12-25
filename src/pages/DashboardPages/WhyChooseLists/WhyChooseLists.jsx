@@ -16,23 +16,26 @@ export default function WhyChooseLists() {
   const chooseLists = data?.data;
 
   const handleDelete = async (id) => {
-    try {
-      await deleteWhyChoose(id);
+    const isConfirm = window.confirm("Are you sure delete this item?");
+    if (isConfirm) {
+      try {
+        await deleteWhyChoose(id);
 
-      swal.fire({
-        title: "Success!",
-        text: "Deleted Successfully!",
-        icon: "success",
-        confirmButtonText: "Ok",
-      });
-    } catch (error) {
-      // console.log(error);
-      swal.fire({
-        title: "Error!",
-        text: "Something went wrong!",
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
+        swal.fire({
+          title: "Success!",
+          text: "Deleted Successfully!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      } catch (error) {
+        // console.log(error);
+        swal.fire({
+          title: "Error!",
+          text: "Something went wrong!",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      }
     }
   };
 

@@ -8,6 +8,7 @@ import {
   useGetServiceByIdQuery,
   useUpdateServiceByIdMutation,
 } from "../../../redux/api/serviceApi";
+import Spinner from "../../../components/Spinner/Spinner";
 
 export default function EditService() {
   const { slug } = useParams();
@@ -33,7 +34,7 @@ export default function EditService() {
     }
   }, [data, isLoading]);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Spinner />;
 
   const updateServiceHandler = async (e) => {
     e.preventDefault();

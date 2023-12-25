@@ -2,11 +2,16 @@ import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import Swal from "sweetalert2";
+import { useAddteaNewTeamMutation } from "../../../redux/api/teamApi";
+import { useNavigate } from "react-router-dom";
 
 export default function AddTeamMember() {
   const [images, setImages] = useState([]);
+  const [order, setOrder] = useState(1);
   const [name, setName] = useState("");
   const [designation, setDesignation] = useState("");
+  const navigate = useNavigate();
+  const [addteaNewTeam, { isLoading, isError }] = useAddteaNewTeamMutation();
 
   const handleAddTeam = async (e) => {
     e.preventDefault();
@@ -20,10 +25,23 @@ export default function AddTeamMember() {
       });
 
     const formData = new FormData();
-    formData.append("icon", file);
+    formData.append("image", file);
+    formData.append("order", order);
     formData.append("name", name);
     formData.append("designation", designation);
+
+    const result = await addteaNewTeam(formData);
+
+    if (result?.data?.success) {
+      Swal.fire("", "Team Member add success", "success");
+      navigate("/admin/teams/all-teams");
+    }
+
+    if (!result?.data?.success || isError) {
+      Swal.fire("", "Something went worng", "error");
+    }
   };
+
   return (
     <section>
       <div className="p-4 border-b bg-base-100 rounded">
@@ -82,6 +100,17 @@ export default function AddTeamMember() {
           </div>
 
           <div className="mt-4">
+            <p className="mb-1">Order</p>
+            <input
+              type="text"
+              name="order"
+              defaultValue={order}
+              required
+              onChange={(e) => setOrder(e.target.value)}
+            />
+          </div>
+
+          <div className="mt-4">
             <p className="mb-1">Name</p>
             <input
               type="text"
@@ -104,14 +133,14 @@ export default function AddTeamMember() {
           </div>
 
           <div className="mt-5">
-            {/* <button
+            <button
               onClick={handleAddTeam}
               type="submit"
               className="gradient-primary-btn"
               disabled={isLoading && "disabled"}
             >
               {isLoading ? "Loading..." : "Add Team"}
-            </button> */}
+            </button>
           </div>
         </form>
       </div>

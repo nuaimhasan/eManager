@@ -9,7 +9,7 @@ import "./Hero.css";
 
 export default function Hero() {
   const el = useRef(null);
-  const { data } = useGetBannerQuery();
+  const { data, isLoading } = useGetBannerQuery();
   const { data: serviceData } = useGetAllServicesQuery();
 
   const services = serviceData?.data;
@@ -40,7 +40,9 @@ export default function Hero() {
         <div className="grid md:grid-cols-2 gap-6 md:gap-0 items-center">
           <div className="sm:w-2/3 md:w-full">
             <h2 className="text-2xl md:text-3xl lg:text-4xl text-neutral">
-              {banner?.title}{" "}
+              {isLoading
+                ? "We are Hungry to take on your Challenge & Manage your business Like a Pro..."
+                : banner?.title}{" "}
               <span ref={el} className="text-secondary">
                 Web Development
               </span>
