@@ -12,7 +12,6 @@ export default function Footer() {
 
   const services = serviceData?.data;
   const contactUs = contactUsData?.data[0];
-  // console.log(contactUs);
 
   return (
     <footer className="pt-10 pb-5 font-extralight">
