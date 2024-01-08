@@ -1,16 +1,17 @@
 import { GiCheckMark } from "react-icons/gi";
 
 const CampaignDetails = () => {
+  window.scroll(0,0);
+
   return (
-    <section className="py-10 lg:py-14 bg-base-100" id="services">
-      <div className="py-5 min-h-[60vh]">
-        <div className="w-[90%] xl:w-[1280px] mx-auto">
+    <section className="py-10">
+      <div className="container">
           <p className="text-center text-2xl font-medium mb-8">
             Campaign Checkout
           </p>
 
-          <div className="md:flex items-start justify-center gap-10">
-            <div className="lg:w-[40%] md:w-[60%] h-full mb-10 lg:mb-0">
+          <div className="lg:mx-20 md:flex items-start justify-center gap-10">
+            <div className="lg:w-[60%] mb-10 lg:mb-0 bg-base-100">
               <div className="shadow-lg p-7">
                 <p className="text-lg font-semibold text-center">
                   Billing Details
@@ -46,29 +47,19 @@ const CampaignDetails = () => {
                       />
                     </div>
                     <div className="flex flex-col gap-y-1">
+                      <label>Company Name</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your Company Name"
+                        className="border rounded px-3 py-1.5 outline-none font-normal placeholder:opacity-60"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-y-1">
                       <label htmlFor="address">Address</label>
                       <input
                         type="text"
                         id="address"
                         placeholder="Enter your address"
-                        className="border rounded px-3 py-1.5 outline-none font-normal placeholder:opacity-60"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-y-1">
-                      <label htmlFor="city">City</label>
-                      <input
-                        type="text"
-                        id="city"
-                        placeholder="Enter your city"
-                        className="border rounded px-3 py-1.5 outline-none font-normal placeholder:opacity-60"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-y-1">
-                      <label htmlFor="country">Country</label>
-                      <input
-                        type="text"
-                        id="country"
-                        placeholder="Enter your country"
                         className="border rounded px-3 py-1.5 outline-none font-normal placeholder:opacity-60"
                       />
                     </div>
@@ -81,7 +72,8 @@ const CampaignDetails = () => {
                 </form>
               </div>
             </div>
-            <div className="lg:w-[30%] md:w-[40%] h-full">
+
+            <div className="lg:w-[40%]">
               <div className="price_card relative">
                 <div className="bg-gray-100 head text-secondary">
                   <h2 className="text-lg font-semibold">BASIC</h2>
@@ -126,14 +118,13 @@ const CampaignDetails = () => {
                   </div>
                   <div className="flex items-center justify-between w-full">
                     <p className="uppercase font-semibold">Total to pay</p>
-                    <p className="text-primary">৳ 17500</p>
+                    <p className="text-secondary font-semibold text-lg">৳ 17500</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 };

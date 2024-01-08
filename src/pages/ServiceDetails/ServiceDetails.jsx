@@ -45,86 +45,117 @@ export default function ServiceDetails() {
         </div>
       </div>
 
-      <div className="container pb-10">
-        <div className="mt-6 grid grid-cols-4 gap-6">
-          <div className="text-center">
-            <img
-              src="/images/services/web.png"
-              alt="icon"
-              className="w-10 h-10 mx-auto"
-            />
-            <h2 className="text-xl font-medium my-2">Ecommerch Website</h2>
-            <p className="text-sm opacity-80 font-light">
-              Lorem ipsum dolor sit amet,consectetur adipisicing elit.
-            </p>
-          </div>
+      {/* Service categories */}
+      <div className="pt-10 pb-10 lg:pb-20">
+        <div className="container">
+          <h2 className="text-secondary text-3xl font-semibold">
+            Our Service Categories
+          </h2>
 
-          <div className="text-center">
-            <img
-              src="/images/services/web.png"
-              alt="icon"
-              className="w-10 h-10 mx-auto"
-            />
-            <h2 className="text-xl font-medium my-2">Business Website</h2>
-            <p className="text-sm opacity-80 font-light">
-              Lorem ipsum dolor sit amet,consectetur adipisicing elit.
-            </p>
-          </div>
+          <div className="mt-10">
+            <div className="grid grid-cols-2 gap-14">
+              <div>
+                <img
+                  src="/public/images/services/web.png"
+                  alt=""
+                  className="w-14"
+                />
+                <h2 className="text-xl font-medium text-secondary py-2">
+                  E-commerce Website
+                </h2>
+                <p className="text-neutral-content text-[15px]">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam,
+                  quae fugiat omnis at nobis quo deleniti ipsa rerum in
+                  repudiandae!
+                </p>
+              </div>
 
-          <div className="text-center">
-            <img
-              src="/images/services/web.png"
-              alt="icon"
-              className="w-10 h-10 mx-auto"
-            />
-            <h2 className="text-xl font-medium my-2">Protfolio Website</h2>
-            <p className="text-sm opacity-80 font-light">
-              Lorem ipsum dolor sit amet,consectetur adipisicing elit.
-            </p>
-          </div>
+              <div>
+                <img
+                  src="/public/images/services/web.png"
+                  alt=""
+                  className="w-14"
+                />
+                <h2 className="text-xl font-medium text-secondary py-2">
+                  Business Website
+                </h2>
+                <p className="text-neutral-content text-[15px]">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam,
+                  quae fugiat omnis at nobis quo deleniti ipsa rerum in
+                  repudiandae!
+                </p>
+              </div>
 
-          <div className="text-center">
-            <img
-              src="/images/services/web.png"
-              alt="icon"
-              className="w-10 h-10 mx-auto"
-            />
-            <h2 className="text-xl font-medium my-2">RealState Website</h2>
-            <p className="text-sm opacity-80 font-light">
-              Lorem ipsum dolor sit amet,consectetur adipisicing elit.
-            </p>
-          </div>
+              <div>
+                <img
+                  src="/public/images/services/web.png"
+                  alt=""
+                  className="w-14"
+                />
+                <h2 className="text-xl font-medium text-secondary py-2">
+                  Portfolio Website
+                </h2>
+                <p className="text-neutral-content text-[15px]">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam,
+                  quae fugiat omnis at nobis quo deleniti ipsa rerum in
+                  repudiandae!
+                </p>
+              </div>
 
-          <div className="text-center">
-            <img
-              src="/images/services/web.png"
-              alt="icon"
-              className="w-10 h-10 mx-auto"
-            />
-            <h2 className="text-xl font-medium my-2">
-              Stock Manegment Website
-            </h2>
-            <p className="text-sm opacity-80 font-light">
-              Lorem ipsum dolor sit amet,consectetur adipisicing elit.
-            </p>
-          </div>
+              <div>
+                <img
+                  src="/public/images/services/web.png"
+                  alt=""
+                  className="w-14"
+                />
+                <h2 className="text-xl font-medium text-secondary py-2">
+                  School Management Website
+                </h2>
+                <p className="text-neutral-content text-[15px]">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam,
+                  quae fugiat omnis at nobis quo deleniti ipsa rerum in
+                  repudiandae!
+                </p>
+              </div>
 
-          <div className="text-center">
-            <img
-              src="/images/services/web.png"
-              alt="icon"
-              className="w-10 h-10 mx-auto"
-            />
-            <h2 className="text-xl font-medium my-2">Education Website</h2>
-            <p className="text-sm opacity-80 font-light">
-              Lorem ipsum dolor sit amet,consectetur adipisicing elit.
-            </p>
+              <div>
+                <img
+                  src="/public/images/services/web.png"
+                  alt=""
+                  className="w-14"
+                />
+                <h2 className="text-xl font-medium text-secondary py-2">
+                  Stock Management Website
+                </h2>
+                <p className="text-neutral-content text-[15px]">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam,
+                  quae fugiat omnis at nobis quo deleniti ipsa rerum in
+                  repudiandae!
+                </p>
+              </div>
+
+              <div>
+                <img
+                  src="/public/images/services/web.png"
+                  alt=""
+                  className="w-14"
+                />
+                <h2 className="text-xl font-medium text-secondary py-2">
+                  POS Website
+                </h2>
+                <p className="text-neutral-content text-[15px]">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam,
+                  quae fugiat omnis at nobis quo deleniti ipsa rerum in
+                  repudiandae!
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Technologies */}
-      {/* <section className="py-10 bg-secondary text-base-100">
+      <section className="py-10 bg-secondary text-base-100">
         <div className="container">
           <h2 className="text-center text-2xl md:text-3xl">
             Our Web Development <br /> Technologies
@@ -240,7 +271,7 @@ export default function ServiceDetails() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </section>
   );
 }
