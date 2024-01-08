@@ -18,14 +18,14 @@ export default function ServicesPage() {
 
   return (
     <section>
-      <div className="py-10 relative h-96">
+      <div className="py-10 relative h-80">
         <div className="absolute w-full left-0 top-0">
           <img
             src={`${import.meta.env.VITE_BACKEND_URL}/serviceBanner/${
               serviceBanner?.image
             }`}
             alt=""
-            className="w-full h-96"
+            className="w-full h-80"
           />
         </div>
 

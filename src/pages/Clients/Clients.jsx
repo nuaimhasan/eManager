@@ -1,8 +1,13 @@
+import Spinner from "../../components/Spinner/Spinner";
 import { useGetClientsQuery } from "../../redux/api/clientApi";
 
 export default function ClientsP() {
-  const { data } = useGetClientsQuery();
+  const { data, isLoading } = useGetClientsQuery();
   const clients = data?.data;
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <section>
