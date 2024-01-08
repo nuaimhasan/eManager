@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiMenu3Fill } from "react-icons/ri";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useGetLogosQuery } from "../../redux/api/logoApi";
 import "./Header.css";
 
 export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
-  const { pathname } = useLocation();
 
   const { data, isLoading } = useGetLogosQuery();
-  // const {data: menuData} = useGetMenusQuery();
 
   useEffect(() => {
     window.addEventListener("click", (e) => {
@@ -19,7 +17,6 @@ export default function Header() {
       }
     });
   }, []);
-
   let logo = data?.data[0]?.logo;
 
   return (
@@ -64,45 +61,22 @@ export default function Header() {
                   </NavLink>
                 </li>
                 <li>
-                  {pathname === "/" ? (
-                    <a href="#about-us">About Us</a>
-                  ) : (
-                    <NavLink to="/about-us">About Us</NavLink>
-                  )}
+                  <NavLink to="/about-us">About Us</NavLink>
                 </li>
                 <li>
-                  {pathname === "/" ? (
-                    <a href="#services">Services</a>
-                  ) : (
-                    <NavLink to="/services">Services</NavLink>
-                  )}
+                  <NavLink to="/services">Services</NavLink>
                 </li>
                 <li>
                   <NavLink to="/hosting">Hosting</NavLink>
                 </li>
                 <li>
-                  {pathname === "/" ? (
-                    <a href="#contact-us">Contact Us</a>
-                  ) : (
-                    <NavLink to="/contact-us">Contact Us</NavLink>
-                  )}
+                  <NavLink to="/contact-us">Contact Us</NavLink>
                 </li>
                 <li>
-                  {pathname === "/" ? (
-                    <a href="#our-team">Our Team</a>
-                  ) : (
-                    <NavLink to="/our-team">Our Team</NavLink>
-                  )}
+                  <NavLink to="/our-team">Our Team</NavLink>
                 </li>
                 <li>
-                  {pathname === "/" ? (
-                    <a href="#blogs">Blogs</a>
-                  ) : (
-                    <NavLink to="/blogs">Blogs</NavLink>
-                  )}
-                </li>
-                <li>
-                  <a href="#clients">Clients</a>
+                  <NavLink to="/clients">Clients</NavLink>
                 </li>
                 <li>
                   <NavLink to="/campaigns">Campaigns</NavLink>

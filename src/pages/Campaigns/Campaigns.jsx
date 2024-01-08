@@ -2,8 +2,9 @@ import { GiCheckMark } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
 const Campaigns = () => {
+  window.scroll(0, 0);
   return (
-    <section className="py-10 lg:py-14 bg-base-100" id="services">
+    <section className="py-10">
       <div className="container">
         <div className="text-center">
           <h2 className="text-2xl md:text-4xl font-medium text-secondary">
@@ -14,194 +15,245 @@ const Campaigns = () => {
           </p>
         </div>
 
-        <section className="py-10 lg:px-5 bg-gray-50 mt-10">
+        <div className="py-10 mt-8">
           <div className="container">
-            <div className="">
-              <div className="grid  md:grid-cols-2 lg:grid-cols-3 items-center gap-10">
-                <div className="price_card">
-                  <div className="bg-gray-100 head text-secondary">
-                    <h2 className="text-lg font-semibold">BASIC</h2>
-                    <h2 className="text-3xl ">17500 Tk</h2>
-                  </div>
-                  <ul className="mt-8 pl-10">
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Free Domain &
-                      Hosing
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> E-Commerce
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Blog
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Education
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> News Portal
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Business
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Protfolio
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Support 1 year
-                    </li>
-                  </ul>
+            <div>
+              <h2 className="text-2xl font-semibold text-secondary">
+                Web Development Campaigns
+              </h2>
+            </div>
 
-                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-                    <Link to="/campaigns/1" className="gradient-primary-btn">
-                      Book Now
-                    </Link>
-                  </div>
+            <div className="mx-10 my-6 grid md:grid-cols-2 lg:grid-cols-3 items-center gap-6">
+              <div className="border rounded py-10 px-4 bg-base-100 shadow">
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
+                    UDDOKTA PACKAGE
+                  </h2>
+
+                  <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
                 </div>
-                <div className="price_card">
-                  <div className="bg-secondary head text-base-100">
-                    <h2 className="text-lg font-semibold">STARTUP</h2>
-                    <h2 className="text-3xl">30500 Tk</h2>
-                  </div>
+                <ul className="mt-8 pl-10 flex flex-col gap-2">
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Domain
+                    Registration
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Free Hosting
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Laravel
+                    e-commerch website
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Business Facebook
+                    Page Setup
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Google map setup
+                  </li>
+                </ul>
 
-                  <ul className="mt-8 pl-10">
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Free Domain &
-                      Hosing
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> E-Commerce
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Blog
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Education
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> News Portal
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Business
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Protfolio
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Admin Panel
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Support 1 year
-                    </li>
-                  </ul>
-
-                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-                    <Link to="/campaigns/1" className="gradient-primary-btn">
-                      Book Now
-                    </Link>
-                  </div>
+                <div className="mt-10 flex justify-center">
+                  <Link to="/campaigns/1" className="gradient-primary-btn">
+                    Book Now
+                  </Link>
                 </div>
-                <div className="price_card">
-                  <div className="bg-gray-100 head text-secondary">
-                    <h2 className="text-lg font-semibold">STANDARD</h2>
-                    <h2 className="text-3xl ">50500 Tk</h2>
-                  </div>
+              </div>
 
-                  <ul className="mt-8 pl-10">
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Free Domain &
-                      Hosing
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> E-Commerce
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Blog
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Education
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> News Portal
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Business
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Protfolio
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Admin Panel
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> SEO
-                      Optimization
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Support 1 year
-                    </li>
-                  </ul>
+              <div className="border rounded py-10 px-4 bg-base-100 shadow">
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
+                    UDDOKTA PACKAGE
+                  </h2>
 
-                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-                    <Link to="/campaigns/1" className="gradient-primary-btn">
-                      Book Now
-                    </Link>
-                  </div>
+                  <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
                 </div>
-                <div className="price_card">
-                  <div className="bg-secondary head text-base-100">
-                    <h2 className="text-lg font-semibold">PREMIUM</h2>
-                    <h2 className="text-3xl">80500 Tk</h2>
-                  </div>
+                <ul className="mt-8 pl-10 flex flex-col gap-2">
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Domain
+                    Registration
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Free Hosting
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Laravel
+                    e-commerch website
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Business Facebook
+                    Page Setup
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Google map setup
+                  </li>
+                </ul>
 
-                  <ul className="mt-8 pl-10">
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Free Domain &
-                      Hosing
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> E-Commerce
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Blog
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Education
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> News Portal
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Business
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Protfolio
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Admin Panel
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> SEO
-                      Optimization
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Super Fast
-                      Website
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <GiCheckMark className="text-secondary" /> Support 1 year
-                    </li>
-                  </ul>
+                <div className="mt-10 flex justify-center">
+                  <Link to="/campaigns/1" className="gradient-primary-btn">
+                    Book Now
+                  </Link>
+                </div>
+              </div>
 
-                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-                    <Link to="/campaigns/1" className="gradient-primary-btn">
-                      Book Now
-                    </Link>
-                  </div>
+              <div className="border rounded py-10 px-4 bg-base-100 shadow">
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
+                    UDDOKTA PACKAGE
+                  </h2>
+
+                  <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
+                </div>
+                <ul className="mt-8 pl-10 flex flex-col gap-2">
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Domain
+                    Registration
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Free Hosting
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Laravel
+                    e-commerch website
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Business Facebook
+                    Page Setup
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Google map setup
+                  </li>
+                </ul>
+
+                <div className="mt-10 flex justify-center">
+                  <Link to="/campaigns/1" className="gradient-primary-btn">
+                    Book Now
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+
+        <div className="py-10">
+          <div className="container">
+            <div>
+              <h2 className="text-2xl font-semibold text-secondary">
+                Digital Marketing Campaigns
+              </h2>
+            </div>
+
+            <div className="mx-10 my-6 grid md:grid-cols-2 lg:grid-cols-3 items-center gap-6">
+              <div className="border rounded py-10 px-4 bg-base-100 shadow">
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
+                    UDDOKTA PACKAGE
+                  </h2>
+
+                  <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
+                </div>
+                <ul className="mt-8 pl-10 flex flex-col gap-2">
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Domain
+                    Registration
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Free Hosting
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Laravel
+                    e-commerch website
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Business Facebook
+                    Page Setup
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Google map setup
+                  </li>
+                </ul>
+
+                <div className="mt-10 flex justify-center">
+                  <Link to="/campaigns/1" className="gradient-primary-btn">
+                    Book Now
+                  </Link>
+                </div>
+              </div>
+
+              <div className="border rounded py-10 px-4 bg-base-100 shadow">
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
+                    UDDOKTA PACKAGE
+                  </h2>
+
+                  <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
+                </div>
+                <ul className="mt-8 pl-10 flex flex-col gap-2">
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Domain
+                    Registration
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Free Hosting
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Laravel
+                    e-commerch website
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Business Facebook
+                    Page Setup
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Google map setup
+                  </li>
+                </ul>
+
+                <div className="mt-10 flex justify-center">
+                  <Link to="/campaigns/1" className="gradient-primary-btn">
+                    Book Now
+                  </Link>
+                </div>
+              </div>
+
+              <div className="border rounded py-10 px-4 bg-base-100 shadow">
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
+                    UDDOKTA PACKAGE
+                  </h2>
+
+                  <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
+                </div>
+                <ul className="mt-8 pl-10 flex flex-col gap-2">
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Domain
+                    Registration
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Free Hosting
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Laravel
+                    e-commerch website
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Business Facebook
+                    Page Setup
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <GiCheckMark className="text-secondary" /> Google map setup
+                  </li>
+                </ul>
+
+                <div className="mt-10 flex justify-center">
+                  <Link to="/campaigns/1" className="gradient-primary-btn">
+                    Book Now
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

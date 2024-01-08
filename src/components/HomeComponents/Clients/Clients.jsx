@@ -5,11 +5,10 @@ import { useGetClientsQuery } from "../../../redux/api/clientApi";
 
 export default function Clients() {
   const { data } = useGetClientsQuery();
-
   const clients = data?.data;
 
   return (
-    <section className="py-10 bg-secondary" id="clients">
+    <section className="py-10 bg-secondary">
       <div className="container">
         <div className="text-center">
           <h2 className="text-xl md:text-2xl font-medium text-base-100">

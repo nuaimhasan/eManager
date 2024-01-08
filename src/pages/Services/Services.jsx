@@ -1,16 +1,20 @@
-import Services from "../../components/HomeComponents/Services/Services";
+import Services from "../../components/Services/Services";
 import Spinner from "../../components/Spinner/Spinner";
 import { useGetServiceBannerQuery } from "../../redux/api/serviceBannerApi";
+import { useGetServiceSectionsQuery } from "../../redux/api/serviceSectionApi";
 
 export default function ServicesPage() {
   window.scroll(0, 0);
 
   const { data, isLoading } = useGetServiceBannerQuery();
+  const serviceBanner = data?.data[0];
+
+  const { data: section } = useGetServiceSectionsQuery();
+  const serviceSection = section?.data[0];
+
   if (isLoading) {
     return <Spinner />;
   }
-
-  const serviceBanner = data?.data[0];
 
   return (
     <section>
@@ -34,11 +38,11 @@ export default function ServicesPage() {
                     {serviceBanner?.subtitle}
                   </h3>
                   <h2 className="text-2xl md:text-4xl font-semibold my-2 text-base-100">
-                    {serviceBanner?.title}
+                    {serviceSection?.title}
                   </h2>
 
                   <div className="mt-4 text-base-100/80 flex flex-col gap-2 text-sm md:text-base">
-                    <p>{serviceBanner?.description}</p>
+                    <p>{serviceSection?.description}</p>
                   </div>
                 </div>
               </div>
@@ -47,7 +51,9 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      <Services />
+      <div className="py-10">
+        <Services />
+      </div>
     </section>
   );
 }

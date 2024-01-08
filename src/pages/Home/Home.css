@@ -30,9 +30,9 @@
 .team_card {
   padding: 50px 20px;
   width: 100%;
-  background: #fff;
-  box-shadow: 0 8px 26px -4px rgba(88, 88, 88, 0.188),
-    0 8px 9px -10px rgba(28, 27, 27, 0.097);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 300px;
 
   display: flex;
   flex-direction: column;

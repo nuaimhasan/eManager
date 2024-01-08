@@ -1,11 +1,10 @@
 import "./Home.css";
 import About from "../../components/HomeComponents/About/About";
-import Blogs from "../../components/HomeComponents/Blogs/Blogs";
 import Clients from "../../components/HomeComponents/Clients/Clients";
 import ContactUs from "../../components/HomeComponents/ContactUs/ContactUs";
 import CounterArea from "../../components/HomeComponents/CounterArea/CounterArea";
 import Hero from "../../components/HomeComponents/Hero/Hero";
-import Services from "../../components/HomeComponents/Services/Services";
+import ServicesCom from "../../components/HomeComponents/ServicesCom/ServicesCom";
 import WhyChooseUs from "../../components/HomeComponents/WhyChooseUs/WhyChooseUs";
 import OurTeam from "../../components/OurTeam/OurTeam";
 
@@ -14,14 +13,13 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <Services />
+      <ServicesCom />
       <About />
       <WhyChooseUs />
       <ContactUs />
       <CounterArea />
-      <Blogs />
-      <Clients />
       <OurTeam />
+      <Clients />
     </div>
   );
 }

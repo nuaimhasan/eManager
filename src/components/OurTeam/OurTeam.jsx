@@ -1,16 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import { Autoplay, EffectCoverflow } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { useGetAllteamsQuery } from "../../redux/api/teamApi";
 import Spinner from "../Spinner/Spinner";
-import { Link } from "react-router-dom";
 
 export default function OurTeam() {
   const { data, isLoading } = useGetAllteamsQuery();
   if (isLoading) return <Spinner />;
-
-  console.log(data?.data);
 
   return (
     <section className="py-10 lg:py-16 bg-base-100" id="our-team">
@@ -21,28 +18,30 @@ export default function OurTeam() {
           </h2>
         </div>
 
-        <div className="my-10">
+        <div className="my-7">
           <Swiper
-            effect={"coverflow"}
             grabCursor={true}
-            centeredSlides={true}
             loop={true}
             autoplay={{
               delay: 5000,
               disableOnInteraction: false,
             }}
             slidesPerView={"auto"}
-            coverflowEffect={{
-              rotate: 6,
-              stretch: 0,
-              depth: 100,
-              modifier: 2.5,
-              slideShadows: false,
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+              },
             }}
-            modules={[EffectCoverflow, Autoplay]}
+            modules={[Autoplay]}
+            className="p-4"
           >
             {data?.data?.map((team) => (
-              <SwiperSlide key={team?._id} className="w-[90%] sm:w-[280px]">
+              <SwiperSlide key={team?._id}>
                 <div className="team_card">
                   <img
                     src={`${import.meta.env.VITE_BACKEND_URL}/team/${
@@ -58,12 +57,6 @@ export default function OurTeam() {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
-
-        <div className="flex justify-center items-center">
-          <Link to="/our-team" className="gradient-primary-btn">
-            All Team
-          </Link>
         </div>
       </div>
     </section>
