@@ -62,10 +62,10 @@ export default function Campaigns() {
             <div className="border rounded py-10 px-4 bg-base-100 shadow">
               <div className="flex flex-col justify-center items-center gap-2">
                 <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
-                  UDDOKTA PACKAGE
+                  UDDOKTA PACKAGE 2
                 </h2>
 
-                <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
+                <h2 className="text-2xl text-secondary">Only 22500 TK</h2>
               </div>
               <ul className="mt-8 pl-10 flex flex-col gap-2">
                 <li className="flex items-center gap-2">
@@ -75,42 +75,7 @@ export default function Campaigns() {
                   <GiCheckMark className="text-secondary" /> Free Hosting
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Laravel e-commerch
-                  website
-                </li>
-                <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Business Facebook
-                  Page Setup
-                </li>
-                <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Google map setup
-                </li>
-              </ul>
-
-              <div className="mt-10 flex justify-center">
-                <Link to="/campaigns/1" className="gradient-primary-btn">
-                  Book Now
-                </Link>
-              </div>
-            </div>
-
-            <div className="border rounded py-10 px-4 bg-base-100 shadow">
-              <div className="flex flex-col justify-center items-center gap-2">
-                <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
-                  UDDOKTA PACKAGE
-                </h2>
-
-                <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
-              </div>
-              <ul className="mt-8 pl-10 flex flex-col gap-2">
-                <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Domain Registration
-                </li>
-                <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Free Hosting
-                </li>
-                <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Laravel e-commerch
+                  <GiCheckMark className="text-secondary" /> MERN e-commerch
                   website
                 </li>
                 <li className="flex items-center gap-2">
@@ -144,28 +109,31 @@ export default function Campaigns() {
             <div className="border rounded py-10 px-4 bg-base-100 shadow">
               <div className="flex flex-col justify-center items-center gap-2">
                 <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
-                  UDDOKTA PACKAGE
+                  Sliver
                 </h2>
 
-                <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
+                <h2 className="text-2xl text-secondary">Only 7500 TK</h2>
               </div>
               <ul className="mt-8 pl-10 flex flex-col gap-2">
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Domain Registration
+                  <GiCheckMark className="text-secondary" /> 20 Social Media
+                  post
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Free Hosting
+                  <GiCheckMark className="text-secondary" /> 1 Logo Make
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Laravel e-commerch
-                  website
+                  <GiCheckMark className="text-secondary" /> 1 Facebook Cover
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Business Facebook
-                  Page Setup
+                  <GiCheckMark className="text-secondary" /> 1 Motion Video
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Google map setup
+                  <GiCheckMark className="text-secondary" /> 1 Creative Design
+                </li>
+                <li className="flex items-center gap-2">
+                  <GiCheckMark className="text-secondary" /> Digital Marketing
+                  Consultancy
                 </li>
               </ul>
 
@@ -179,28 +147,31 @@ export default function Campaigns() {
             <div className="border rounded py-10 px-4 bg-base-100 shadow">
               <div className="flex flex-col justify-center items-center gap-2">
                 <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
-                  UDDOKTA PACKAGE
+                  Gold
                 </h2>
 
-                <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
+                <h2 className="text-2xl text-secondary">Only 10500 TK</h2>
               </div>
               <ul className="mt-8 pl-10 flex flex-col gap-2">
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Domain Registration
+                  <GiCheckMark className="text-secondary" /> 25 Social Media
+                  post
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Free Hosting
+                  <GiCheckMark className="text-secondary" /> 1 Logo Make
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Laravel e-commerch
-                  website
+                  <GiCheckMark className="text-secondary" /> 2 Facebook Cover
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Business Facebook
-                  Page Setup
+                  <GiCheckMark className="text-secondary" /> 2 Motion Video
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Google map setup
+                  <GiCheckMark className="text-secondary" /> 2 Creative Design
+                </li>
+                <li className="flex items-center gap-2">
+                  <GiCheckMark className="text-secondary" /> Digital Marketing
+                  Consultancy
                 </li>
               </ul>
 
@@ -214,28 +185,34 @@ export default function Campaigns() {
             <div className="border rounded py-10 px-4 bg-base-100 shadow">
               <div className="flex flex-col justify-center items-center gap-2">
                 <h2 className="px-6 py-1.5 rounded bg-primary text-secondary uppercase">
-                  UDDOKTA PACKAGE
+                  Diamond
                 </h2>
 
-                <h2 className="text-2xl text-secondary">Only 17500 TK</h2>
+                <h2 className="text-2xl text-secondary">Only 15500 TK</h2>
               </div>
               <ul className="mt-8 pl-10 flex flex-col gap-2">
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Domain Registration
+                  <GiCheckMark className="text-secondary" /> 30 Social Media
+                  post
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Free Hosting
+                  <GiCheckMark className="text-secondary" /> 1 Logo Make
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Laravel e-commerch
-                  website
+                  <GiCheckMark className="text-secondary" /> 2 Facebook Cover
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Business Facebook
-                  Page Setup
+                  <GiCheckMark className="text-secondary" /> 2 Motion Video
                 </li>
                 <li className="flex items-center gap-2">
-                  <GiCheckMark className="text-secondary" /> Google map setup
+                  <GiCheckMark className="text-secondary" /> 2 Creative Design
+                </li>
+                <li className="flex items-center gap-2">
+                  <GiCheckMark className="text-secondary" /> Digital Marketing
+                  Consultancy
+                </li>
+                <li className="flex items-center gap-2">
+                  <GiCheckMark className="text-secondary" /> Sales Consultancy
                 </li>
               </ul>
 

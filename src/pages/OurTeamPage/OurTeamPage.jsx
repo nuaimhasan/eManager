@@ -18,7 +18,7 @@ export default function OurTeamPage() {
           {data?.data?.map((team) => (
             <div
               key={team?._id}
-              className="sm:flex gap-4 items-center shadow-lg bg-base-100 rounded p-4 team_full_card"
+              className="sm:flex gap-4 items-center shadow-lg bg-base-100 rounded p-4 border team_full_card"
             >
               <div className="sm:w-1/3">
                 <img
@@ -36,13 +36,7 @@ export default function OurTeamPage() {
                 <p className="text-neutral-content font-medium">
                   {team?.designation}
                 </p>
-                <p className="text-neutral-content text-sm">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum,
-                  amet velit ratione magni quidem cum dolor, beatae quod ea, qui
-                  unde quas iste fugit consectetur molestiae inventore et quasi
-                  dolorem labore quisquam facilis adipisci ducimus
-                  exercitationem.
-                </p>
+                <p className="text-neutral-content text-sm min-h-[120px]"></p>
               </div>
             </div>
           ))}

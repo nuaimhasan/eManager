@@ -52,6 +52,7 @@ export default function AllTeams() {
               <th>Image</th>
               <th>Name</th>
               <th>Designation</th>
+              <th>Order</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -72,6 +73,7 @@ export default function AllTeams() {
                   <div className="flex items-center gap-2">{team?.name}</div>
                 </td>
                 <td>{team?.designation}</td>
+                <td>{team?.order}</td>
                 <td>
                   <div className="flex gap-1.5">
                     <Link to={`/admin/teams/edit-team/${team?._id}`}>

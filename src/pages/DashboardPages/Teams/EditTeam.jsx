@@ -19,6 +19,8 @@ export default function EditTeam() {
     return <Spinner />;
   }
 
+  console.log(id, data?.data);
+
   const handleEditTeam = async (e) => {
     e.preventDefault();
     const file = images[0]?.file;

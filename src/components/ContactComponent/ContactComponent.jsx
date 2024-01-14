@@ -2,11 +2,11 @@ import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import Swal from "sweetalert2";
-import { useSendMessageMutation } from "../../../redux/api/sendMessageApi";
-import { useGetContactUsQuery } from "../../../redux/api/contactUsApi";
-import Spinner from "../../Spinner/Spinner";
+import Spinner from "../Spinner/Spinner";
+import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
+import { useSendMessageMutation } from "../../redux/api/sendMessageApi";
 
-export default function ContactUs() {
+export default function ContactComponent() {
   const { data, isLoading } = useGetContactUsQuery();
   const [sendMessage, { isLoading: mailLoading }] = useSendMessageMutation();
 
@@ -97,7 +97,22 @@ export default function ContactUs() {
                 <p>
                   <FaLocationDot className="text-lg" />
                 </p>
+                <p>80, Shahjalal Complex Circular Road, Malibagh, Dhaka</p>
+              </div>
+              <div className="flex gap-1 items-center">
+                <p>
+                  <FaLocationDot className="text-lg" />
+                </p>
                 <p>{contactus?.address}</p>
+              </div>
+              <div className="flex gap-1 items-start">
+                <p>
+                  <FaLocationDot className="text-lg mt-1" />
+                </p>
+                <p>
+                  George Stephnson IND Estate, Killingworth, Newcastle Upon Tyne
+                  NE12 6Ds Uk
+                </p>
               </div>
             </div>
           </div>
