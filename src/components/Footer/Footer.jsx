@@ -118,7 +118,7 @@ export default function Footer() {
 
         <div className="sm:flex sm:items-center sm:justify-between opacity-80">
           <span className="text-sm">
-            © 2017 - 2023 <span className="text-primary">eManager</span>. All
+            © 2017 - 2024 <span className="text-primary">eManager</span>. All
             Rights Reserved.
           </span>
           <ul className="flex items-center gap-2 mt-3 sm:mt-0">

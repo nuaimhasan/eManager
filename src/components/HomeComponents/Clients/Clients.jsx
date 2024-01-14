@@ -8,10 +8,10 @@ export default function Clients() {
   const clients = data?.data;
 
   return (
-    <section className="py-10 bg-secondary">
+    <section className="py-10 bg-gray-50">
       <div className="container">
         <div className="text-center">
-          <h2 className="text-xl md:text-2xl font-medium text-base-100">
+          <h2 className="text-xl md:text-3xl font-medium text-secondary">
             Our Valued Clients
           </h2>
         </div>
