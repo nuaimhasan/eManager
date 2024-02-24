@@ -168,7 +168,7 @@ export default function DashboardSidebar() {
       <div className="bg-[#445360] p-2 flex justify-between items-center font-light">
         <p>Visit Front-End</p>
         <Link to="/" target="_blank" className="text-primary hover:underline">
-          eManager
+          eManager Ltd
         </Link>
       </div>
     </div>

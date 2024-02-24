@@ -85,7 +85,7 @@ export default function ContactComponent() {
                 <p>
                   <IoLogoWhatsapp />
                 </p>
-                <p>{contactus?.whatsapp}</p>
+                <p>+{contactus?.whatsapp}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <p>
@@ -97,17 +97,20 @@ export default function ContactComponent() {
                 <p>
                   <FaLocationDot className="text-lg" />
                 </p>
-                <p>80, Shahjalal Complex Circular Road, Malibagh, Dhaka</p>
-              </div>
-              <div className="flex gap-1 items-center">
-                <p>
-                  <FaLocationDot className="text-lg" />
-                </p>
                 <p>{contactus?.address}</p>
               </div>
               <div className="flex gap-1 items-start">
                 <p>
-                  <FaLocationDot className="text-lg mt-1" />
+                  <FaLocationDot className="text-lg mt-1.5" />
+                </p>
+                <p>
+                  Somalia Building Freej Al Murar, Al Murar-Deira, Dubai-21555,
+                  United Arab Emirates.
+                </p>
+              </div>
+              <div className="flex gap-1 items-start">
+                <p>
+                  <FaLocationDot className="text-lg mt-1.5" />
                 </p>
                 <p>
                   George Stephnson IND Estate, Killingworth, Newcastle Upon Tyne

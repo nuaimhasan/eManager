@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdOutlineEmail } from "react-icons/md";
-import { BsTelephoneInbound, BsInstagram } from "react-icons/bs";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { BsTelephoneInbound } from "react-icons/bs";
+import { FaFacebookF, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
 
@@ -9,7 +9,6 @@ export default function TopHeader() {
   const { data } = useGetContactUsQuery();
 
   const contactUs = data?.data[0];
-  // console.log(contactUs);
 
   return (
     <div className="hidden sm:block top_header py-1">
@@ -17,21 +16,24 @@ export default function TopHeader() {
         <div className="flex justify-between items-center text-sm">
           <div className="flex items-center gap-2.5">
             <Link to={contactUs?.facebookLink} target="_blank">
-              <FaFacebookF className="h-3.5" />
+              <FaFacebookF className="h-3.5 hover:text-secondary duration-300" />
             </Link>
             <Link to={contactUs?.youtubeLink} target="_blank">
-              <AiOutlineYoutube className="text-[17px]" />
+              <AiOutlineYoutube className="text-[17px] hover:text-secondary duration-300" />
             </Link>
             <Link to={contactUs?.linkedinLink} target="_blank">
-              <FaLinkedinIn className="text-[15px]" />
+              <FaLinkedinIn className="text-[15px] hover:text-secondary duration-300" />
             </Link>
-            <Link to={contactUs?.instagramLink} target="_blank">
-              <BsInstagram className="text-sm" />
+            <Link
+              to={`https://api.whatsapp.com/send?phone=${contactUs?.whatsapp}`}
+              target="_blank"
+            >
+              <FaWhatsapp className="text-[17px] hover:text-secondary duration-300" />
             </Link>
           </div>
           <div className="flex items-center gap-6">
             <Link
-              to="mailto:eManagerbd.xyz@gmail.com"
+              to="mailto:emanagerit@gmail.com"
               target="_blank"
               className="flex items-center gap-1"
             >

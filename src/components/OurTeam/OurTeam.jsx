@@ -42,7 +42,11 @@ export default function OurTeam() {
           >
             {data?.data?.map((team) => (
               <SwiperSlide key={team?._id}>
-                <div className="team_card">
+                <div
+                  className="team_card"
+                  data-aos="zoom-in"
+                  data-aos-once="true"
+                >
                   <img
                     src={`${import.meta.env.VITE_BACKEND_URL}/team/${
                       team?.image

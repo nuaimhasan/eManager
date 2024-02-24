@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 export default function ServiceCard({ service }) {
   return (
-    <Link to={`/service/${service?.slug}`} className="service_card">
+    <Link
+      to={`/service/${service?.slug}`}
+      className="service_card"
+      data-aos="zoom-in-up"
+    >
       <img
         src={`${import.meta.env.VITE_BACKEND_URL}/services/${service?.icon}`}
         alt=""

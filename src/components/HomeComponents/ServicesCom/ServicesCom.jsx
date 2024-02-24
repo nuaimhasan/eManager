@@ -9,7 +9,7 @@ export default function ServicesCom() {
   return (
     <section className="py-10 lg:py-14 bg-base-100" id="services">
       <div className="container">
-        <div className="text-center">
+        <div className="text-center" data-aos="zoom-in" data-aos-once="true">
           <h2 className="text-2xl md:text-4xl font-medium text-secondary">
             {serviceSection?.title}
           </h2>

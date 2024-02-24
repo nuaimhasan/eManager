@@ -32,13 +32,13 @@ export default function Header() {
               {isLoading ? (
                 <img
                   src="/images/logo/logo.png"
-                  alt="emanager logo"
+                  alt="emanager Ltd logo"
                   className="w-40 lg:w-44"
                 />
               ) : (
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/logo/${logo}`}
-                  alt="emanager logo"
+                  alt="emanager Ltd logo"
                   className="w-40 lg:w-44"
                 />
               )}

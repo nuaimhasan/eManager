@@ -2,7 +2,7 @@ import "./Footer.css";
 import { Link } from "react-router-dom";
 import { BsFacebook, BsYoutube } from "react-icons/bs";
 import { IoLogoWhatsapp } from "react-icons/io";
-import { AiFillInstagram } from "react-icons/ai";
+import { FaLinkedinIn } from "react-icons/fa";
 import { useGetAllServicesQuery } from "../../redux/api/serviceApi";
 import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
 
@@ -41,7 +41,7 @@ export default function Footer() {
               Popular Services
             </h2>
             <ul className="text-sm flex flex-col gap-1">
-              {services?.slice(0, 8).map((service) => (
+              {services?.slice(0, 6).map((service) => (
                 <li key={service?.id}>
                   <Link
                     to={`/service/${service?.slug}`}
@@ -102,14 +102,14 @@ export default function Footer() {
               Get in Touch
             </h2>
             <ul className="text-sm">
-              <li className="mb-1">
-                <p>{contactUs?.address}</p>
-              </li>
-              <li className="mb-1">
+              <li>
                 <p>{contactUs?.phone}</p>
               </li>
-              <li>
+              <li className="my-1">
                 <p>{contactUs?.email}</p>
+              </li>
+              <li>
+                <p>{contactUs?.address}</p>
               </li>
             </ul>
           </div>
@@ -118,8 +118,8 @@ export default function Footer() {
 
         <div className="sm:flex sm:items-center sm:justify-between opacity-80">
           <span className="text-sm">
-            © 2017 - 2024 <span className="text-primary">eManager</span>. All
-            Rights Reserved.
+            © 2017 - 2024 <span className="text-primary">eManager Ltd</span>.
+            All Rights Reserved.
           </span>
           <ul className="flex items-center gap-2 mt-3 sm:mt-0">
             <li>
@@ -136,12 +136,12 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to={contactUs?.instagramLink}>
-                <AiFillInstagram className="text-xl hover:-mt-2 duration-300" />
+              <Link to={contactUs?.linkedinLink} target="_blank">
+                <FaLinkedinIn className="text-xl hover:-mt-2 duration-300" />
               </Link>
             </li>
             <li>
-              <Link to={contactUs?.youtubeLink}>
+              <Link to={contactUs?.youtubeLink} target="_blank">
                 <BsYoutube className="text-xl hover:-mt-2 duration-300" />
               </Link>
             </li>
