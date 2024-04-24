@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiMenu3Fill } from "react-icons/ri";
+import { MdArrowDropDown } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import { useGetLogosQuery } from "../../redux/api/logoApi";
 import "./Header.css";
 
 export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [moreDropdown, setMoreDropdown] = useState(false);
 
   const { data, isLoading } = useGetLogosQuery();
 
@@ -18,6 +20,14 @@ export default function Header() {
     });
   }, []);
   let logo = data?.data[0]?.logo;
+
+  useEffect(() => {
+    window.addEventListener("click", (e) => {
+      if (!e.target.closest(".more_btn")) {
+        setMoreDropdown(false);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -32,13 +42,13 @@ export default function Header() {
               {isLoading ? (
                 <img
                   src="/images/logo/logo.png"
-                  alt="emanager Ltd logo"
+                  alt="emanager IT logo"
                   className="w-40 lg:w-44"
                 />
               ) : (
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/logo/${logo}`}
-                  alt="emanager Ltd logo"
+                  alt="emanager IT logo"
                   className="w-40 lg:w-44"
                 />
               )}
@@ -69,18 +79,42 @@ export default function Header() {
                 <li>
                   <NavLink to="/contact-us">Contact Us</NavLink>
                 </li>
-                <li>
-                  <NavLink to="/our-team">Our Team</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/clients">Clients</NavLink>
-                </li>
+
                 <li>
                   <NavLink to="/campaigns">Campaigns</NavLink>
                 </li>
+
                 <li>
-                  <NavLink to="/career">Career</NavLink>
+                  <NavLink to="/demo">Demo</NavLink>
                 </li>
+
+                <li className="relative">
+                  <button
+                    onClick={() => setMoreDropdown(!moreDropdown)}
+                    className="flex items-center gap-[2px] pr-2 pl-2 lg:pl-0 more_btn text-neutral"
+                  >
+                    More <MdArrowDropDown className="text-lg" />
+                  </button>
+
+                  <nav
+                    className={`dropdown lg:shadow ${
+                      moreDropdown && "dropdown_show"
+                    }`}
+                  >
+                    <ul>
+                      <li>
+                        <NavLink to="/our-team">Our Team</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/clients">Clients</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/career">Career</NavLink>
+                      </li>
+                    </ul>
+                  </nav>
+                </li>
+                <div className="mb-2 lg:hidden"></div>
                 <Link
                   to="https://api.whatsapp.com/send?phone=8801906198022"
                   target="_blank"

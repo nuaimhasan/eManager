@@ -21,8 +21,7 @@ import Contact from "../pages/DashboardPages/Contact/Contact";
 import CounterLists from "../pages/DashboardPages/Counter/CounterLists";
 import Dashboard from "../pages/DashboardPages/Dashboard/Dashboard";
 import Logo from "../pages/DashboardPages/Logo/Logo";
-import EditMenu from "../pages/DashboardPages/Menu/EditMenu";
-import Menu from "../pages/DashboardPages/Menu/Menu";
+
 import AddService from "../pages/DashboardPages/Services/AddService";
 import EditService from "../pages/DashboardPages/Services/EditService";
 import ServiceBanner from "../pages/DashboardPages/Services/ServiceBanner";
@@ -54,6 +53,11 @@ import Campaigns from "../pages/Campaigns/Campaigns";
 import CampaignDetails from "../pages/CampaignDetails/CampaignDetails";
 import ClientsP from "../pages/Clients/Clients";
 import Hosting from "../pages/Hosting/Hosting";
+import Demo from "../pages/Demo/Demo";
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import MakePrivacyPolicy from "../pages/DashboardPages/MakePrivacyPolicy/MakePrivacyPolicy";
+import ReturnPolicy from "../pages/ReturnPolicy/ReturnPolicy";
+import MakeReturnPolicy from "../pages/DashboardPages/MakeReturnPolicy/MakeReturnPolicy";
 
 export const routes = createBrowserRouter([
   {
@@ -115,6 +119,18 @@ export const routes = createBrowserRouter([
       {
         path: "/hosting",
         element: <Hosting />,
+      },
+      {
+        path: "/demo",
+        element: <Demo />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/return-policy",
+        element: <ReturnPolicy />,
       },
     ],
   },
@@ -227,14 +243,6 @@ export const routes = createBrowserRouter([
         element: <AddAdministrator />,
       },
       {
-        path: "/admin/front-end/menu",
-        element: <Menu />,
-      },
-      {
-        path: "/admin/front-end/menu/edit/:id",
-        element: <EditMenu />,
-      },
-      {
         path: "/admin/counter",
         element: <CounterLists />,
       },
@@ -278,8 +286,18 @@ export const routes = createBrowserRouter([
         path: "/admin/career/all-applicants",
         element: <ApplicantsList />,
       },
+
+      {
+        path: "/admin/privacy-policy",
+        element: <MakePrivacyPolicy />,
+      },
+      {
+        path: "/admin/return-policy",
+        element: <MakeReturnPolicy />,
+      },
     ],
   },
+
   {
     path: "/login",
     element: <Login />,

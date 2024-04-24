@@ -78,20 +78,14 @@ export default function Footer() {
               </li>
 
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="/privacy-policy" className="hover:underline">
                   Privacy Policy
                 </Link>
               </li>
 
               <li>
-                <Link to="/" className="hover:underline">
+                <Link to="/return-policy" className="hover:underline">
                   Return Policy
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/" className="hover:underline">
-                  Terms & Conditions
                 </Link>
               </li>
             </ul>
@@ -118,8 +112,8 @@ export default function Footer() {
 
         <div className="sm:flex sm:items-center sm:justify-between opacity-80">
           <span className="text-sm">
-            © 2017 - 2024 <span className="text-primary">eManager Ltd</span>.
-            All Rights Reserved.
+            © 2017 - 2024 <span className="text-primary">eManager IT</span>. All
+            Rights Reserved.
           </span>
           <ul className="flex items-center gap-2 mt-3 sm:mt-0">
             <li>

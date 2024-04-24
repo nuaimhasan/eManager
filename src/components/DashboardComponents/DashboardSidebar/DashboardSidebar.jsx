@@ -3,6 +3,8 @@ import {
   MdOutlineDashboard,
   MdMonitor,
   MdHomeRepairService,
+  MdPrivacyTip,
+  MdAssignmentReturn,
 } from "react-icons/md";
 import { RiAdminFill, RiTeamFill } from "react-icons/ri";
 import { FaRegHandshake, FaBlogger, FaUsers } from "react-icons/fa";
@@ -133,10 +135,6 @@ const adminSidebarItems = [
         path: "/admin/front-end/logo",
       },
       {
-        title: "Menu",
-        path: "/admin/front-end/menu",
-      },
-      {
         title: "Banner",
         path: "/admin/front-end/banner",
       },
@@ -149,6 +147,16 @@ const adminSidebarItems = [
         path: "/admin/front-end/contact-us",
       },
     ],
+  },
+  {
+    icon: <MdPrivacyTip />,
+    title: "Privacy & Policy",
+    path: "/admin/privacy-policy",
+  },
+  {
+    icon: <MdAssignmentReturn />,
+    title: "Return Policy",
+    path: "/admin/return-policy",
   },
 ];
 
@@ -168,7 +176,7 @@ export default function DashboardSidebar() {
       <div className="bg-[#445360] p-2 flex justify-between items-center font-light">
         <p>Visit Front-End</p>
         <Link to="/" target="_blank" className="text-primary hover:underline">
-          eManager Ltd
+          eManager IT
         </Link>
       </div>
     </div>

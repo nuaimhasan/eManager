@@ -12,6 +12,11 @@ import {
 
 export default function About() {
   const editor = useRef(null);
+  const config = {
+    uploader: {
+      url: "https://xdsoft.net/jodit/finder/?action=fileUpload",
+    },
+  };
 
   const { data, isLoading } = useGetAboutUsQuery();
   const [updateAboutUs, { isLoading: updateLoading }] =
@@ -194,6 +199,7 @@ export default function About() {
             <div className="p-4 about_details">
               <JoditEditor
                 ref={editor}
+                config={config}
                 value={
                   data?.data[0]?.description?.length > 0
                     ? data?.data[0]?.description

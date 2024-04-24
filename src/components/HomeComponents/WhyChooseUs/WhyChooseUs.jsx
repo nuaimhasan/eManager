@@ -10,7 +10,7 @@ export default function WhyChooseUs() {
         <div className="text-center">
           <h2 className="text-2xl md:text-4xl font-medium">Why Choose Us</h2>
           <p className="opacity-90 font-light lg:w-1/2 mx-auto text-sm mt-1.5">
-            eManager Ltd is here to fuel your success with our expertise in
+            eManager IT is here to fuel your success with our expertise in
             website, app, software development, and total digital marketing
             solutions. Let&apos;s embark on a journey of growth together!
           </p>

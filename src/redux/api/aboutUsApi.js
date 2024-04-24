@@ -10,6 +10,7 @@ export const aboutUsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["aboutUs"],
     }),
+
     updateAboutUs: builder.mutation({
       query: ({ id, formData }) => ({
         url: `about/${id}`,
@@ -18,6 +19,7 @@ export const aboutUsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["aboutUs"],
     }),
+
     getAboutUs: builder.query({
       query: () => ({
         url: `about`,

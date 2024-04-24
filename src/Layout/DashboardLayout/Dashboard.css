@@ -8,6 +8,7 @@
   left: -0%;
   top: 0;
 }
+
 .admin_sidebar::-webkit-scrollbar {
   display: none;
 }
@@ -23,6 +24,10 @@
   position: relative;
   left: 300px;
 }
+
+/* .admin_siderbar ul li {
+  position: relative;
+} */
 
 .admin_siderbar ul li button {
   width: 100%;
@@ -60,6 +65,11 @@
   max-height: 0px;
   overflow: hidden;
   transition: all 0.3s ease;
+  display: block !important;
+  position: relative;
+  top: 0;
+  left: 0;
+  background: transparent;
 }
 
 .admin_siderbar .dropdown_show {
@@ -67,9 +77,14 @@
   transition: all 0.3s ease;
 }
 
+.admin_siderbar .dropdown ul li {
+  border-bottom: 0px !important;
+}
+
 .admin_siderbar .dropdown ul li a,
 .admin_siderbar .dropdown ul li button {
-  padding: 8px 8px 8px 35px;
+  padding: 8px 8px 8px 35px !important;
+  border-bottom: 0px !important;
 }
 
 .admin_siderbar .subDropdown ul li a {

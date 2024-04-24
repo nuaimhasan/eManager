@@ -139,3 +139,7 @@ table tbody td {
 .team_page .team_full_card:nth-child(even) {
   flex-direction: row-reverse;
 }
+
+.make_privacy_policy .jodit-workplace {
+  height: 68vh !important;
+}

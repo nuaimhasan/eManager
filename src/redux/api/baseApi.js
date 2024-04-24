@@ -33,5 +33,7 @@ export const baseApi = createApi({
     "benefits",
     "jobapplyform",
     "team",
+    "privacyPolicy",
+    "returnPolicy",
   ],
 });
