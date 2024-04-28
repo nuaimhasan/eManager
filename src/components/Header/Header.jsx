@@ -5,12 +5,15 @@ import { MdArrowDropDown } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import { useGetLogosQuery } from "../../redux/api/logoApi";
 import "./Header.css";
+import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
 
 export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [moreDropdown, setMoreDropdown] = useState(false);
 
   const { data, isLoading } = useGetLogosQuery();
+  const { data: contactUsData } = useGetContactUsQuery();
+  const contactUs = contactUsData?.data[0];
 
   useEffect(() => {
     window.addEventListener("click", (e) => {
@@ -116,7 +119,7 @@ export default function Header() {
                 </li>
                 <div className="mb-2 lg:hidden"></div>
                 <Link
-                  to="https://api.whatsapp.com/send?phone=8801906198022"
+                  to={`https://api.whatsapp.com/send?phone=${contactUs?.whatsapp}`}
                   target="_blank"
                   className="gradient-primary-btn flex items-center gap-1 text-sm"
                 >
