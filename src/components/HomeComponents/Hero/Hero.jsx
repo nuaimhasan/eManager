@@ -45,10 +45,10 @@ export default function Hero() {
             data-aos="zoom-in"
             data-aos-once="true"
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl text-neutral">
+            <h2 className="text-2xl md:text-3xl lg:text-[33px] text-neutral">
               {isLoading
                 ? "We are Hungry to take on your Challenge & Manage your business Like a Pro..."
-                : banner?.title}{" "}
+                : banner?.title}
               <span ref={el} className="text-secondary">
                 Web Development
               </span>

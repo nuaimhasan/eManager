@@ -1,6 +1,8 @@
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
+import { HiMiniBuildingOffice } from "react-icons/hi2";
+
 import Swal from "sweetalert2";
 import Spinner from "../Spinner/Spinner";
 import { useGetContactUsQuery } from "../../redux/api/contactUsApi";
@@ -98,6 +100,15 @@ export default function ContactComponent() {
                   <FaLocationDot className="text-lg" />
                 </p>
                 <p>{contactus?.address}</p>
+              </div>
+              <div className="flex gap-1 items-start">
+                <p>
+                  <HiMiniBuildingOffice className="text-lg mt-1.5" />
+                </p>
+                <p>
+                  House:- 05, Road:- 2/D, Block:- J , Baridhara, Gulshan,
+                  Dhaka-1212, Bangladesh.
+                </p>
               </div>
               <div className="flex gap-1 items-start">
                 <p>

@@ -44,7 +44,7 @@ export default function Clients() {
           >
             {clients?.map((client) => (
               <SwiperSlide key={client?._id}>
-                <div className="shadow w-full h-16 rounded flex justify-center items-center bg-gray-300">
+                <div className="shadow w-full h-20 rounded flex justify-center items-center bg-gray-300">
                   <img
                     src={`${import.meta.env.VITE_BACKEND_URL}/clients/${
                       client?.image

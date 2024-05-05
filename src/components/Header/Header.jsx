@@ -106,9 +106,6 @@ export default function Header() {
                   >
                     <ul>
                       <li>
-                        <NavLink to="/our-team">Our Team</NavLink>
-                      </li>
-                      <li>
                         <NavLink to="/clients">Clients</NavLink>
                       </li>
                       <li>

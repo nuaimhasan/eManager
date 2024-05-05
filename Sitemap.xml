@@ -90,12 +90,12 @@
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
-   <url>
+   <!-- <url>
       <loc>https://emanagerit.com/our-team</loc>
       <lastmod>2024-04-24</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
-   </url>
+   </url> -->
    <url>
       <loc>https://emanagerit.com/privacy-policy</loc>
       <lastmod>2024-04-24</lastmod>

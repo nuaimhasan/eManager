@@ -11,7 +11,7 @@ export default function TopHeader() {
   const contactUs = data?.data[0];
 
   return (
-    <div className="hidden sm:block top_header py-1">
+    <div className="hidden sm:block py-1 top_header">
       <div className="container">
         <div className="flex justify-between items-center text-sm">
           <div className="flex items-center gap-2.5">
