@@ -5,7 +5,7 @@ import CounterArea from "../../components/HomeComponents/CounterArea/CounterArea
 import Hero from "../../components/HomeComponents/Hero/Hero";
 import ServicesCom from "../../components/HomeComponents/ServicesCom/ServicesCom";
 import WhyChooseUs from "../../components/HomeComponents/WhyChooseUs/WhyChooseUs";
-import OurTeam from "../../components/OurTeam/OurTeam";
+// import OurTeam from "../../components/OurTeam/OurTeam";
 import ContactComponent from "../../components/ContactComponent/ContactComponent";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
       <WhyChooseUs />
       <ContactComponent />
       <CounterArea />
-      <OurTeam />
+      {/* <OurTeam /> */}
       <Clients />
     </div>
   );

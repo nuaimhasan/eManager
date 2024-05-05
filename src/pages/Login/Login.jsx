@@ -45,7 +45,7 @@ const Login = () => {
     <section className="flex items-center justify-center w-full min-h-screen bg-gray-100">
       <div className="bg-base-100 rounded shadow w-[90%] sm:w-[400px] py-5">
         <div className="p-4 border-b">
-          <h3 className="font-semibold text-xl text-secondary text-center ">
+          <h3 className="font-semibold text-xl text-primary text-center ">
             Admin Login
           </h3>
         </div>

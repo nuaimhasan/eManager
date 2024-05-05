@@ -77,7 +77,7 @@ export default function AllTeams() {
                 <td>
                   <div className="flex gap-1.5">
                     <Link to={`/admin/teams/edit-team/${team?._id}`}>
-                      <FaUserEdit className="text-lg hover:text-secondary" />
+                      <FaUserEdit className="text-lg hover:text-primary" />
                     </Link>
                     <button onClick={() => handleDeleteTeam(team?._id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />

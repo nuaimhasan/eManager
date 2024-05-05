@@ -68,7 +68,7 @@ export default function JobsList() {
                 <td>
                   <div className="flex items-center gap-2">
                     <Link to={`/admin/jobs/edit-job/${job._id}`}>
-                      <FaRegEdit className="text-[17px] hover:text-secondary" />
+                      <FaRegEdit className="text-[17px] hover:text-primary" />
                     </Link>
                     <button onClick={() => handleDelete(job?._id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />

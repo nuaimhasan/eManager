@@ -17,7 +17,7 @@ export default function AboutComponent() {
         <div>
           <h2 className="text-xl sm:text-3xl text-neutral">
             {aboutUs?.title}{" "}
-            <span className="text-secondary">{aboutUs?.tagline}</span>
+            <span className="text-primary">{aboutUs?.tagline}</span>
           </h2>
 
           <div className="mt-3 text-neutral-content text-[14.5px] flex flex-col gap-1">

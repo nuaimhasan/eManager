@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import Spinner from "../../components/Spinner/Spinner";
 import { useGetClientsQuery } from "../../redux/api/clientApi";
 
 export default function ClientsP() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   const { data, isLoading } = useGetClientsQuery();
   const clients = data?.data;
 
@@ -12,7 +17,7 @@ export default function ClientsP() {
   return (
     <section>
       <div className="py-10 flex justify-center items-center">
-        <h2 className="text-secondary text-4xl font-semibold">Our Clients</h2>
+        <h2 className="text-primary text-4xl font-semibold">Our Clients</h2>
       </div>
       <div className="container">
         <div className="grid grid-cols-5 gap-6 mt-6">

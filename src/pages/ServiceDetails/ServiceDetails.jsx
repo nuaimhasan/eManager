@@ -22,7 +22,7 @@ export default function ServiceDetails() {
   return (
     <section>
       {/* details */}
-      <div className="bg-secondary text-base-100 py-5">
+      <div className="bg-primary text-base-100 py-5">
         <div className="container">
           <div className="grid lg:grid-cols-5 gap-6 items-center">
             <div className="lg:col-span-3">
@@ -53,69 +53,69 @@ export default function ServiceDetails() {
           {/* Technologies */}
           <section className="py-10 bg-gray-50">
             <div className="container">
-              <h2 className="text-center text-secondary text-2xl md:text-3xl">
+              <h2 className="text-center text-primary text-2xl md:text-3xl">
                 Our Web Development Technologies
               </h2>
 
               <div className="mt-8 lg:w-2/3 mx-auto">
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-1">
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/html.png" alt="" />
                     <h2>HTML</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/css.png" alt="" />
                     <h2>CSS</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/js.png" alt="" />
                     <h2>JavaScript</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/tailwind.webp" alt="" />
                     <h2>Tailwind CSS</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/bootstrap.png" alt="" />
                     <h2>Bootstrap</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/react.png" alt="" />
                     <h2>React JS</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/nextjs.png" alt="" />
                     <h2>Next JS</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/redux.png" alt="" />
                     <h2>Redux</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/vue.png" alt="" />
                     <h2>Vue JS</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/php.svg" alt="" />
                     <h2>PHP</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/laravel.webp" alt="" />
                     <h2>Laravel</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/node.png" alt="" />
                     <h2>Node JS</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/express.png" alt="" />
                     <h2>Express JS</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/mongodb.svg" alt="" />
                     <h2>MongoDB</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/mysql.png" alt="" />
                     <h2>MySql</h2>
                   </div>
@@ -127,7 +127,7 @@ export default function ServiceDetails() {
           {/* Service categories */}
           <div className="pt-10 pb-10 lg:pb-20">
             <div className="container">
-              <h2 className="text-secondary text-3xl font-semibold">
+              <h2 className="text-primary text-3xl font-semibold">
                 Our Web Categories
               </h2>
 
@@ -221,29 +221,29 @@ export default function ServiceDetails() {
           {/* Technologies */}
           <section className="py-10 bg-gray-50">
             <div className="container">
-              <h2 className="text-center text-secondary text-2xl md:text-3xl">
+              <h2 className="text-center text-primary text-2xl md:text-3xl">
                 Our App Development Technologies
               </h2>
 
               <div className="mt-8 lg:w-2/3 mx-auto">
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-1">
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/flutter.png" alt="" />
                     <h2>Flutter</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/react.png" alt="" />
                     <h2>React Native</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/python.png" alt="" />
                     <h2>Python</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/swift.png" alt="" />
                     <h2>Swift</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/c++.png" alt="" />
                     <h2>C++</h2>
                   </div>
@@ -259,21 +259,21 @@ export default function ServiceDetails() {
           {/* Technologies */}
           <section className="py-10 bg-gray-50">
             <div className="container">
-              <h2 className="text-center text-secondary text-2xl md:text-3xl">
+              <h2 className="text-center text-primary text-2xl md:text-3xl">
                 Our UI/UX Design Technologies
               </h2>
 
               <div className="mt-8 lg:w-2/3 mx-auto">
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-1 text-center">
-                  <div className="technology_card bg-secondary/20 ">
+                  <div className="technology_card bg-primary/20 ">
                     <img src="/images/language/ps.png" alt="" />
                     <h2>Adobe Photoshop</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/ai.png" alt="" />
                     <h2>Adobe Illustrator</h2>
                   </div>
-                  <div className="technology_card bg-secondary/20">
+                  <div className="technology_card bg-primary/20">
                     <img src="/images/language/figma.png" alt="" />
                     <h2>Figma</h2>
                   </div>
@@ -289,7 +289,7 @@ export default function ServiceDetails() {
           {/* Service categories */}
           <div className="pt-10 pb-10 lg:pb-20">
             <div className="container">
-              <h2 className="text-secondary text-3xl font-semibold">
+              <h2 className="text-primary text-3xl font-semibold">
                 Our Digital Marketing Categories
               </h2>
 
@@ -339,7 +339,7 @@ export default function ServiceDetails() {
           <section className="py-10">
             <div className="container">
               <div className="text-center">
-                <p className="text-secondary md:w-1/2 mx-auto text-[15px]">
+                <p className="text-primary md:w-1/2 mx-auto text-[15px]">
                   This service is only available to our clients
                 </p>
               </div>
@@ -348,7 +348,7 @@ export default function ServiceDetails() {
                 <div className="container">
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 items-center gap-10">
                     <div className="price_card">
-                      <div className="bg-gray-100 head text-secondary">
+                      <div className="bg-gray-100 head text-primary">
                         <h2 className="text-lg font-semibold">Starter</h2>
                         <h2 className="text-3xl ">
                           2999tk<span className="text-base">/yearly</span>
@@ -356,62 +356,61 @@ export default function ServiceDetails() {
                       </div>
                       <ul className="mt-8 pl-10">
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> No Renew
+                          <GiCheckMark className="text-primary" /> No Renew
                           Price Hike
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 5 GB NVMe
-                          SSD Storage
+                          <GiCheckMark className="text-primary" /> 5 GB NVMe SSD
+                          Storage
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 200 GB
+                          <GiCheckMark className="text-primary" /> 200 GB
                           Bandwidth
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 4 Websites
+                          <GiCheckMark className="text-primary" /> 4 Websites
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 1 GB Ram
+                          <GiCheckMark className="text-primary" /> 1 GB Ram
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 1 Core CPU
+                          <GiCheckMark className="text-primary" /> 1 Core CPU
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 10 Mbps I/O
+                          <GiCheckMark className="text-primary" /> 10 Mbps I/O
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
+                          <GiCheckMark className="text-primary" /> Unlimited
                           Subdomains year
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
+                          <GiCheckMark className="text-primary" /> Unlimited
                           Email Accounts
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
-                          FTP
+                          <GiCheckMark className="text-primary" /> Unlimited FTP
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
+                          <GiCheckMark className="text-primary" /> Unlimited
                           MySQL Databases
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> MongoDB
+                          <GiCheckMark className="text-primary" /> MongoDB
                           Support
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Node.js
+                          <GiCheckMark className="text-primary" /> Node.js
                           Support
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Python
+                          <GiCheckMark className="text-primary" /> Python
                           Support
                         </li>
                       </ul>
                     </div>
 
                     <div className="price_card">
-                      <div className="bg-secondary head text-base-100">
+                      <div className="bg-primary head text-base-100">
                         <h2 className="text-lg font-semibold">Business</h2>
                         <h2 className="text-3xl ">
                           3999tk<span className="text-base">/yearly</span>
@@ -419,62 +418,61 @@ export default function ServiceDetails() {
                       </div>
                       <ul className="mt-8 pl-10">
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> No Renew
+                          <GiCheckMark className="text-primary" /> No Renew
                           Price Hike
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 10 GB NVMe
+                          <GiCheckMark className="text-primary" /> 10 GB NVMe
                           SSD Storage
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 500 GB
+                          <GiCheckMark className="text-primary" /> 500 GB
                           Bandwidth
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 6 Websites
+                          <GiCheckMark className="text-primary" /> 6 Websites
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 1 GB Ram
+                          <GiCheckMark className="text-primary" /> 1 GB Ram
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 1 Core CPU
+                          <GiCheckMark className="text-primary" /> 1 Core CPU
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 10 Mbps I/O
+                          <GiCheckMark className="text-primary" /> 10 Mbps I/O
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
+                          <GiCheckMark className="text-primary" /> Unlimited
                           Subdomains year
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
+                          <GiCheckMark className="text-primary" /> Unlimited
                           Email Accounts
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
-                          FTP
+                          <GiCheckMark className="text-primary" /> Unlimited FTP
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
+                          <GiCheckMark className="text-primary" /> Unlimited
                           MySQL Databases
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> MongoDB
+                          <GiCheckMark className="text-primary" /> MongoDB
                           Support
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Node.js
+                          <GiCheckMark className="text-primary" /> Node.js
                           Support
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Python
+                          <GiCheckMark className="text-primary" /> Python
                           Support
                         </li>
                       </ul>
                     </div>
 
                     <div className="price_card">
-                      <div className="bg-gray-100 head text-secondary">
+                      <div className="bg-gray-100 head text-primary">
                         <h2 className="text-lg font-semibold">Econo</h2>
                         <h2 className="text-3xl ">
                           4999tk<span className="text-base">/yearly</span>
@@ -482,56 +480,54 @@ export default function ServiceDetails() {
                       </div>
                       <ul className="mt-8 pl-10">
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> No Renew
+                          <GiCheckMark className="text-primary" /> No Renew
                           Price Hike
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 20 GB NVMe
+                          <GiCheckMark className="text-primary" /> 20 GB NVMe
                           SSD Storage
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 1200 GB
+                          <GiCheckMark className="text-primary" /> 1200 GB
                           Bandwidth
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 12 Websites
+                          <GiCheckMark className="text-primary" /> 12 Websites
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 2 GB Ram
+                          <GiCheckMark className="text-primary" /> 2 GB Ram
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 1.5 Core
-                          CPU
+                          <GiCheckMark className="text-primary" /> 1.5 Core CPU
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> 20 Mbps I/O
+                          <GiCheckMark className="text-primary" /> 20 Mbps I/O
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
+                          <GiCheckMark className="text-primary" /> Unlimited
                           Subdomains year
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
+                          <GiCheckMark className="text-primary" /> Unlimited
                           Email Accounts
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
-                          FTP
+                          <GiCheckMark className="text-primary" /> Unlimited FTP
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Unlimited
+                          <GiCheckMark className="text-primary" /> Unlimited
                           MySQL Databases
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> MongoDB
+                          <GiCheckMark className="text-primary" /> MongoDB
                           Support
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Node.js
+                          <GiCheckMark className="text-primary" /> Node.js
                           Support
                         </li>
                         <li className="flex items-center gap-2">
-                          <GiCheckMark className="text-secondary" /> Python
+                          <GiCheckMark className="text-primary" /> Python
                           Support
                         </li>
                       </ul>

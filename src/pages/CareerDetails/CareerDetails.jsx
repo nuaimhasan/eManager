@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAddJobApplyFormMutation } from "../../redux/api/jobApplyFormApi";
@@ -7,7 +7,9 @@ import "./CareerDetails.css";
 import Spinner from "../../components/Spinner/Spinner";
 
 export default function CareerDetails() {
-  // window.scroll(0, 0);
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   const { id } = useParams();
   const navigate = useNavigate();
 

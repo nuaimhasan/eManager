@@ -3,7 +3,7 @@
   border-radius: 10px;
   text-align: center;
   box-shadow: 1px 1px 10px rgba(88, 88, 88, 0.097);
-  margin-top: 5px;
+  margin-top: 3px;
   border: 1px solid #dddddd76;
   height: 300px;
   background: #fff;
@@ -37,4 +37,5 @@
 
 .service_card:hover button {
   text-decoration: underline;
+  color: #0e4677;
 }

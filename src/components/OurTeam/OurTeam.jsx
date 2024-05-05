@@ -13,7 +13,7 @@ export default function OurTeam() {
     <section className="py-10 lg:py-16 bg-base-100" id="our-team">
       <div className="container">
         <div className="text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-secondary">
+          <h2 className="text-2xl md:text-3xl font-semibold text-primary">
             Meet Our Team
           </h2>
         </div>
@@ -53,7 +53,7 @@ export default function OurTeam() {
                     }`}
                     alt="team-image"
                   />
-                  <h2 className="text-xl font-medium text-secondary">
+                  <h2 className="text-xl font-medium text-primary">
                     {team?.name}
                   </h2>
                   <p className="text-neutral-content">{team?.designation}</p>

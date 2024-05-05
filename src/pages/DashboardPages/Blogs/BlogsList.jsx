@@ -71,7 +71,7 @@ export default function BlogsList() {
                 <td>
                   <div className="flex items-center gap-2">
                     <Link to={`/admin/blogs/edit-blog/${blog.id}`}>
-                      <FaRegEdit className="text-[17px] hover:text-secondary" />
+                      <FaRegEdit className="text-[17px] hover:text-primary" />
                     </Link>
                     <button onClick={() => handleDelete(blog?.id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />

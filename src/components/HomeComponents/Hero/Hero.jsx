@@ -49,7 +49,7 @@ export default function Hero() {
               {isLoading
                 ? "We are Hungry to take on your Challenge & Manage your business Like a Pro..."
                 : banner?.title}
-              <span ref={el} className="text-secondary">
+              <span ref={el} className="text-primary">
                 Web Development
               </span>
             </h2>

@@ -5,7 +5,7 @@ export default function WhyChooseUs() {
   const chooseLists = data?.data;
 
   return (
-    <section className="py-10 lg:py-20 bg-secondary text-base-100">
+    <section className="py-10 lg:py-20 bg-primary text-base-100">
       <div className="container">
         <div className="text-center">
           <h2 className="text-2xl md:text-4xl font-medium">Why Choose Us</h2>

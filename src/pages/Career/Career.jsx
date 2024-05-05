@@ -6,9 +6,12 @@ import { useGetCareerBannerQuery } from "../../redux/api/careerBannerApi";
 import { useGetJobsQuery } from "../../redux/api/jobsApi";
 import parse from "html-react-parser";
 import Spinner from "../../components/Spinner/Spinner";
+import { useEffect } from "react";
 
 export default function Career() {
-  window.scroll(0, 0);
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   const { data: careerBanners, isLoading: isCareerBannersLoading } =
     useGetCareerBannerQuery();
@@ -78,7 +81,7 @@ export default function Career() {
             >
               <div>
                 <div className="flex items-center gap-2">
-                  <div className="bg-secondary text-base-100 px-1.5 py-1 w-max rounded">
+                  <div className="bg-primary text-base-100 px-1.5 py-1 w-max rounded">
                     <BiSolidBriefcase />
                   </div>
                   <h3 className="font-semibold text-lg text-neutral uppercase">
@@ -92,7 +95,7 @@ export default function Career() {
               <div className="mt-5 sm:mt-0">
                 <Link
                   to={`/career/${job?.id}`}
-                  className="sm:block bg-primary text-neutral font-medium px-6 py-2 rounded-full text-sm scale-[.98] hover:scale-[1] duration-200"
+                  className="sm:block bg-primary text-base-100 font-medium px-6 py-2 rounded-full text-sm scale-[.98] hover:scale-[1] duration-200"
                 >
                   Apply Now
                 </Link>
@@ -110,7 +113,7 @@ export default function Career() {
           <div className="mt-8 grid sm:grid-cols-3 gap-6">
             {benefits?.map((benefit) => (
               <div key={benefit.id}>
-                <div className="bg-secondary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
+                <div className="bg-primary text-base-100 px-2 py-1.5 w-max rounded text-2xl">
                   <img
                     src={`${import.meta.env.VITE_BACKEND_URL}/benefit/${
                       benefit?.image

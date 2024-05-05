@@ -73,7 +73,7 @@ export default function AddClient() {
                   <div className="flex items-center gap-2">
                     <span
                       onClick={onImageUpload}
-                      className="px-4 py-1.5 rounded-2xl text-base-100 bg-secondary cursor-pointer text-sm"
+                      className="px-4 py-1.5 rounded-2xl text-base-100 bg-primary cursor-pointer text-sm"
                     >
                       Choose Image
                     </span>

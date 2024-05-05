@@ -11,7 +11,7 @@ export default function Clients() {
     <section className="py-10 bg-gray-50">
       <div className="container">
         <div className="text-center">
-          <h2 className="text-xl md:text-3xl font-medium text-secondary">
+          <h2 className="text-xl md:text-3xl font-medium text-primary">
             Our Valued Clients
           </h2>
         </div>

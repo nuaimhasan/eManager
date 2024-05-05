@@ -73,7 +73,7 @@ export default function BenefitList() {
                 <td>
                   <div className="flex items-center gap-2">
                     <Link to={`/admin/benefit/edit-benefit/${benefit._id}`}>
-                      <FaRegEdit className="text-[17px] hover:text-secondary" />
+                      <FaRegEdit className="text-[17px] hover:text-primary" />
                     </Link>
                     <button onClick={() => handleDelete(benefit?._id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />

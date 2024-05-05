@@ -10,7 +10,7 @@ export default function OurTeamPage() {
     <section className="py-4 sm:py-10">
       <div className="container">
         <div className="text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-secondary">
+          <h2 className="text-2xl md:text-3xl font-semibold text-primary">
             Meet Our Team
           </h2>
         </div>
@@ -30,7 +30,7 @@ export default function OurTeamPage() {
                 />
               </div>
               <div className="sm:w-2/3">
-                <h2 className="text-2xl font-medium text-secondary">
+                <h2 className="text-2xl font-medium text-primary">
                   {team?.name}
                 </h2>
                 <p className="text-neutral-content font-medium">

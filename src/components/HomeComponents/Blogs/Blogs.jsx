@@ -18,7 +18,7 @@ export default function Blogs() {
           <h3 className="text-lg text-neutral-content">
             {blogSection?.subtitle}
           </h3>
-          <h2 className="text-4xl font-bold text-secondary">
+          <h2 className="text-4xl font-bold text-primary">
             {blogSection?.title}
           </h2>
           <p className="text-sm text-neutral-content mt-3">

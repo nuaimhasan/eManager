@@ -79,7 +79,7 @@ export default function WhyChooseLists() {
                 <td>
                   <div className="flex items-center gap-2">
                     <Link to={`/admin/why-choose/edit/${item._id}`}>
-                      <FaRegEdit className="text-[17px] hover:text-secondary" />
+                      <FaRegEdit className="text-[17px] hover:text-primary" />
                     </Link>
                     <button onClick={() => handleDelete(item?._id)}>
                       <AiOutlineDelete className="text-lg hover:text-red-500" />

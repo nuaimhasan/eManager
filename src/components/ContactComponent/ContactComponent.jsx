@@ -132,7 +132,7 @@ export default function ContactComponent() {
           </div>
 
           <div>
-            <h2 className="text-secondary font-semibold text-xl mb-3">
+            <h2 className="text-primary font-semibold text-xl mb-3">
               Get In Touch
             </h2>
             <form
