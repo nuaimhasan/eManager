@@ -49,7 +49,7 @@ export default function Demo() {
                         to="https://ecommerce.emanagerit.com"
                         target="_blank"
                       >
-                        <h2>Mega Store 1 - Ecommerce Website</h2>
+                        <h2>Singlevendor 1</h2>
                       </Link>
                       <p className="text-neutral-content text-sm">
                         Reactjs, Nodejs, Expressjs, MongoDB
@@ -58,6 +58,129 @@ export default function Demo() {
                       <div className="mt-4 flex justify-between items-center">
                         <Link
                           to="https://ecommerce.emanagerit.com"
+                          target="_blank"
+                          className="text-sm px-4 py-1.5 rounded bg-primary text-base-100"
+                        >
+                          Live Demo
+                        </Link>
+                        <Link
+                          to="https://api.whatsapp.com/send?phone=8801906198022"
+                          target="_blank"
+                          className="text-sm px-4 py-1.5 rounded bg-primary text-base-100"
+                        >
+                          Buy Now
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="demo_card rounded overflow-hidden bg-base-100 shadow">
+                    <Link
+                      to="https://singlevendor2.emanagerit.com"
+                      target="_blank"
+                    >
+                      <img
+                        src="/images/demos/sv2.png"
+                        alt=""
+                        className="w-full h-52 sm:h-[250px]"
+                      />
+                    </Link>
+                    <div className="p-3">
+                      <Link
+                        to="https://singlevendor2.emanagerit.com"
+                        target="_blank"
+                      >
+                        <h2>Singlevendor 2</h2>
+                      </Link>
+                      <p className="text-neutral-content text-sm">
+                        Reactjs, Nodejs, Expressjs, MongoDB
+                      </p>
+
+                      <div className="mt-4 flex justify-between items-center">
+                        <Link
+                          to="https://singlevendor2.emanagerit.com"
+                          target="_blank"
+                          className="text-sm px-4 py-1.5 rounded bg-primary text-base-100"
+                        >
+                          Live Demo
+                        </Link>
+                        <Link
+                          to="https://api.whatsapp.com/send?phone=8801906198022"
+                          target="_blank"
+                          className="text-sm px-4 py-1.5 rounded bg-primary text-base-100"
+                        >
+                          Buy Now
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="demo_card rounded overflow-hidden bg-base-100 shadow">
+                    <Link
+                      to="https://multivendor.emanagerit.com"
+                      target="_blank"
+                    >
+                      <img
+                        src="/images/demos/m1.png"
+                        alt=""
+                        className="w-full h-52 sm:h-[250px]"
+                      />
+                    </Link>
+                    <div className="p-3">
+                      <Link
+                        to="https://multivendor.emanagerit.com"
+                        target="_blank"
+                      >
+                        <h2>Multivendor 1</h2>
+                      </Link>
+                      <p className="text-neutral-content text-sm">
+                        Reactjs, Nodejs, Expressjs, MongoDB
+                      </p>
+
+                      <div className="mt-4 flex justify-between items-center">
+                        <Link
+                          to="https://multivendor.emanagerit.com"
+                          target="_blank"
+                          className="text-sm px-4 py-1.5 rounded bg-primary text-base-100"
+                        >
+                          Live Demo
+                        </Link>
+                        <Link
+                          to="https://api.whatsapp.com/send?phone=8801906198022"
+                          target="_blank"
+                          className="text-sm px-4 py-1.5 rounded bg-primary text-base-100"
+                        >
+                          Buy Now
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="demo_card rounded overflow-hidden bg-base-100 shadow">
+                    <Link
+                      to="https://multivendor2.emanagerit.com"
+                      target="_blank"
+                    >
+                      <img
+                        src="/images/demos/m2.png"
+                        alt=""
+                        className="w-full h-52 sm:h-[250px]"
+                      />
+                    </Link>
+                    <div className="p-3">
+                      <Link
+                        to="https://multivendor2.emanagerit.com"
+                        target="_blank"
+                      >
+                        <h2>Multivendor 2</h2>
+                      </Link>
+                      <p className="text-neutral-content text-sm">
+                        Reactjs, Nodejs, Expressjs, MongoDB
+                      </p>
+
+                      <div className="mt-4 flex justify-between items-center">
+                        <Link
+                          to="https://multivendor2.emanagerit.com"
                           target="_blank"
                           className="text-sm px-4 py-1.5 rounded bg-primary text-base-100"
                         >
@@ -310,7 +433,7 @@ export default function Demo() {
                     </Link>
                     <div className="p-3">
                       <Link to="https://ecommerce.paglabd.com/" target="_blank">
-                        <h2>Single Vendor 1 - Ecommerce Website</h2>
+                        <h2>Singlevendor 1</h2>
                       </Link>
                       <p className="text-neutral-content text-sm">
                         PHP, Laravel, Bootstrap, Mysql
@@ -351,7 +474,7 @@ export default function Demo() {
                         to="https://multiplevendor.paglabd.com"
                         target="_blank"
                       >
-                        <h2>Multivendor - Ecommerce Website</h2>
+                        <h2>Multivendor 1</h2>
                       </Link>
                       <p className="text-neutral-content text-sm">
                         PHP, Laravel, Bootstrap, Mysql

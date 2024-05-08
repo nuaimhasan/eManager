@@ -36,7 +36,7 @@ import ServicesPage from "../pages/Services/Services";
 import AddNewCounter from "../pages/DashboardPages/Counter/AddNewCounter";
 import EditCounter from "../pages/DashboardPages/Counter/EditCounter";
 import JobsList from "../pages/DashboardPages/Career/Jobs/JobList";
-import CareerBanner from "../pages/DashboardPages/career/CareerBanner";
+import CareerBanner from "../pages/DashboardPages/Career/CareerBanner";
 import AddJob from "../pages/DashboardPages/Career/Jobs/AddJob";
 import EditJob from "../pages/DashboardPages/Career/Jobs/EditJob";
 import BenefitList from "../pages/DashboardPages/Career/Benefits/BenefitList";
