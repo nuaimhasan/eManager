@@ -14,24 +14,19 @@ export default function Footer() {
   const contactUs = contactUsData?.data[0];
 
   return (
-    <footer className="pt-10 pb-5 font-extralight">
+    <footer className="pt-10 pb-5 font-light">
       <div className="container">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
           <div className="md:col-span-2">
             <div className="w-max">
               <Link to="/">
-                <img
-                  src="/images/logo/logo-light.png"
-                  className="w-48"
-                  alt="Logo"
-                />
+                <img src="/images/logo/logo.png" className="w-48" alt="Logo" />
               </Link>
             </div>
             <div className="mt-2 text-sm">
               <p>
-                If you have the Commitment and Desire to develop your eCommerce
-                business we have the experience and expertise to make it
-                success!
+                eManager is a Promising Software & Digital marketing Solution
+                company.
               </p>
             </div>
           </div>
@@ -58,7 +53,7 @@ export default function Footer() {
             <h2 className="mb-3 text-base font-semibold uppercase">
               Quick Link
             </h2>
-            <ul className="text-sm flex flex-col gap-1">
+            <ul className="text-sm flex flex-col gap-1 text-neutral-content">
               <li>
                 <Link to="/about-us" className="hover:underline">
                   About Us
@@ -108,11 +103,13 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <hr className="my-4 border-gray-200 sm:mx-auto" />
+
+        <hr className="my-4 border-gray-300 sm:mx-auto" />
 
         <div className="sm:flex sm:items-center sm:justify-between opacity-80">
           <span className="text-sm">
-            © 2017 - 2024 <span className="text-primary">eManager IT</span>. All
+            © 2017 - 2024{" "}
+            <span className="text-primary font-medium">eManager</span>. All
             Rights Reserved.
           </span>
           <ul className="flex items-center gap-2 mt-3 sm:mt-0">

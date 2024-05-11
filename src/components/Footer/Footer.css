@@ -1,7 +1,8 @@
 footer {
-  background-image: linear-gradient(0deg, #0e467776, #0e46777a),
+  /* background-image: linear-gradient(0deg, #0e467776, #0e46777a),
     url("/images/footer.png");
   background-position: center;
-  background-size: cover;
-  color: #fff;
+  background-size: cover; */
+  color: #333;
+  background: #0e467716;
 }
