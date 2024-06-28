@@ -1,0 +1,1 @@
+import{e as n,f as s,j as e,h as i}from"./index-d4e5aba6.js";import{S as u}from"./Spinner-241108b6.js";function m({children:o}){n(a=>a.user);const r=s(),t=localStorage.getItem("eManager_jwt");return t?t?o:e.jsx(u,{}):e.jsx(i,{to:"/login",state:{from:r},replace:!0})}export{m as default};

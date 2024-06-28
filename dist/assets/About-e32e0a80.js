@@ -1,0 +1,1 @@
+import{j as o}from"./index-d4e5aba6.js";import{A as t}from"./AboutComponent-370d3156.js";import"./index-498b1ce3.js";import"./aboutUsApi-a2fabc5a.js";import"./Spinner-241108b6.js";function e(){return o.jsx("section",{className:"py-10 lg:py-20",id:"about-us",children:o.jsx(t,{})})}export{e as default};
