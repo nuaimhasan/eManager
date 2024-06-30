@@ -6,14 +6,18 @@ import {
 } from "../../../redux/api/administratorApi";
 import Swal from "sweetalert2";
 import Spinner from "../../../components/Spinner/Spinner";
+import { useSelector } from "react-redux";
 
 export default function Administrator() {
+  const { loggedUser } = useSelector((state) => state.user);
   const { data, isLoading } = useGetAdminsQuery();
   const [deleteAdmin] = useDeleteAdminMutation();
   if (isLoading) {
     return <Spinner />;
   }
   const admins = data?.data;
+
+  console.log(loggedUser);
 
   const handleDelete = async (id) => {
     const isConfirm = window.confirm("are you sure delete this admin?");
@@ -26,6 +30,10 @@ export default function Administrator() {
             title: "",
             text: "Deleted success",
           });
+        }
+
+        if (loggedUser?.data?._id === id) {
+          localStorage.removeItem("eManager_jwt");
         }
       } catch (error) {
         Swal.fire({

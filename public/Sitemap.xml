@@ -7,49 +7,13 @@
       <priority>1.0</priority>
    </url>
    <url>
-      <loc>https://emanagerit.com/clients</loc>
-      <lastmod>2024-04-24</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
       <loc>https://emanagerit.com/services</loc>
       <lastmod>2024-04-24</lastmod>
       <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
+      <priority>0.9</priority>
    </url>
    <url>
-      <loc>https://www.emanagerit.com/</loc>
-      <lastmod>2024-04-24</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>1.0</priority>
-   </url>
-   <url>
-      <loc>https://emanagerit.com/demo</loc>
-      <lastmod>2024-04-24</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://emanagerit.com/contact-us</loc>
-      <lastmod>2024-04-24</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://emanagerit.com/career</loc>
-      <lastmod>2024-04-24</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://emanagerit.com/about-us</loc>
-      <lastmod>2024-04-24</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://emanagerit.com/campaigns</loc>
+      <loc>https://emanagerit.com/service/:slug</loc>
       <lastmod>2024-04-24</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
@@ -62,12 +26,6 @@
    </url>
    <url>
       <loc>https://emanagerit.com/service/app-development</loc>
-      <lastmod>2024-04-24</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://emanagerit.com/return-policy</loc>
       <lastmod>2024-04-24</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
@@ -90,12 +48,75 @@
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
+   <url>
+      <loc>https://emanagerit.com/about-us</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://emanagerit.com/contact-us</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>https://emanagerit.com/blogs</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://emanagerit.com/blogs/:id</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://emanagerit.com/campaigns</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://emanagerit.com/campaigns/:id</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://emanagerit.com/clients</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://emanagerit.com/hosting</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://emanagerit.com/demo</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://emanagerit.com/return-policy</loc>
+      <lastmod>2024-04-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   
    <!-- <url>
       <loc>https://emanagerit.com/our-team</loc>
       <lastmod>2024-04-24</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url> -->
+   
    <url>
       <loc>https://emanagerit.com/privacy-policy</loc>
       <lastmod>2024-04-24</lastmod>

@@ -6,7 +6,7 @@ import {
   MdPrivacyTip,
   MdAssignmentReturn,
 } from "react-icons/md";
-import { RiAdminFill, RiTeamFill } from "react-icons/ri";
+import { RiAdminFill } from "react-icons/ri";
 import { FaRegHandshake, FaBlogger, FaUsers } from "react-icons/fa";
 import { BsCart4 } from "react-icons/bs";
 import { TbBrandDaysCounter } from "react-icons/tb";
@@ -103,16 +103,6 @@ const adminSidebarItems = [
       {
         title: "All Clients",
         path: "/admin/clients/all-clients",
-      },
-    ],
-  },
-  {
-    icon: <RiTeamFill />,
-    title: "Teams",
-    subMenu: [
-      {
-        title: "All Teams",
-        path: "/admin/teams/all-teams",
       },
     ],
   },
